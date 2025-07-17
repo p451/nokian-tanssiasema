@@ -6,68 +6,83 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import fiLocale from '@fullcalendar/core/locales/fi';
+import scheduleData from '../data/schedule.json';
 
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState('Maanantai');
   const [calendarView, setCalendarView] = useState('week');
 
-  const weeklyClasses = {
-    Maanantai: [
-      { time: '17:00-18:00', class: 'Lasten Baletti (4-7v)', instructor: 'Anna Virtanen', level: 'Aloittelijat' },
-      { time: '18:15-19:15', class: 'Nuorten Street Dance (8-12v)', instructor: 'Mikael Koskinen', level: 'Keskitaso' },
-      { time: '19:30-20:30', class: 'Aikuisten Baletti', instructor: 'Anna Virtanen', level: 'Edistyneet' }
-    ],
-    Tiistai: [
-      { time: '16:30-17:30', class: 'Lasten Show Dance (5-8v)', instructor: 'Laura Mäkinen', level: 'Aloittelijat' },
-      { time: '18:00-19:00', class: 'Teini-ikäisten Baletti (13-17v)', instructor: 'Anna Virtanen', level: 'Keskitaso' },
-      { time: '19:15-20:15', class: 'Aikuisten Contemporary', instructor: 'Sofia Lindberg', level: 'Kaikki tasot' }
-    ],
-    Keskiviikko: [
-      { time: '17:00-18:00', class: 'Lasten Hip-Hop (6-10v)', instructor: 'Mikael Koskinen', level: 'Aloittelijat' },
-      { time: '18:15-19:15', class: 'Nuorten Show Dance (11-15v)', instructor: 'Laura Mäkinen', level: 'Keskitaso' },
-      { time: '19:30-20:30', class: 'Aikuisten Street Dance', instructor: 'Mikael Koskinen', level: 'Kaikki tasot' }
-    ],
-    Torstai: [
-      { time: '16:45-17:45', class: 'Lasten Baletti (6-9v)', instructor: 'Anna Virtanen', level: 'Keskitaso' },
-      { time: '18:00-19:00', class: 'Nuorten Contemporary (12-16v)', instructor: 'Sofia Lindberg', level: 'Edistyneet' },
-      { time: '19:15-20:15', class: 'Aikuisten Jazz Dance', instructor: 'Laura Mäkinen', level: 'Kaikki tasot' }
-    ],
-    Perjantai: [
-      { time: '17:00-18:00', class: 'Lasten Show Dance (7-11v)', instructor: 'Laura Mäkinen', level: 'Keskitaso' },
-      { time: '18:15-19:15', class: 'Teini-ikäisten Hip-Hop (13-17v)', instructor: 'Mikael Koskinen', level: 'Edistyneet' },
-      { time: '19:30-20:30', class: 'Aikuisten Baletti', instructor: 'Anna Virtanen', level: 'Kaikki tasot' }
-    ],
-    Lauantai: [
-      { time: '10:00-11:00', class: 'Perheen Tanssitunti (3v+)', instructor: 'Laura Mäkinen', level: 'Kaikki tasot' },
-      { time: '11:15-12:15', class: 'Aikuisten Open Class', instructor: 'Vaihtuvat opettajat', level: 'Kaikki tasot' },
-      { time: '13:00-14:30', class: 'Kilparyhmän harjoitukset', instructor: 'Anna Virtanen', level: 'Edistyneet' }
-    ]
-  };
+  const weeklyClasses = scheduleData;
 
-  const calendarEvents = Object.entries(weeklyClasses).flatMap(([day, classes]) => 
-    classes.map((classItem, index) => ({
-      id: `${day}-${index}`,
-      title: classItem.class,
-      start: `2024-01-${getDayNumber(day)}T${classItem.time.split('-')[0]}:00`,
-      end: `2024-01-${getDayNumber(day)}T${classItem.time.split('-')[1]}:00`,
+  const calendarEvents = Object.entries(weeklyClasses).flatMap(([day, classes]) => {
+    const events: Array<{
+      id: string;
+      title: string;
+      start: string;
+      end: string;
+      classNames: string[];
       extendedProps: {
-        instructor: classItem.instructor,
-        level: classItem.level,
-        time: classItem.time
+        instructor: string;
+        level: string;
+        time: string;
+        sali: string;
+      };
+    }> = [];
+    
+    // Luodaan tapahtumat elokuusta alkaen useammalle viikolle
+    const startDate = new Date(2025, 7, 1); // Elokuu 2025 (kuukausi 0-indeksoitu)
+    const endDate = new Date(2026, 5, 30); // Kesäkuu 2026
+    
+    // Käydään läpi viikot startDate:sta endDate:een
+    for (let weekStart = new Date(startDate); weekStart <= endDate; weekStart.setDate(weekStart.getDate() + 7)) {
+      // Etsitään viikon ensimmäinen maanantai
+      const monday = new Date(weekStart);
+      monday.setDate(monday.getDate() - monday.getDay() + 1);
+      
+      const dayOffset = getDayOffset(day);
+      const eventDate = new Date(monday);
+      eventDate.setDate(monday.getDate() + dayOffset);
+      
+      // Lisätään tunnit vain jos päivä on viikon sisällä
+      if (eventDate >= startDate && eventDate <= endDate) {
+        classes.forEach((classItem, index) => {
+          const [startTime, endTime] = classItem.time.split('-');
+          const startDateTime = new Date(eventDate);
+          startDateTime.setHours(parseInt(startTime.split(':')[0]), parseInt(startTime.split(':')[1]));
+          const endDateTime = new Date(eventDate);
+          endDateTime.setHours(parseInt(endTime.split(':')[0]), parseInt(endTime.split(':')[1]));
+          
+          events.push({
+            id: `${day}-${index}-${eventDate.getTime()}`,
+            title: `${classItem.class} (${classItem.sali})`,
+            start: startDateTime.toISOString(),
+            end: endDateTime.toISOString(),
+            classNames: classItem.sali === 'Sali 1' ? ['sali-1-event'] : ['sali-2-event'],
+            extendedProps: {
+              instructor: classItem.instructor,
+              level: classItem.level,
+              time: classItem.time,
+              sali: classItem.sali
+            }
+          });
+        });
       }
-    }))
-  );
+    }
+    
+    return events;
+  });
 
-  function getDayNumber(day: string): string {
-    const days: { [key: string]: string } = {
-      'Maanantai': '08',
-      'Tiistai': '09', 
-      'Keskiviikko': '10',
-      'Torstai': '11',
-      'Perjantai': '12',
-      'Lauantai': '13'
+  function getDayOffset(day: string): number {
+    const days: { [key: string]: number } = {
+      'Maanantai': 0,
+      'Tiistai': 1, 
+      'Keskiviikko': 2,
+      'Torstai': 3,
+      'Perjantai': 4,
+      'Lauantai': 5
     };
-    return days[day] || '08';
+    return days[day] || 0;
   }
 
   const days = Object.keys(weeklyClasses);
@@ -125,6 +140,24 @@ const Schedule = () => {
             viewport={{ once: true }}
             className="bg-offWhite rounded-xl p-6 shadow-lg"
           >
+            <style jsx>{`
+              .sali-1-event {
+                background-color: #6B5B47 !important;
+                border-color: #4A3D2F !important;
+                color: #FFFFFF !important;
+              }
+              .sali-2-event {
+                background-color: #B8860B !important;
+                border-color: #8B7355 !important;
+                color: #FFFFFF !important;
+              }
+              .fc-event-title {
+                color: #FFFFFF !important;
+              }
+              .fc-event-time {
+                color: #FFFFFF !important;
+              }
+            `}</style>
             <FullCalendar
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               initialView="timeGridWeek"
@@ -133,19 +166,41 @@ const Schedule = () => {
                 center: 'title',
                 right: 'timeGridWeek,timeGridDay'
               }}
+              buttonText={{
+                today: 'Tänään',
+                month: 'Kuukausi',
+                week: 'Viikko',
+                day: 'Päivä',
+                list: 'Lista',
+                prev: 'Edellinen',
+                next: 'Seuraava'
+              }}
+              locale={fiLocale}
+              dayHeaderFormat={{ weekday: 'long' }}
               events={calendarEvents}
-              slotMinTime="16:00:00"
+              slotMinTime="10:00:00"
               slotMaxTime="21:00:00"
               height="600px"
               eventClick={(info) => {
-                alert(`Tunti: ${info.event.title}\nOpettaja: ${info.event.extendedProps.instructor}\nTaso: ${info.event.extendedProps.level}`);
+                alert(`Tunti: ${info.event.title}\nOpettaja: ${info.event.extendedProps.instructor}\nTaso: ${info.event.extendedProps.level}\nSali: ${info.event.extendedProps.sali}`);
               }}
-              locale="fi"
               businessHours={{
                 daysOfWeek: [1, 2, 3, 4, 5, 6],
-                startTime: '16:00',
+                startTime: '10:00',
                 endTime: '21:00',
               }}
+              firstDay={1}
+              weekends={true}
+              allDaySlot={false}
+              slotDuration="00:15:00"
+              slotLabelInterval="01:00:00"
+              slotLabelFormat={{
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+              }}
+              eventDisplay="block"
+              eventTextColor="#FFFFFF"
             />
           </motion.div>
         ) : (
@@ -188,12 +243,18 @@ const Schedule = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-offWhite rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-sage"
+                  className="bg-offWhite rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4"
+                  style={{ 
+                    borderLeftColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
+                  }}
                 >
                   <div className="grid md:grid-cols-4 gap-4 items-center">
                     <div className="md:col-span-1">
                       <div className="text-2xl font-bold text-sage font-playfair">
                         {classItem.time}
+                      </div>
+                      <div className="text-sm text-charcoal/60 mt-1">
+                        {classItem.sali}
                       </div>
                     </div>
                     <div className="md:col-span-2">
@@ -204,7 +265,7 @@ const Schedule = () => {
                         Opettaja: <span className="font-medium">{classItem.instructor}</span>
                       </p>
                     </div>
-                    <div className="md:col-span-1 flex justify-end">
+                    <div className="md:col-span-1 flex flex-col items-end gap-2">
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                         classItem.level === 'Aloittelijat' 
                           ? 'bg-blush/20 text-blush' 
@@ -215,6 +276,14 @@ const Schedule = () => {
                           : 'bg-offWhite border border-charcoal/20 text-charcoal'
                       }`}>
                         {classItem.level}
+                      </span>
+                      <span 
+                        className="px-2 py-1 rounded-md text-xs font-medium text-white"
+                        style={{ 
+                          backgroundColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
+                        }}
+                      >
+                        {classItem.sali}
                       </span>
                     </div>
                   </div>

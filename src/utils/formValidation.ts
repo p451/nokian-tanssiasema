@@ -7,11 +7,15 @@ export const registrationSchema = z.object({
   email: z.string().email('Virheellinen sähköpostiosoite'),
   phone: z.string().min(8, 'Puhelinnumero on pakollinen'),
   
-  // Dance Class Selection
-  danceClass: z.string().min(1, 'Valitse tanssiluokka'),
+  // Dance Class Selection - Multiple selections allowed
+  danceClasses: z.array(z.string()).min(1, 'Valitse vähintään yksi tanssiluokka'),
   level: z.enum(['beginner', 'intermediate', 'advanced'], {
     errorMap: () => ({ message: 'Valitse taitotaso' })
   }),
+  
+  // Schedule preferences
+  preferredDays: z.array(z.string()).optional(),
+  preferredTimes: z.array(z.string()).optional(),
   
   // Additional Information
   previousExperience: z.string().optional(),
@@ -19,11 +23,11 @@ export const registrationSchema = z.object({
   emergencyContact: z.string().min(2, 'Yhteyshenkilö on pakollinen'),
   emergencyPhone: z.string().min(8, 'Yhteyshenkilön puhelinnumero on pakollinen'),
   
-  // Terms and Conditions
-  acceptTerms: z.boolean().refine(val => val === true, {
-    message: 'Hyväksy käyttöehdot jatkaaksesi'
+  // Terms and Privacy
+  termsAccepted: z.boolean().refine(val => val === true, {
+    message: 'Käyttöehdot täytyy hyväksyä'
   }),
-  allowMarketing: z.boolean().optional()
+  marketingConsent: z.boolean().optional()
 });
 
 export type RegistrationFormData = z.infer<typeof registrationSchema>;

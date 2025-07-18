@@ -14,8 +14,8 @@ export default function Home() {
       <Hero />
       
       {/* Esittelyteksti Section */}
-      <section className="py-32 my-24">
-        <div className="max-w-xl mx-auto text-center space-y-12 px-8 min-h-[400px] flex flex-col justify-center">
+      <section className="bg_neutral_primary py-16">
+        <div className="max-w-xl mx-auto text-center space-y-8 px-8 min-h-[300px] flex flex-col justify-center">
           <h2 className="heading_h2">Nokian Tanssiasema</h2>
           <p className="paragraph_large leading-relaxed">
             On kulkenut nokialaisten rinnalla jo yli 50 vuotta – tanssin ilon, ilmaisun ja kasvun paikkana. Meillä jokainen saa tanssia omalla tavallaan, omassa tahdissaan. Opetus on monipuolista ja etenee lempeästi tasolta toiselle, kokeneiden ja sydämellisten opettajien ohjauksessa. Tunnit ovat avoimia kaikenikäisille ja -tasoisille – meiltä löydät oman paikkasi tanssin maailmassa.

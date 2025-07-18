@@ -85,7 +85,7 @@ const Registration = () => {
 
   if (isSubmitted) {
     return (
-      <section id="register" className="py-20 bg-blush/10">
+      <section id="register" className="py-20 bg-neutral-secondary/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -94,10 +94,10 @@ const Registration = () => {
             className="bg-white rounded-2xl p-8 shadow-lg"
           >
             <div className="text-6xl mb-4">🎉</div>
-            <h2 className="text-3xl font-bold text-charcoal mb-4 font-playfair">
+            <h2 className="heading_h3 mb-4">
               Kiitos ilmoittautumisesta!
             </h2>
-            <p className="text-charcoal/70 mb-6">
+            <p className="paragraph_default text-charcoal/70 mb-6">
               Olemme vastaanottaneet ilmoittautumisesi. Otamme sinuun yhteyttä pian 
               sähköpostitse vahvistaaksemme paikkasi valitsemillasi tunneilla.
             </p>
@@ -106,7 +106,7 @@ const Registration = () => {
                 setIsSubmitted(false);
                 setCurrentStep(1);
               }}
-              className="bg-charcoal text-offWhite px-6 py-2 rounded-lg hover:bg-charcoal/90 transition-colors duration-200"
+              className="btn btn_secondary_solid"
             >
               Ilmoittaudu uudelleen
             </button>
@@ -117,7 +117,7 @@ const Registration = () => {
   }
 
   return (
-    <section id="register" className="py-20 bg-blush/10">
+    <section id="register" className="section_accent_tertiary_fullwidth py-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -126,10 +126,10 @@ const Registration = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-charcoal mb-6 font-playfair">
+          <h2 className="heading_h2 mb-6">
             Ilmoittautuminen
           </h2>
-          <p className="text-xl text-charcoal/80">
+          <p className="paragraph_large text-center">
             Täytä lomake ja valitse haluamasi tunnit
           </p>
         </motion.div>
@@ -142,7 +142,7 @@ const Registration = () => {
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
                     step <= currentStep
-                      ? 'bg-sage text-offWhite'
+                      ? 'bg-accent-primary text-white'
                       : 'bg-gray-200 text-gray-500'
                   }`}
                 >
@@ -151,7 +151,7 @@ const Registration = () => {
                 {step < 4 && (
                   <div
                     className={`w-8 h-0.5 ${
-                      step < currentStep ? 'bg-sage' : 'bg-gray-200'
+                      step < currentStep ? 'bg-accent-primary' : 'bg-gray-200'
                     }`}
                   />
                 )}
@@ -170,66 +170,66 @@ const Registration = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold text-charcoal mb-6 font-playfair">
+                <h3 className="heading_h3 mb-6">
                   Henkilötiedot
                 </h3>
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-charcoal mb-2">
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
                       Etunimi *
                     </label>
                     <input
                       {...register('firstName')}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                      className="input-field"
                       placeholder="Anna"
                     />
                     {errors.firstName && (
-                      <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>
+                      <p className="text-red-500 paragraph_small mt-1">{errors.firstName.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-charcoal mb-2">
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
                       Sukunimi *
                     </label>
                     <input
                       {...register('lastName')}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                      className="input-field"
                       placeholder="Virtanen"
                     />
                     {errors.lastName && (
-                      <p className="text-red-500 text-sm mt-1">{errors.lastName.message}</p>
+                      <p className="text-red-500 paragraph_small mt-1">{errors.lastName.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-charcoal mb-2">
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
                       Sähköposti *
                     </label>
                     <input
                       {...register('email')}
                       type="email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                      className="input-field"
                       placeholder="anna.virtanen@email.com"
                     />
                     {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                      <p className="text-red-500 paragraph_small mt-1">{errors.email.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-charcoal mb-2">
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
                       Puhelinnumero *
                     </label>
                     <input
                       {...register('phone')}
                       type="tel"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                      className="input-field"
                       placeholder="050 123 4567"
                     />
                     {errors.phone && (
-                      <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                      <p className="text-red-500 paragraph_small mt-1">{errors.phone.message}</p>
                     )}
                   </div>
                 </div>
@@ -244,12 +244,12 @@ const Registration = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold text-charcoal mb-6 font-playfair">
+                <h3 className="heading_h3 mb-6">
                   Valitse tunnit
                 </h3>
                 
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-charcoal mb-4">
+                  <label className="paragraph_small font-medium text-charcoal mb-4 block">
                     Tanssilajit * (Voit valita useita)
                   </label>
                   <Controller
@@ -262,8 +262,8 @@ const Registration = () => {
                             key={danceClass.value}
                             className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                               field.value.includes(danceClass.value)
-                                ? 'border-sage bg-sage/5'
-                                : 'border-gray-200 hover:border-sage/50'
+                                ? 'border-accent-primary bg-accent-primary/5'
+                                : 'border-gray-200 hover:border-accent-primary/50'
                             }`}
                           >
                             <div className="flex items-center mb-2">
@@ -277,12 +277,12 @@ const Registration = () => {
                                     field.onChange(field.value.filter((v: string) => v !== danceClass.value));
                                   }
                                 }}
-                                className="w-4 h-4 text-sage bg-gray-100 border-gray-300 rounded focus:ring-sage"
+                                className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-accent-primary"
                               />
                               <span className="ml-2 font-medium text-charcoal">{danceClass.label}</span>
                             </div>
-                            <p className="text-sm text-charcoal/70 mb-1">{danceClass.description}</p>
-                            <p className="text-sm font-medium text-sage">{danceClass.price}</p>
+                            <p className="paragraph_small text-charcoal/70 mb-1">{danceClass.description}</p>
+                            <p className="paragraph_small font-medium text-accent-primary">{danceClass.price}</p>
                           </label>
                         ))}
                       </div>
@@ -294,14 +294,14 @@ const Registration = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-charcoal mb-4">
+                  <label className="paragraph_small font-medium text-charcoal mb-4 block">
                     Taitotaso *
                   </label>
                   <div className="grid md:grid-cols-3 gap-4">
                     {levels.map((level) => (
                       <label
                         key={level.value}
-                        className="relative flex flex-col p-4 border-2 rounded-lg cursor-pointer hover:border-sage/50 transition-colors"
+                        className="relative flex flex-col p-4 border-2 rounded-lg cursor-pointer hover:border-accent-primary/50 transition-colors"
                       >
                         <input
                           {...register('level')}
@@ -309,20 +309,20 @@ const Registration = () => {
                           value={level.value}
                           className="sr-only"
                         />
-                        <span className="font-medium text-charcoal mb-1">{level.label}</span>
-                        <span className="text-sm text-charcoal/70">{level.description}</span>
+                        <span className="heading_h6 text-charcoal mb-1">{level.label}</span>
+                        <span className="paragraph_small text-charcoal/70">{level.description}</span>
                       </label>
                     ))}
                   </div>
                   {errors.level && (
-                    <p className="text-red-500 text-sm mt-2">{errors.level.message}</p>
+                    <p className="text-red-500 paragraph_small mt-2">{errors.level.message}</p>
                   )}
                 </div>
 
                 {watchedDanceClasses.length > 0 && (
-                  <div className="mt-6 p-4 bg-sage/10 rounded-lg">
-                    <h4 className="font-medium text-charcoal mb-2">Valitsemasi tunnit:</h4>
-                    <ul className="list-disc list-inside text-sm text-charcoal/80">
+                  <div className="mt-6 p-4 bg-accent-secondary/10 rounded-lg">
+                    <h4 className="heading_h6 text-charcoal mb-2">Valitsemasi tunnit:</h4>
+                    <ul className="list-disc list-inside paragraph_small text-charcoal/80">
                       {watchedDanceClasses.map((classValue: string) => {
                         const classInfo = danceClasses.find(c => c.value === classValue);
                         return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
@@ -341,62 +341,62 @@ const Registration = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold text-charcoal mb-6 font-playfair">
+                <h3 className="heading_h3 mb-6">
                   Lisätiedot ja yhteyshenkilö
                 </h3>
                 
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-charcoal mb-2">
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
                       Aiempi tanssikokemus
                     </label>
                     <textarea
                       {...register('previousExperience')}
                       rows={3}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                      className="input-field"
                       placeholder="Kerro aiemmasta tanssikokemuksestasi..."
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-charcoal mb-2">
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
                       Terveydentila ja rajoitukset
                     </label>
                     <textarea
                       {...register('medicalConditions')}
                       rows={2}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                      className="input-field"
                       placeholder="Kerro mahdollisista terveydellisistä rajoituksista..."
                     />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-charcoal mb-2">
+                      <label className="paragraph_small font-medium text-charcoal mb-2 block">
                         Yhteyshenkilö hätätilanteessa *
                       </label>
                       <input
                         {...register('emergencyContact')}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                        className="input-field"
                         placeholder="Matti Virtanen"
                       />
                       {errors.emergencyContact && (
-                        <p className="text-red-500 text-sm mt-1">{errors.emergencyContact.message}</p>
+                        <p className="text-red-500 paragraph_small mt-1">{errors.emergencyContact.message}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-charcoal mb-2">
+                      <label className="paragraph_small font-medium text-charcoal mb-2 block">
                         Yhteyshenkilön puhelinnumero *
                       </label>
                       <input
                         {...register('emergencyPhone')}
                         type="tel"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent"
+                        className="input-field"
                         placeholder="050 987 6543"
                       />
                       {errors.emergencyPhone && (
-                        <p className="text-red-500 text-sm mt-1">{errors.emergencyPhone.message}</p>
+                        <p className="text-red-500 paragraph_small mt-1">{errors.emergencyPhone.message}</p>
                       )}
                     </div>
                   </div>
@@ -474,7 +474,7 @@ const Registration = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold text-charcoal mb-6 font-playfair">
+                <h3 className="heading_h3 mb-6">
                   Yhteenveto ja hyväksyntä
                 </h3>
                 
@@ -549,7 +549,7 @@ const Registration = () => {
               <button
                 type="button"
                 onClick={prevStep}
-                className="px-6 py-3 border border-gray-300 text-charcoal rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                className="btn btn_secondary_outlined"
               >
                 Takaisin
               </button>
@@ -560,14 +560,14 @@ const Registration = () => {
                 <button
                   type="button"
                   onClick={nextStep}
-                  className="px-6 py-3 bg-sage text-offWhite rounded-lg hover:bg-sage/90 transition-colors duration-200"
+                  className="btn btn_accent_solid"
                 >
                   Seuraava
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="px-8 py-3 bg-charcoal text-offWhite rounded-lg hover:bg-charcoal/90 transition-colors duration-200 font-semibold"
+                  className="btn btn_primary_solid"
                 >
                   Lähetä ilmoittautuminen
                 </button>

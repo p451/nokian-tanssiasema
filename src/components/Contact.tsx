@@ -101,7 +101,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-charcoal">
+    <section id="contact" className="section_inverse_fullwidth py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -110,10 +110,10 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-offWhite mb-6 font-playfair">
+          <h2 className="heading_h2 text-white mb-6">
             Ota yhteyttä
           </h2>
-          <p className="text-xl text-offWhite/80 max-w-3xl mx-auto">
+          <p className="paragraph_large text-white/100">
             Onko sinulla kysymyksiä tunneistamme tai haluatko tietää lisää? 
             Otamme mielellämme vastaan viestisi!
           </p>
@@ -127,7 +127,7 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-offWhite mb-8 font-playfair">
+            <h3 className="heading_h3 text-white mb-8">
               Yhteystiedot
             </h3>
             
@@ -141,24 +141,24 @@ const Contact = () => {
                   viewport={{ once: true }}
                   className="flex items-start space-x-4"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-blush rounded-lg flex items-center justify-center">
+                  <div className="flex-shrink-0 w-12 h-12 bg-accent-primary rounded-lg flex items-center justify-center">
                     <div className="text-charcoal">
                       {item.icon}
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-offWhite mb-1">
+                    <h4 className="heading_h6 text-white mb-1">
                       {item.title}
                     </h4>
                     {item.link ? (
                       <a
                         href={item.link}
-                        className="text-offWhite/80 hover:text-blush transition-colors duration-200 whitespace-pre-line"
+                        className="paragraph_default text-white/80 hover:text-accent-primary transition-colors duration-200 whitespace-pre-line"
                       >
                         {item.content}
                       </a>
                     ) : (
-                      <p className="text-offWhite/80 whitespace-pre-line">
+                      <p className="paragraph_default text-white/80 whitespace-pre-line">
                         {item.content}
                       </p>
                     )}
@@ -169,7 +169,7 @@ const Contact = () => {
 
             {/* Social Media Links */}
             <div className="mt-8">
-              <h4 className="text-lg font-semibold text-offWhite mb-4">
+              <h4 className="heading_h6 text-white mb-4">
                 Seuraa meitä sosiaalisessa mediassa
               </h4>
               <div className="flex space-x-4">
@@ -179,7 +179,7 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-offWhite/10 rounded-lg flex items-center justify-center text-offWhite hover:bg-blush hover:text-charcoal transition-all duration-200"
+                    className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white hover:bg-accent-primary hover:text-charcoal transition-all duration-200"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -197,9 +197,9 @@ const Contact = () => {
               viewport={{ once: true }}
               className="mt-8"
             >
-              <div className="bg-offWhite/10 rounded-lg p-6 text-center">
+              <div className="bg-neutral-primary/10 rounded-lg p-6 text-center">
                 <div className="text-4xl mb-2">📍</div>
-                <p className="text-offWhite/80">
+                <p className="paragraph_default text-white/80">
                   Sijaitsemme Nokian keskustassa, helposti saavutettavissa 
                   julkisilla kulkuvälineillä ja omalla autolla.
                 </p>
@@ -207,7 +207,7 @@ const Contact = () => {
                   href="https://maps.google.com/?q=Keskuskatu+5,+37100+Nokia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-4 bg-blush text-charcoal px-4 py-2 rounded-lg font-medium hover:bg-blush/90 transition-colors duration-200"
+                  className="btn btn_accent_solid mt-4"
                 >
                   Avaa kartta
                 </a>
@@ -222,8 +222,8 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="bg-offWhite rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-charcoal mb-6 font-playfair">
+            <div className="bg-neutral-primary rounded-2xl p-8">
+              <h3 className="heading_h3 mb-6">
                 Lähetä viesti
               </h3>
 
@@ -239,68 +239,68 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-charcoal mb-2">
+                  <label className="paragraph_small font-medium text-charcoal mb-2 block">
                     Nimi *
                   </label>
                   <input
                     {...register('name')}
                     type="text"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-charcoal focus:border-transparent"
+                    className="input-field"
                     placeholder="Anna nimesi"
                   />
                   {errors.name && (
-                    <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                    <p className="text-red-500 paragraph_small mt-1">{errors.name.message}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-charcoal mb-2">
+                  <label className="paragraph_small font-medium text-charcoal mb-2 block">
                     Sähköposti *
                   </label>
                   <input
                     {...register('email')}
                     type="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-charcoal focus:border-transparent"
+                    className="input-field"
                     placeholder="anna.virtanen@email.com"
                   />
                   {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                    <p className="text-red-500 paragraph_small mt-1">{errors.email.message}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-charcoal mb-2">
+                  <label className="paragraph_small font-medium text-charcoal mb-2 block">
                     Aihe *
                   </label>
                   <input
                     {...register('subject')}
                     type="text"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-charcoal focus:border-transparent"
+                    className="input-field"
                     placeholder="Mistä haluat kysyä?"
                   />
                   {errors.subject && (
-                    <p className="text-red-500 text-sm mt-1">{errors.subject.message}</p>
+                    <p className="text-red-500 paragraph_small mt-1">{errors.subject.message}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-charcoal mb-2">
+                  <label className="paragraph_small font-medium text-charcoal mb-2 block">
                     Viesti *
                   </label>
                   <textarea
                     {...register('message')}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-charcoal focus:border-transparent"
+                    className="input-field"
                     placeholder="Kirjoita viestisi tähän..."
                   />
                   {errors.message && (
-                    <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+                    <p className="text-red-500 paragraph_small mt-1">{errors.message.message}</p>
                   )}
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-charcoal text-offWhite py-3 rounded-lg font-semibold hover:bg-charcoal/90 transition-colors duration-200"
+                  className="btn btn_primary_solid w-full"
                 >
                   Lähetä viesti
                 </button>

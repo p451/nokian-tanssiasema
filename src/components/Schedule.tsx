@@ -11,7 +11,7 @@ import scheduleData from '../data/schedule.json';
 
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState('Maanantai');
-  const [calendarView, setCalendarView] = useState('week');
+  const [calendarView, setCalendarView] = useState('list');
 
   const weeklyClasses = scheduleData;
 
@@ -88,7 +88,7 @@ const Schedule = () => {
   const days = Object.keys(weeklyClasses);
 
   return (
-    <section id="schedule" className="py-20 bg-sage/10">
+        <section className="section_primary_default">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -97,33 +97,33 @@ const Schedule = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-charcoal mb-6 font-playfair">
+          <h2 className="heading_h2 mb-6">
             Tuntien Aikataulu
           </h2>
-          <p className="text-xl text-charcoal/80 max-w-3xl mx-auto">
+          <p className="paragraph_large">
             Tutustu viikko-ohjelmaamme ja löydä sinulle sopivat tunnit
           </p>
         </motion.div>
 
         {/* Calendar View Toggle */}
         <div className="flex justify-center mb-8">
-          <div className="bg-offWhite rounded-lg p-1 shadow-md">
+          <div className="bg-neutral-primary rounded-lg p-1 shadow-md">
             <button
               onClick={() => setCalendarView('week')}
-              className={`px-6 py-2 rounded-md font-medium transition-colors ${
+              className={`btn ${
                 calendarView === 'week' 
-                  ? 'bg-sage text-offWhite' 
-                  : 'text-charcoal hover:bg-sage/20'
+                  ? 'btn_accent_solid' 
+                  : 'btn_ghost'
               }`}
             >
               Viikkonäkymä
             </button>
             <button
               onClick={() => setCalendarView('list')}
-              className={`px-6 py-2 rounded-md font-medium transition-colors ${
+              className={`btn ${
                 calendarView === 'list' 
-                  ? 'bg-sage text-offWhite' 
-                  : 'text-charcoal hover:bg-sage/20'
+                  ? 'btn_accent_solid' 
+                  : 'btn_ghost'
               }`}
             >
               Listanäkymä
@@ -138,7 +138,7 @@ const Schedule = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-offWhite rounded-xl p-6 shadow-lg"
+            className="bg-neutral-primary rounded-xl p-6 shadow-lg"
           >
             <style jsx>{`
               .sali-1-event {
@@ -218,10 +218,10 @@ const Schedule = () => {
                 <button
                   key={day}
                   onClick={() => setSelectedDay(day)}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                  className={`btn ${
                     selectedDay === day
-                      ? 'bg-sage text-offWhite shadow-lg transform scale-105'
-                      : 'bg-offWhite text-charcoal hover:bg-sage/20 shadow-md'
+                      ? 'btn_accent_solid shadow-lg transform scale-105'
+                      : 'btn_secondary_outlined hover:bg-sage/20'
                   }`}
                 >
                   {day}
@@ -243,25 +243,25 @@ const Schedule = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-offWhite rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4"
+                  className="card transition-all duration-300 border-l-4"
                   style={{ 
                     borderLeftColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
                   }}
                 >
                   <div className="grid md:grid-cols-4 gap-4 items-center">
                     <div className="md:col-span-1">
-                      <div className="text-2xl font-bold text-sage font-playfair">
+                      <div className="heading_h4 text-sage">
                         {classItem.time}
                       </div>
-                      <div className="text-sm text-charcoal/60 mt-1">
+                      <div className="paragraph_small text-charcoal/60 mt-1">
                         {classItem.sali}
                       </div>
                     </div>
                     <div className="md:col-span-2">
-                      <h3 className="text-xl font-bold text-charcoal mb-1 font-playfair">
+                      <h3 className="heading_h5 text-charcoal mb-1">
                         {classItem.class}
                       </h3>
-                      <p className="text-charcoal/70">
+                      <p className="paragraph_default text-charcoal/70">
                         Opettaja: <span className="font-medium">{classItem.instructor}</span>
                       </p>
                     </div>
@@ -273,7 +273,7 @@ const Schedule = () => {
                           ? 'bg-sage/20 text-sage'
                           : classItem.level === 'Edistyneet'
                           ? 'bg-charcoal/20 text-charcoal'
-                          : 'bg-offWhite border border-charcoal/20 text-charcoal'
+                          : 'bg-neutral-primary border border-charcoal/20 text-charcoal'
                       }`}>
                         {classItem.level}
                       </span>
@@ -299,33 +299,33 @@ const Schedule = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-12 bg-offWhite rounded-xl p-8 shadow-lg"
+          className="mt-12 bg-neutral-primary rounded-xl p-8 shadow-lg"
         >
-          <h3 className="text-2xl font-bold text-charcoal mb-6 font-playfair text-center">
+          <h3 className="heading_h3 text-charcoal mb-6 text-center">
             Tärkeää tietoa tunneista
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold text-charcoal mb-2">📅 Aikataulut</h4>
-              <p className="text-charcoal/80 text-sm">
+              <h4 className="heading_h6 text-charcoal mb-2">📅 Aikataulut</h4>
+              <p className="paragraph_small text-charcoal/80">
                 Aikataulut voivat muuttua loma-aikoina. Tarkista aina ajankohtaiset tiedot nettisivuiltamme.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-charcoal mb-2">👥 Ryhmäkoot</h4>
-              <p className="text-charcoal/80 text-sm">
+              <h4 className="heading_h6 text-charcoal mb-2">👥 Ryhmäkoot</h4>
+              <p className="paragraph_small text-charcoal/80">
                 Rajoitamme ryhmäkokoja laadun takaamiseksi. Ilmoittaudu ajoissa!
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-charcoal mb-2">💳 Hinnat</h4>
-              <p className="text-charcoal/80 text-sm">
+              <h4 className="heading_h6 text-charcoal mb-2">💳 Hinnat</h4>
+              <p className="paragraph_small text-charcoal/80">
                 Yksittäinen tunti 25€, kuukausikortit alkaen 80€. Tutustumistunti ilmainen!
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-charcoal mb-2">👕 Vaatetus</h4>
-              <p className="text-charcoal/80 text-sm">
+              <h4 className="heading_h6 text-charcoal mb-2">👕 Vaatetus</h4>
+              <p className="paragraph_small text-charcoal/80">
                 Mukavat liikuntavaatteet riittävät. Balettitossut ja tanssijalkineet myytävänä studiolta.
               </p>
             </div>

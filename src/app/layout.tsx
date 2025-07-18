@@ -1,29 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-
-// Fonttien määrittelyt
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
-// Aboreto ladataan CSS:n kautta koska se ei ole saatavilla Next.js Google Fonts APIssa
 
 export const metadata: Metadata = {
   title: "Nokian Tanssiasema - Ilmaise itsesi tanssin kautta",
@@ -37,9 +13,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200;250;300;400;500;600&family=Manrope:wght@200;250;300;400;500;600&display=swap" 
+          rel="stylesheet" 
+        />
+      </head>
+      <body className="antialiased">
         {children}
       </body>
     </html>

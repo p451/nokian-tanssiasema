@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -39,7 +40,7 @@ const Gallery = () => {
   ];
 
   return (
-    <section id="gallery" className="py-20 bg-offWhite">
+    <section id="gallery" className="section_secondary_fullwidth py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -48,10 +49,10 @@ const Gallery = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-charcoal mb-6 font-playfair">
+          <h2 className="heading_h2 mb-6">
             Galleria
           </h2>
-          <p className="text-xl text-charcoal/80 max-w-3xl mx-auto">
+          <p className="paragraph_large">
             Katso kuvia tunneiltamme ja oppilaidemme esityksistä
           </p>
         </motion.div>
@@ -96,15 +97,17 @@ const Gallery = () => {
                   onClick={() => setSelectedImage(image.src)}
                 >
                   <div className="aspect-square relative">
-                    <img
+                    <Image
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-center text-offWhite">
-                        <h3 className="text-xl font-bold mb-2 font-playfair">{image.title}</h3>
-                        <p className="text-sm">{image.description}</p>
+                    <div className="absolute inset-0 bg-neutral-inverse/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <h3 className="heading_h5 mb-2">{image.title}</h3>
+                        <p className="paragraph_small">{image.description}</p>
                       </div>
                     </div>
                   </div>
@@ -131,15 +134,17 @@ const Gallery = () => {
               onClick={() => setSelectedImage(image.src)}
             >
               <div className="aspect-video relative">
-                <img
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-center text-offWhite">
-                    <h3 className="text-xl font-bold mb-2 font-playfair">{image.title}</h3>
-                    <p className="text-sm">{image.description}</p>
+                <div className="absolute inset-0 bg-neutral-inverse/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <h3 className="heading_h5 mb-2">{image.title}</h3>
+                    <p className="paragraph_small">{image.description}</p>
                     <div className="mt-4 text-2xl">🔍</div>
                   </div>
                 </div>
@@ -154,7 +159,7 @@ const Gallery = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/90 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-inverse/90 p-4"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
@@ -164,14 +169,16 @@ const Gallery = () => {
               className="relative max-w-4xl max-h-[90vh] w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={selectedImage}
                 alt="Galleria kuva"
+                width={1200}
+                height={800}
                 className="w-full h-full object-contain rounded-lg"
               />
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 bg-charcoal/70 text-offWhite w-10 h-10 rounded-full flex items-center justify-center hover:bg-charcoal transition-colors"
+                className="btn btn_light_solid absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center"
               >
                 ✕
               </button>

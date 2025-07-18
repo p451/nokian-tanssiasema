@@ -64,13 +64,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-charcoal text-offWhite">
+        <footer className="bg-charcoal text-offWhite">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-4 font-playfair">
+            <h3 className="text-2xl font-bold mb-4">
               Nokian Tanssiasema
             </h3>
             <p className="text-offWhite/80 mb-6 leading-relaxed">
@@ -109,7 +109,7 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 font-playfair">
+            <h4 className="text-lg font-semibold mb-4">
               Yritys
             </h4>
             <ul className="space-y-2">
@@ -128,7 +128,7 @@ const Footer = () => {
 
           {/* Class Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 font-playfair">
+            <h4 className="text-lg font-semibold mb-4">
               Tunnit
             </h4>
             <ul className="space-y-2">
@@ -147,7 +147,7 @@ const Footer = () => {
 
           {/* Service Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 font-playfair">
+            <h4 className="text-lg font-semibold mb-4">
               Palvelut
             </h4>
             <ul className="space-y-2">
@@ -169,7 +169,7 @@ const Footer = () => {
         <div className="border-t border-offWhite/20 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h4 className="text-xl font-semibold mb-2 font-playfair">
+              <h4 className="text-xl font-semibold mb-2">
                 Tilaa uutiskirje
               </h4>
               <p className="text-offWhite/80 text-sm">

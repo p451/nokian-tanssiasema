@@ -26,48 +26,63 @@ const Hero = () => {
             backgroundImage: "url('/images/hero.jpg')"
           }}
         />
-        <div className="absolute inset-0 bg-charcoal/50" />
+        <div className="absolute inset-0 bg-neutral-inverse/50" />
       </motion.div>
 
       {/* Content */}
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8"
+        className="relative z-10 flex items-center h-full px-8 sm:px-12 lg:px-16"
       >
-        <div className="text-center max-w-4xl">
+        <div className="text-left max-w-4xl">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6 font-playfair"
+            className="font-heading text-white mb-6"
+            style={{
+              fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+              fontWeight: '600',
+              lineHeight: '0.9',
+              letterSpacing: '-0.02em',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
+            }}
           >
-            Nokian Tanssiasema
+            Jokainen askel kertoo 
+            tarinan
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-xl md:text-2xl text-white mb-8 font-montserrat"
+            className="text-white mb-8 font-body"
+            style={{ 
+              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+              fontWeight: '300',
+              lineHeight: '1.6',
+              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.6)',
+              maxWidth: '700px'
+            }}
           >
-            Jokainen askel kertoo tarinan.
+            Tule mukaan yhteisöön, jossa jokainen saa tanssia omalla tavallaan. Meillä opitaan yhdessä – lempeässä ilmapiirissä, jossa saa olla keskeneräinen ja kasvaa rauhassa. Olitpa vasta alussa tai jo pidemmällä, löydät paikkasi joukosta. Aloita oma tanssipolkusi silloin kun se sinulle sopii.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4"
           >
             <a
               href="#lajiesittely"
-              className="bg-sage text-white px-8 py-4 rounded-lg font-semibold hover:bg-sage/90 transition-all duration-300 transform hover:scale-105"
+              className="btn btn_accent_solid btn_large"
             >
               Tutustu Lajitarjontaan
             </a>
             <a
               href="#register"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-charcoal transition-all duration-300 transform hover:scale-105"
+              className="btn btn_light_outlined btn_large"
             >
               Ilmoittaudu
             </a>

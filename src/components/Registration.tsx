@@ -27,11 +27,14 @@ const Registration = () => {
       preferredDays: [],
       preferredTimes: [],
       termsAccepted: false,
-      marketingConsent: false
+      marketingConsent: false,
+      previousExperience: ''
     }
   });
 
   const watchedDanceClasses = watch('danceClasses');
+  const isNewStudent = watch('isNewStudent');
+  const hasPreviousExperience = watch('previousExperience');
 
   const nextStep = async () => {
     let fieldsToValidate: (keyof RegistrationFormData)[] = [];
@@ -39,7 +42,27 @@ const Registration = () => {
     if (currentStep === 1) {
       fieldsToValidate = ['firstName', 'lastName', 'email', 'phone', 'birthDate'];
     } else if (currentStep === 2) {
-      fieldsToValidate = ['danceClasses'];
+      if (isNewStudent) {
+        // For new students, manually validate required fields
+        const danceClasses = watch('danceClasses');
+        const previousExperience = watch('previousExperience');
+        
+        if (!danceClasses || danceClasses.length === 0) {
+          await trigger(['danceClasses']);
+          return;
+        }
+        if (!previousExperience) {
+          // Manually set error for previousExperience
+          alert('Valitse onko sinulla aiempaa tanssikokemusta');
+          return;
+        }
+        
+        // If validation passes, move to next step
+        setCurrentStep(currentStep + 1);
+        return;
+      } else {
+        fieldsToValidate = ['danceClasses'];
+      }
     } else if (currentStep === 3) {
       // Check if guardian fields are needed and validate them manually
       const birthDate = watch('birthDate');
@@ -105,6 +128,20 @@ const Registration = () => {
       sali: classItem.sali
     }))
   );
+
+  // Dance style options for new students
+  const danceStyleOptions = [
+    'Baletti',
+    'Hip hop',
+    'Show',
+    'Nykytanssi',
+    'Commercial / Street',
+    'Dancemix',
+    'Heels',
+    'Breikki',
+    'Kärkitossut',
+    'Lastentanssi'
+  ];
 
   if (isSubmitted) {
     return (
@@ -295,121 +332,223 @@ const Registration = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="heading_h3 mb-6">
-                  Valitse tunnit
-                </h3>
-                
-                <div className="mb-6">
-                  <label className="paragraph_small font-medium text-charcoal mb-4 block">
-                    Tanssilajit * (Voit valita useita)
-                  </label>
-                  <Controller
-                    name="danceClasses"
-                    control={control}
-                    render={({ field }) => (
-                      <div className="space-y-6">
-                        {Object.entries(scheduleData).map(([day, dayClasses]) => (
-                          <div key={day} className={`border rounded-lg p-4 ${
-                            day === 'SARKOLAN TANSSITUNNIT' 
-                              ? 'border-red-300 bg-red-50' 
-                              : 'border-gray-200'
-                          }`}>
-                            <div className="flex items-center justify-between mb-3">
-                              <h4 className={`heading_h5 ${
-                                day === 'SARKOLAN TANSSITUNNIT' 
-                                  ? 'text-red-800' 
-                                  : 'text-charcoal'
-                              }`}>
-                                {day}
-                              </h4>
-                              {day === 'SARKOLAN TANSSITUNNIT' && (
-                                <span className="px-2 py-1 rounded text-xs font-bold text-white bg-red-600">
-                                  ERI SIJAINTI
-                                </span>
-                              )}
-                            </div>
-                            {day === 'SARKOLAN TANSSITUNNIT' && (
-                              <div className="mb-3 p-2 bg-red-100 border border-red-300 rounded">
-                                <p className="text-xs text-red-700 font-medium">
-                                  📍 Vahalanden kulttuuritalo, Sarkolantie 476, 37180 Sarkola
-                                </p>
-                              </div>
-                            )}
+                {isNewStudent ? (
+                  // New student flow
+                  <>
+                    <h3 className="heading_h3 mb-6">
+                      Kiinnostuksen kohteet
+                    </h3>
+                    
+                    <div className="mb-6 p-4 bg-accent-secondary/10 rounded-lg">
+                      <p className="paragraph_default text-charcoal/80">
+                        Ihana kuulla että haluat tulla meille tanssimaan! Kerro hieman lisää itsestäsi niin otamme sinuun yhteyttä jotta löydämme sinulle sopivat tunnit. Tämä ei vielä sido sinua mihinkään.
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <label className="paragraph_small font-medium text-charcoal mb-4 block">
+                          Mistä tanssilajeista olet kiinnostunut? * (Voit valita useita)
+                        </label>
+                        <Controller
+                          name="danceClasses"
+                          control={control}
+                          render={({ field }) => (
                             <div className="grid md:grid-cols-2 gap-3">
-                              {dayClasses.map((classItem) => {
-                                const classValue = `${day.toLowerCase()}-${classItem.time}-${classItem.class.toLowerCase().replace(/\s+/g, '-')}`;
-                                const classLabel = day === 'SARKOLAN TANSSITUNNIT' 
-                                  ? `${classItem.class} (${classItem.time})` 
-                                  : `${classItem.class} (${classItem.time})`;
-                                const classDescription = day === 'SARKOLAN TANSSITUNNIT'
-                                  ? `Opettaja: ${classItem.instructor} - Keskiviikkoisin 3.9.–12.12.25`
-                                  : `Opettaja: ${classItem.instructor} - ${classItem.sali}`;
-                                
-                                return (
-                                  <label
-                                    key={classValue}
-                                    className={`relative flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                                      field.value.includes(classValue)
-                                        ? day === 'SARKOLAN TANSSITUNNIT'
-                                          ? 'border-red-500 bg-red-100'
-                                          : 'border-accent-primary bg-accent-primary/5'
-                                        : day === 'SARKOLAN TANSSITUNNIT'
-                                          ? 'border-red-300 hover:border-red-400'
-                                          : 'border-gray-200 hover:border-accent-primary/50'
-                                    }`}
-                                  >
-                                    <div className="flex items-center mb-2">
-                                      <input
-                                        type="checkbox"
-                                        checked={field.value.includes(classValue)}
-                                        onChange={(e) => {
-                                          if (e.target.checked) {
-                                            field.onChange([...field.value, classValue]);
-                                          } else {
-                                            field.onChange(field.value.filter((v: string) => v !== classValue));
-                                          }
-                                        }}
-                                        className={`w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 ${
-                                          day === 'SARKOLAN TANSSITUNNIT'
-                                            ? 'text-red-600 focus:ring-red-500'
-                                            : 'text-accent-primary focus:ring-accent-primary'
-                                        }`}
-                                      />
-                                      <span className={`ml-2 font-medium text-sm ${
-                                        day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-800' : 'text-charcoal'
-                                      }`}>
-                                        {classLabel}
-                                      </span>
-                                    </div>
-                                    <p className={`paragraph_small ${
-                                      day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-700' : 'text-charcoal/70'
-                                    }`}>
-                                      {classDescription}
-                                    </p>
-                                  </label>
-                                );
-                              })}
+                              {danceStyleOptions.map((style) => (
+                                <label
+                                  key={style}
+                                  className={`relative flex items-center p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                                    field.value.includes(style)
+                                      ? 'border-accent-primary bg-accent-primary/5'
+                                      : 'border-gray-200 hover:border-accent-primary/50'
+                                  }`}
+                                >
+                                  <input
+                                    type="checkbox"
+                                    checked={field.value.includes(style)}
+                                    onChange={(e) => {
+                                      if (e.target.checked) {
+                                        field.onChange([...field.value, style]);
+                                      } else {
+                                        field.onChange(field.value.filter((v: string) => v !== style));
+                                      }
+                                    }}
+                                    className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-accent-primary"
+                                  />
+                                  <span className="ml-3 font-medium text-charcoal">
+                                    {style}
+                                  </span>
+                                </label>
+                              ))}
                             </div>
+                          )}
+                        />
+                        {errors.danceClasses && (
+                          <p className="text-red-500 text-sm mt-2">{errors.danceClasses.message}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="paragraph_small font-medium text-charcoal mb-4 block">
+                          Onko sinulla aiempaa tanssikokemusta? *
+                        </label>
+                        <div className="space-y-2">
+                          <label className="flex items-center">
+                            <input
+                              {...register('previousExperience')}
+                              type="radio"
+                              value="Kyllä"
+                              className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 focus:ring-accent-primary"
+                            />
+                            <span className="ml-3 text-charcoal">Kyllä</span>
+                          </label>
+                          <label className="flex items-center">
+                            <input
+                              {...register('previousExperience')}
+                              type="radio"
+                              value="Ei"
+                              className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 focus:ring-accent-primary"
+                            />
+                            <span className="ml-3 text-charcoal">Ei</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      {hasPreviousExperience === 'Kyllä' && (
+                        <div>
+                          <label className="paragraph_small font-medium text-charcoal mb-2 block">
+                            Kerro lyhyesti kuinka kauan ja mistä lajeista sinulla on kokemusta
+                          </label>
+                          <textarea
+                            {...register('medicalConditions')}
+                            className="input-field min-h-[100px]"
+                            placeholder="Esim. Olen harrastanut balettia 2 vuotta ja jazztanssia 1 vuoden..."
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  // Existing student flow
+                  <>
+                    <h3 className="heading_h3 mb-6">
+                      Valitse tunnit
+                    </h3>
+                    
+                    <div className="mb-6">
+                      <label className="paragraph_small font-medium text-charcoal mb-4 block">
+                        Tanssilajit * (Voit valita useita)
+                      </label>
+                      <Controller
+                        name="danceClasses"
+                        control={control}
+                        render={({ field }) => (
+                          <div className="space-y-6">
+                            {Object.entries(scheduleData).map(([day, dayClasses]) => (
+                              <div key={day} className={`border rounded-lg p-4 ${
+                                day === 'SARKOLAN TANSSITUNNIT' 
+                                  ? 'border-red-300 bg-red-50' 
+                                  : 'border-gray-200'
+                              }`}>
+                                <div className="flex items-center justify-between mb-3">
+                                  <h4 className={`heading_h5 ${
+                                    day === 'SARKOLAN TANSSITUNNIT' 
+                                      ? 'text-red-800' 
+                                      : 'text-charcoal'
+                                  }`}>
+                                    {day}
+                                  </h4>
+                                  {day === 'SARKOLAN TANSSITUNNIT' && (
+                                    <span className="px-2 py-1 rounded text-xs font-bold text-white bg-red-600">
+                                      ERI SIJAINTI
+                                    </span>
+                                  )}
+                                </div>
+                                {day === 'SARKOLAN TANSSITUNNIT' && (
+                                  <div className="mb-3 p-2 bg-red-100 border border-red-300 rounded">
+                                    <p className="text-xs text-red-700 font-medium">
+                                      📍 Vahalanden kulttuuritalo, Sarkolantie 476, 37180 Sarkola
+                                    </p>
+                                  </div>
+                                )}
+                                <div className="grid md:grid-cols-2 gap-3">
+                                  {dayClasses.map((classItem) => {
+                                    const classValue = `${day.toLowerCase()}-${classItem.time}-${classItem.class.toLowerCase().replace(/\s+/g, '-')}`;
+                                    const classLabel = day === 'SARKOLAN TANSSITUNNIT' 
+                                      ? `${classItem.class} (${classItem.time})` 
+                                      : `${classItem.class} (${classItem.time})`;
+                                    const classDescription = day === 'SARKOLAN TANSSITUNNIT'
+                                      ? `Opettaja: ${classItem.instructor} - Keskiviikkoisin 3.9.–12.12.25`
+                                      : `Opettaja: ${classItem.instructor} - ${classItem.sali}`;
+                                    
+                                    return (
+                                      <label
+                                        key={classValue}
+                                        className={`relative flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                                          field.value.includes(classValue)
+                                            ? day === 'SARKOLAN TANSSITUNNIT'
+                                              ? 'border-red-500 bg-red-100'
+                                              : 'border-accent-primary bg-accent-primary/5'
+                                            : day === 'SARKOLAN TANSSITUNNIT'
+                                              ? 'border-red-300 hover:border-red-400'
+                                              : 'border-gray-200 hover:border-accent-primary/50'
+                                        }`}
+                                      >
+                                        <div className="flex items-center mb-2">
+                                          <input
+                                            type="checkbox"
+                                            checked={field.value.includes(classValue)}
+                                            onChange={(e) => {
+                                              if (e.target.checked) {
+                                                field.onChange([...field.value, classValue]);
+                                              } else {
+                                                field.onChange(field.value.filter((v: string) => v !== classValue));
+                                              }
+                                            }}
+                                            className={`w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 ${
+                                              day === 'SARKOLAN TANSSITUNNIT'
+                                                ? 'text-red-600 focus:ring-red-500'
+                                                : 'text-accent-primary focus:ring-accent-primary'
+                                            }`}
+                                          />
+                                          <span className={`ml-2 font-medium text-sm ${
+                                            day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-800' : 'text-charcoal'
+                                          }`}>
+                                            {classLabel}
+                                          </span>
+                                        </div>
+                                        <p className={`paragraph_small ${
+                                          day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-700' : 'text-charcoal/70'
+                                        }`}>
+                                          {classDescription}
+                                        </p>
+                                      </label>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        )}
+                      />
+                      {errors.danceClasses && (
+                        <p className="text-red-500 text-sm mt-2">{errors.danceClasses.message}</p>
+                      )}
+                    </div>
+
+                    {watchedDanceClasses.length > 0 && (
+                      <div className="mt-6 p-4 bg-accent-secondary/10 rounded-lg">
+                        <h4 className="heading_h6 text-charcoal mb-2">Valitsemasi tunnit:</h4>
+                        <ul className="list-disc list-inside paragraph_small text-charcoal/80">
+                          {watchedDanceClasses.map((classValue: string) => {
+                            const classInfo = danceClasses.find(c => c.value === classValue);
+                            return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
+                          })}
+                        </ul>
                       </div>
                     )}
-                  />
-                  {errors.danceClasses && (
-                    <p className="text-red-500 text-sm mt-2">{errors.danceClasses.message}</p>
-                  )}
-                </div>
-
-                {watchedDanceClasses.length > 0 && (
-                  <div className="mt-6 p-4 bg-accent-secondary/10 rounded-lg">
-                    <h4 className="heading_h6 text-charcoal mb-2">Valitsemasi tunnit:</h4>
-                    <ul className="list-disc list-inside paragraph_small text-charcoal/80">
-                      {watchedDanceClasses.map((classValue: string) => {
-                        const classInfo = danceClasses.find(c => c.value === classValue);
-                        return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
-                      })}
-                    </ul>
-                  </div>
+                  </>
                 )}
               </motion.div>
             )}

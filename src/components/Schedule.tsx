@@ -15,6 +15,16 @@ const Schedule = () => {
 
   const weeklyClasses = scheduleData;
 
+  // Type for class items that might have additional Sarkola properties
+  type ClassItem = {
+    class: string;
+    time: string;
+    instructor: string;
+    sali: string;
+    period?: string;
+    duration?: string;
+  };
+
   const calendarEvents = Object.entries(weeklyClasses).flatMap(([day, classes]) => {
     const events: Array<{
       id: string;
@@ -29,7 +39,45 @@ const Schedule = () => {
       };
     }> = [];
     
-    // Luodaan tapahtumat elokuusta alkaen useammalle viikolle
+    // Handle Sarkola classes - put them on Wednesday
+    if (day === 'SARKOLAN TANSSITUNNIT') {
+      const startDate = new Date(2025, 7, 1); // Elokuu 2025 (kuukausi 0-indeksoitu)
+      const endDate = new Date(2026, 5, 30); // Kesäkuu 2026
+      
+      for (let weekStart = new Date(startDate); weekStart <= endDate; weekStart.setDate(weekStart.getDate() + 7)) {
+        const monday = new Date(weekStart);
+        monday.setDate(monday.getDate() - monday.getDay() + 1);
+        
+        const eventDate = new Date(monday);
+        eventDate.setDate(monday.getDate() + 2); // Wednesday = Monday + 2 days
+        
+        if (eventDate >= startDate && eventDate <= endDate) {
+          classes.forEach((classItem, index) => {
+            const [startTime, endTime] = classItem.time.split('-');
+            const startDateTime = new Date(eventDate);
+            startDateTime.setHours(parseInt(startTime.split(':')[0]), parseInt(startTime.split(':')[1]));
+            const endDateTime = new Date(eventDate);
+            endDateTime.setHours(parseInt(endTime.split(':')[0]), parseInt(endTime.split(':')[1]));
+            
+            events.push({
+              id: `sarkola-${index}-${eventDate.getTime()}`,
+              title: `${classItem.class} (Sarkola)`,
+              start: startDateTime.toISOString(),
+              end: endDateTime.toISOString(),
+              classNames: ['sarkola-event'],
+              extendedProps: {
+                instructor: classItem.instructor,
+                time: classItem.time,
+                sali: classItem.sali
+              }
+            });
+          });
+        }
+      }
+      return events;
+    }
+    
+    // Regular classes
     const startDate = new Date(2025, 7, 1); // Elokuu 2025 (kuukausi 0-indeksoitu)
     const endDate = new Date(2026, 5, 30); // Kesäkuu 2026
     
@@ -138,7 +186,7 @@ const Schedule = () => {
             viewport={{ once: true }}
             className="bg-neutral-primary rounded-xl p-6 shadow-lg"
           >
-            <style jsx>{`
+            <style jsx global>{`
               .sali-1-event {
                 background-color: #6B5B47 !important;
                 border-color: #4A3D2F !important;
@@ -147,6 +195,21 @@ const Schedule = () => {
               .sali-2-event {
                 background-color: #B8860B !important;
                 border-color: #8B7355 !important;
+                color: #FFFFFF !important;
+              }
+              .fc-event.sarkola-event,
+              .fc-event.sarkola-event:hover,
+              .fc-event.sarkola-event:focus {
+                background-color: #DC2626 !important;
+                border-color: #B91C1C !important;
+                color: #FFFFFF !important;
+                background: #DC2626 !important;
+                border: 2px solid #B91C1C !important;
+              }
+              .fc-event.sarkola-event .fc-event-main,
+              .fc-event.sarkola-event .fc-event-main-frame {
+                background-color: #DC2626 !important;
+                border-color: #B91C1C !important;
                 color: #FFFFFF !important;
               }
               .fc-event-title {
@@ -235,47 +298,109 @@ const Schedule = () => {
               transition={{ duration: 0.4 }}
               className="grid gap-4 md:gap-6"
             >
-              {weeklyClasses[selectedDay as keyof typeof weeklyClasses].map((classItem, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="card transition-all duration-300 border-l-4"
-                  style={{ 
-                    borderLeftColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
-                  }}
-                >
-                  <div className="grid md:grid-cols-4 gap-4 items-center">
-                    <div className="md:col-span-1">
-                      <div className="heading_h4 text-sage">
-                        {classItem.time}
+              {selectedDay === 'SARKOLAN TANSSITUNNIT' ? (
+                // Special layout for Sarkola courses
+                <>
+                  <div className="bg-gradient-to-r from-red-50 to-red-100 border-2 border-red-300 rounded-xl p-6 mb-6">
+                    <div className="text-center">
+                      <h3 className="heading_h3 text-red-800 mb-2">🏛️ SARKOLAN TANSSITUNNIT</h3>
+                      <p className="heading_h5 text-red-700 mb-1">Vahalanden kulttuuritalo</p>
+                      <p className="paragraph_default text-red-600 mb-3">Sarkolantie 476, 37180 Sarkola</p>
+                      <div className="bg-red-200 rounded-lg p-3 inline-block">
+                        <p className="paragraph_small font-bold text-red-800">
+                          ⚠️ HUOM: Tämä on eri sijainti! Ilmoittautuminen erillään.
+                        </p>
                       </div>
-                      <div className="paragraph_small text-charcoal/60 mt-1">
-                        {classItem.sali}
-                      </div>
-                    </div>
-                    <div className="md:col-span-2">
-                      <h3 className="heading_h5 text-charcoal mb-1">
-                        {classItem.class}
-                      </h3>
-                      <p className="paragraph_default text-charcoal/70">
-                        Opettaja: <span className="font-medium">{classItem.instructor}</span>
-                      </p>
-                    </div>
-                    <div className="md:col-span-1 flex flex-col items-end gap-2">
-                      <span 
-                        className="px-2 py-1 rounded-md text-xs font-medium text-white"
-                        style={{ 
-                          backgroundColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
-                        }}
-                      >
-                        {classItem.sali}
-                      </span>
                     </div>
                   </div>
-                </motion.div>
-              ))}
+                  
+                  {weeklyClasses[selectedDay as keyof typeof weeklyClasses].map((classItem, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="card transition-all duration-300 border-l-4 border-red-400 bg-red-50"
+                    >
+                      <div className="grid md:grid-cols-4 gap-4 items-center">
+                        <div className="md:col-span-1">
+                          <div className="heading_h4 text-red-700">
+                            {classItem.time}
+                          </div>
+                          <div className="paragraph_small text-red-600 mt-1 font-medium">
+                            Keskiviikkoisin
+                          </div>
+                          <div className="paragraph_small text-red-500 mt-1">
+                            {(classItem as ClassItem).period || ''}
+                          </div>
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="heading_h5 text-red-800 mb-1">
+                            {classItem.class}
+                          </h3>
+                          <p className="paragraph_default text-red-700 mb-1">
+                            Opettaja: <span className="font-medium">{classItem.instructor}</span>
+                          </p>
+                          <p className="paragraph_small text-red-600">
+                            {(classItem as ClassItem).duration || ''}
+                          </p>
+                        </div>
+                        <div className="md:col-span-1 flex flex-col items-end gap-2">
+                          <span className="px-3 py-1 rounded-md text-xs font-bold text-white bg-red-600">
+                            KURSSI
+                          </span>
+                          <span className="px-2 py-1 rounded-md text-xs font-medium text-red-800 bg-red-200">
+                            Sarkola
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </>
+              ) : (
+                // Regular classes layout
+                weeklyClasses[selectedDay as keyof typeof weeklyClasses].map((classItem, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="card transition-all duration-300 border-l-4"
+                    style={{ 
+                      borderLeftColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
+                    }}
+                  >
+                    <div className="grid md:grid-cols-4 gap-4 items-center">
+                      <div className="md:col-span-1">
+                        <div className="heading_h4 text-sage">
+                          {classItem.time}
+                        </div>
+                        <div className="paragraph_small text-charcoal/60 mt-1">
+                          {classItem.sali}
+                        </div>
+                      </div>
+                      <div className="md:col-span-2">
+                        <h3 className="heading_h5 text-charcoal mb-1">
+                          {classItem.class}
+                        </h3>
+                        <p className="paragraph_default text-charcoal/70">
+                          Opettaja: <span className="font-medium">{classItem.instructor}</span>
+                        </p>
+                      </div>
+                      <div className="md:col-span-1 flex flex-col items-end gap-2">
+                        <span 
+                          className="px-2 py-1 rounded-md text-xs font-medium text-white"
+                          style={{ 
+                            backgroundColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
+                          }}
+                        >
+                          {classItem.sali}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))
+              )}
             </motion.div>
           </>
         )}

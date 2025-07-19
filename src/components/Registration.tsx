@@ -306,21 +306,53 @@ const Registration = () => {
                     render={({ field }) => (
                       <div className="space-y-6">
                         {Object.entries(scheduleData).map(([day, dayClasses]) => (
-                          <div key={day} className="border border-gray-200 rounded-lg p-4">
-                            <h4 className="heading_h5 text-charcoal mb-3">{day}</h4>
+                          <div key={day} className={`border rounded-lg p-4 ${
+                            day === 'SARKOLAN TANSSITUNNIT' 
+                              ? 'border-red-300 bg-red-50' 
+                              : 'border-gray-200'
+                          }`}>
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className={`heading_h5 ${
+                                day === 'SARKOLAN TANSSITUNNIT' 
+                                  ? 'text-red-800' 
+                                  : 'text-charcoal'
+                              }`}>
+                                {day}
+                              </h4>
+                              {day === 'SARKOLAN TANSSITUNNIT' && (
+                                <span className="px-2 py-1 rounded text-xs font-bold text-white bg-red-600">
+                                  ERI SIJAINTI
+                                </span>
+                              )}
+                            </div>
+                            {day === 'SARKOLAN TANSSITUNNIT' && (
+                              <div className="mb-3 p-2 bg-red-100 border border-red-300 rounded">
+                                <p className="text-xs text-red-700 font-medium">
+                                  📍 Vahalanden kulttuuritalo, Sarkolantie 476, 37180 Sarkola
+                                </p>
+                              </div>
+                            )}
                             <div className="grid md:grid-cols-2 gap-3">
                               {dayClasses.map((classItem) => {
                                 const classValue = `${day.toLowerCase()}-${classItem.time}-${classItem.class.toLowerCase().replace(/\s+/g, '-')}`;
-                                const classLabel = `${classItem.class} (${classItem.time})`;
-                                const classDescription = `Opettaja: ${classItem.instructor} - ${classItem.sali}`;
+                                const classLabel = day === 'SARKOLAN TANSSITUNNIT' 
+                                  ? `${classItem.class} (${classItem.time})` 
+                                  : `${classItem.class} (${classItem.time})`;
+                                const classDescription = day === 'SARKOLAN TANSSITUNNIT'
+                                  ? `Opettaja: ${classItem.instructor} - Keskiviikkoisin 3.9.–12.12.25`
+                                  : `Opettaja: ${classItem.instructor} - ${classItem.sali}`;
                                 
                                 return (
                                   <label
                                     key={classValue}
                                     className={`relative flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                                       field.value.includes(classValue)
-                                        ? 'border-accent-primary bg-accent-primary/5'
-                                        : 'border-gray-200 hover:border-accent-primary/50'
+                                        ? day === 'SARKOLAN TANSSITUNNIT'
+                                          ? 'border-red-500 bg-red-100'
+                                          : 'border-accent-primary bg-accent-primary/5'
+                                        : day === 'SARKOLAN TANSSITUNNIT'
+                                          ? 'border-red-300 hover:border-red-400'
+                                          : 'border-gray-200 hover:border-accent-primary/50'
                                     }`}
                                   >
                                     <div className="flex items-center mb-2">
@@ -334,11 +366,23 @@ const Registration = () => {
                                             field.onChange(field.value.filter((v: string) => v !== classValue));
                                           }
                                         }}
-                                        className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-accent-primary"
+                                        className={`w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 ${
+                                          day === 'SARKOLAN TANSSITUNNIT'
+                                            ? 'text-red-600 focus:ring-red-500'
+                                            : 'text-accent-primary focus:ring-accent-primary'
+                                        }`}
                                       />
-                                      <span className="ml-2 font-medium text-charcoal text-sm">{classLabel}</span>
+                                      <span className={`ml-2 font-medium text-sm ${
+                                        day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-800' : 'text-charcoal'
+                                      }`}>
+                                        {classLabel}
+                                      </span>
                                     </div>
-                                    <p className="paragraph_small text-charcoal/70">{classDescription}</p>
+                                    <p className={`paragraph_small ${
+                                      day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-700' : 'text-charcoal/70'
+                                    }`}>
+                                      {classDescription}
+                                    </p>
                                   </label>
                                 );
                               })}

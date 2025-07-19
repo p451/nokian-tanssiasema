@@ -1,4 +1,28 @@
 {
+  "SARKOLAN TANSSITUNNIT": [
+    {
+      "class": "Dancemix (8–13v)",
+      "time": "17:30-18:30",
+      "instructor": "Katja Suova",
+      "sali": "Vahalanden kulttuuritalo",
+      "location": "Sarkola",
+      "address": "Sarkolantie 476, 37180 Sarkola",
+      "duration": "10 x tanssikurssi",
+      "period": "3.9.–12.12.25",
+      "isCourse": true
+    },
+    {
+      "class": "Dancemix (Aikuiset)",
+      "time": "18:30-19:30", 
+      "instructor": "Katja Suova",
+      "sali": "Vahalanden kulttuuritalo",
+      "location": "Sarkola",
+      "address": "Sarkolantie 476, 37180 Sarkola",
+      "duration": "10 x tanssikurssi",
+      "period": "3.9.–12.12.25",
+      "isCourse": true
+    }
+  ],
   "Maanantai": [
     {
       "time": "16:30-17:30",

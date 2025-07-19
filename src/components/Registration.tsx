@@ -237,6 +237,9 @@ const Registration = () => {
                     {errors.email && (
                       <p className="text-red-500 paragraph_small mt-1">{errors.email.message}</p>
                     )}
+                    <p className="text-sm text-charcoal/60 mt-2 italic">
+                      Huoltajan jos oppilas alaikäinen
+                    </p>
                   </div>
 
                   <div>
@@ -256,7 +259,7 @@ const Registration = () => {
 
                   <div>
                     <label className="paragraph_small font-medium text-charcoal mb-2 block">
-                      Tanssijan syntymäaika *
+                                                  Oppilaan syntymäaika *
                     </label>
                     <input
                       {...register('birthDate')}
@@ -554,7 +557,7 @@ const Registration = () => {
                             className="w-4 h-4 text-sage bg-gray-100 border-gray-300 rounded focus:ring-sage mt-1"
                           />
                           <span className="text-sm text-charcoal">
-                            Haluan vastaanottaa sähköpostitse tietoa uusista tunneista ja tapahtumista
+                            Kyllä oppilaasta saa julkaista valokuvia Nokian Tanssiaseman sosiaalisessa mediassa
                           </span>
                         </label>
                       )}

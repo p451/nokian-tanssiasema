@@ -24,7 +24,6 @@ const Schedule = () => {
       classNames: string[];
       extendedProps: {
         instructor: string;
-        level: string;
         time: string;
         sali: string;
       };
@@ -61,7 +60,6 @@ const Schedule = () => {
             classNames: classItem.sali === 'Sali 1' ? ['sali-1-event'] : ['sali-2-event'],
             extendedProps: {
               instructor: classItem.instructor,
-              level: classItem.level,
               time: classItem.time,
               sali: classItem.sali
             }
@@ -182,7 +180,7 @@ const Schedule = () => {
               slotMaxTime="21:00:00"
               height="600px"
               eventClick={(info) => {
-                alert(`Tunti: ${info.event.title}\nOpettaja: ${info.event.extendedProps.instructor}\nTaso: ${info.event.extendedProps.level}\nSali: ${info.event.extendedProps.sali}`);
+                alert(`Tunti: ${info.event.title}\nOpettaja: ${info.event.extendedProps.instructor}\nSali: ${info.event.extendedProps.sali}`);
               }}
               businessHours={{
                 daysOfWeek: [1, 2, 3, 4, 5, 6],
@@ -266,17 +264,6 @@ const Schedule = () => {
                       </p>
                     </div>
                     <div className="md:col-span-1 flex flex-col items-end gap-2">
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        classItem.level === 'Aloittelijat' 
-                          ? 'bg-blush/20 text-blush' 
-                          : classItem.level === 'Keskitaso'
-                          ? 'bg-sage/20 text-sage'
-                          : classItem.level === 'Edistyneet'
-                          ? 'bg-charcoal/20 text-charcoal'
-                          : 'bg-neutral-primary border border-charcoal/20 text-charcoal'
-                      }`}>
-                        {classItem.level}
-                      </span>
                       <span 
                         className="px-2 py-1 rounded-md text-xs font-medium text-white"
                         style={{ 

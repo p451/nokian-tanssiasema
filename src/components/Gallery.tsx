@@ -37,6 +37,31 @@ const Gallery = () => {
       title: 'Esiintyminen',
       description: 'Oppilaidemme loistavia esityksiä'
     },
+    // Duplicate images for smoother loop
+    {
+      src: '/images/ballet.jpg',
+      alt: 'Balettitunti käynnissä',
+      title: 'Baletti',
+      description: 'Tyylikäs ja tekninen balettitunti'
+    },
+    {
+      src: '/images/street.jpg',
+      alt: 'Street Dance energia',
+      title: 'Street Dance',
+      description: 'Energinen ja moderni street dance'
+    },
+    {
+      src: '/images/show.jpg',
+      alt: 'Show Dance esitys',
+      title: 'Show Dance',
+      description: 'Näyttävä show dance -esitys'
+    },
+    {
+      src: '/images/hero.jpg',
+      alt: 'Tanssijat lavalla',
+      title: 'Esiintyminen',
+      description: 'Oppilaidemme loistavia esityksiä'
+    },
   ];
 
   return (
@@ -63,30 +88,68 @@ const Gallery = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mb-12"
         >
+          <style jsx>{`
+            .smooth-gallery {
+              overflow: hidden;
+              mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 10%,
+                black 90%,
+                transparent 100%
+              );
+              -webkit-mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 10%,
+                black 90%,
+                transparent 100%
+              );
+            }
+            .smooth-gallery .swiper-slide {
+              transition: opacity 0.3s ease-in-out;
+            }
+            .smooth-gallery .swiper-slide:first-child,
+            .smooth-gallery .swiper-slide:last-child {
+              opacity: 0.3;
+            }
+            .smooth-gallery .swiper-slide:nth-child(2),
+            .smooth-gallery .swiper-slide:nth-last-child(2) {
+              opacity: 0.6;
+            }
+          `}</style>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={30}
             slidesPerView={1}
-            navigation
+            centeredSlides={true}
+            navigation={true}
             pagination={{ clickable: true }}
             autoplay={{
-              delay: 3000,
+              delay: 0,
               disableOnInteraction: false,
+              pauseOnMouseEnter: false,
             }}
+            loop={true}
+            speed={3000}
+            freeMode={true}
+            allowTouchMove={false}
             breakpoints={{
               640: {
                 slidesPerView: 2,
+                centeredSlides: true,
               },
               768: {
                 slidesPerView: 3,
+                centeredSlides: true,
               },
               1024: {
                 slidesPerView: 4,
+                centeredSlides: true,
               },
             }}
-            className="gallery-swiper"
+            className="gallery-swiper smooth-gallery"
           >
             {images.map((image, index) => (
               <SwiperSlide key={index}>
@@ -115,42 +178,6 @@ const Gallery = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </motion.div>
-
-        {/* Grid Gallery */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-lg"
-              onClick={() => setSelectedImage(image.src)}
-            >
-              <div className="aspect-video relative">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-neutral-inverse/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <h3 className="heading_h5 mb-2">{image.title}</h3>
-                    <p className="paragraph_small">{image.description}</p>
-                    <div className="mt-4 text-2xl">🔍</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
         </motion.div>
 
         {/* Lightbox Modal */}

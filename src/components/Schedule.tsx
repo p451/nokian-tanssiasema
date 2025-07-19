@@ -134,7 +134,7 @@ const Schedule = () => {
   const days = Object.keys(weeklyClasses);
 
   return (
-        <section className="section_primary_default">
+    <section id="schedule" className="section_primary_default">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -152,40 +152,43 @@ const Schedule = () => {
         </motion.div>
 
         {/* Calendar View Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-neutral-primary rounded-lg p-1 shadow-md">
-            <button
-              onClick={() => setCalendarView('week')}
-              className={`btn ${
-                calendarView === 'week' 
-                  ? 'btn_accent_solid' 
-                  : 'btn_ghost'
-              }`}
-            >
-              Viikkonäkymä
-            </button>
-            <button
-              onClick={() => setCalendarView('list')}
-              className={`btn ${
-                calendarView === 'list' 
-                  ? 'btn_accent_solid' 
-                  : 'btn_ghost'
-              }`}
-            >
-              Listanäkymä
-            </button>
+        <div className="flex justify-center mb-6 sm:mb-8">
+          <div className="bg-neutral-primary rounded-lg p-1 shadow-md w-full sm:w-auto">
+            <div className="grid grid-cols-2 gap-1 sm:flex sm:gap-0">
+              <button
+                onClick={() => setCalendarView('week')}
+                className={`btn text-sm sm:text-base py-2 sm:py-3 ${
+                  calendarView === 'week' 
+                    ? 'btn_accent_solid' 
+                    : 'btn_ghost'
+                }`}
+              >
+                Viikkonäkymä
+              </button>
+              <button
+                onClick={() => setCalendarView('list')}
+                className={`btn text-sm sm:text-base py-2 sm:py-3 ${
+                  calendarView === 'list' 
+                    ? 'btn_accent_solid' 
+                    : 'btn_ghost'
+                }`}
+              >
+                Listanäkymä
+              </button>
+            </div>
           </div>
         </div>
+      </div>
 
-        {calendarView === 'week' ? (
-          // FullCalendar View
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-neutral-primary rounded-xl p-6 shadow-lg"
-          >
+      {/* Week View - Full Width on Mobile, Constrained on Desktop */}
+      {calendarView === 'week' && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="bg-neutral-primary rounded-xl mx-1 sm:mx-4 lg:mx-auto lg:max-w-7xl p-2 sm:p-4 shadow-lg mb-12"
+        >
             <style jsx global>{`
               .sali-1-event {
                 background-color: #6B5B47 !important;
@@ -223,9 +226,9 @@ const Schedule = () => {
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               initialView="timeGridWeek"
               headerToolbar={{
-                left: 'prev,next today',
+                left: 'prev,next',
                 center: 'title',
-                right: 'timeGridWeek,timeGridDay'
+                right: 'timeGridDay'
               }}
               buttonText={{
                 today: 'Tänään',
@@ -233,15 +236,19 @@ const Schedule = () => {
                 week: 'Viikko',
                 day: 'Päivä',
                 list: 'Lista',
-                prev: 'Edellinen',
-                next: 'Seuraava'
+                prev: '‹',
+                next: '›'
               }}
               locale={fiLocale}
-              dayHeaderFormat={{ weekday: 'long' }}
+              dayHeaderFormat={{ 
+                weekday: window.innerWidth < 768 ? 'narrow' : 'short' 
+              }}
               events={calendarEvents}
               slotMinTime="10:00:00"
               slotMaxTime="21:00:00"
-              height="600px"
+              height="auto"
+              contentHeight={window.innerWidth < 768 ? "500" : "400"}
+              aspectRatio={window.innerWidth < 768 ? 0.8 : 1.35}
               eventClick={(info) => {
                 alert(`Tunti: ${info.event.title}\nOpettaja: ${info.event.extendedProps.instructor}\nSali: ${info.event.extendedProps.sali}`);
               }}
@@ -262,32 +269,125 @@ const Schedule = () => {
               }}
               eventDisplay="block"
               eventTextColor="#FFFFFF"
+              expandRows={true}
+              dayMaxEvents={true}
+              moreLinkClick="popover"
+              handleWindowResize={true}
+              windowResizeDelay={100}
             />
+            <style jsx global>{`
+              .fc {
+                font-size: 0.875rem;
+              }
+              .fc-toolbar {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+                padding: 0.5rem;
+              }
+              .fc-toolbar-chunk {
+                display: flex;
+                align-items: center;
+              }
+              .fc-button {
+                padding: 0.25rem 0.5rem !important;
+                font-size: 0.75rem !important;
+                border-radius: 0.375rem !important;
+                white-space: nowrap;
+              }
+              .fc-prev-button, .fc-next-button {
+                min-width: 2rem !important;
+              }
+              .fc-toolbar-title {
+                font-size: 1rem !important;
+                margin: 0 0.5rem !important;
+              }
+              @media (max-width: 768px) {
+                .fc {
+                  font-size: 0.7rem;
+                }
+                .fc-toolbar {
+                  padding: 0.25rem;
+                  margin-bottom: 0.5rem;
+                  justify-content: space-between;
+                }
+                .fc-toolbar-title {
+                  font-size: 0.8rem !important;
+                  text-align: center;
+                  flex: 1;
+                  order: 2;
+                  margin: 0 0.25rem !important;
+                }
+                .fc-toolbar-chunk:first-child {
+                  order: 1;
+                  flex: none;
+                }
+                .fc-toolbar-chunk:last-child {
+                  order: 3;
+                  flex: none;
+                }
+                .fc-col-header-cell {
+                  padding: 0.25rem 0.1rem !important;
+                  font-size: 0.65rem !important;
+                }
+                .fc-timegrid-slot {
+                  height: 1.8em !important;
+                }
+                .fc-event {
+                  font-size: 0.6rem !important;
+                  padding: 1px !important;
+                  margin: 1px !important;
+                }
+                .fc-timegrid-event .fc-event-title {
+                  font-weight: 600;
+                  line-height: 1.1;
+                }
+                .fc-timegrid-col {
+                  min-width: 40px !important;
+                }
+                .fc-timegrid-axis {
+                  width: 35px !important;
+                }
+                .fc-timegrid-slot-label {
+                  font-size: 0.65rem !important;
+                  padding: 0.1rem !important;
+                }
+              }
+            `}</style>
           </motion.div>
-        ) : (
-          // List View
-          <>
-            {/* Day Selection */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-2 mb-8"
-            >
-              {days.map((day) => (
-                <button
-                  key={day}
-                  onClick={() => setSelectedDay(day)}
-                  className={`btn ${
-                    selectedDay === day
-                      ? 'btn_accent_solid shadow-lg transform scale-105'
-                      : 'btn_secondary_outlined hover:bg-sage/20'
-                  }`}
-                >
-                  {day}
-                </button>
-              ))}
+      )}
+
+      {/* List View */}
+      {calendarView === 'list' && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Day Selection */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mb-6 sm:mb-8"
+          >
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-center gap-2">
+                {days.map((day) => (
+                  <button
+                    key={day}
+                    onClick={() => setSelectedDay(day)}
+                    className={`btn text-xs sm:text-sm lg:text-base py-2 sm:py-3 px-2 sm:px-4 ${
+                      selectedDay === day
+                        ? 'btn_accent_solid shadow-lg transform scale-105'
+                        : 'btn_secondary_outlined hover:bg-sage/20'
+                    }`}
+                  >
+                    <span className="block sm:hidden lg:block">
+                      {day === 'SARKOLAN TANSSITUNNIT' ? 'Sarkola' : day}
+                    </span>
+                    <span className="hidden sm:block lg:hidden">
+                      {day === 'SARKOLAN TANSSITUNNIT' ? 'Sarkola' : day.substring(0, 2)}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </motion.div>
 
             {/* Classes for Selected Day */}
@@ -322,8 +422,8 @@ const Schedule = () => {
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                       className="card transition-all duration-300 border-l-4 border-red-400 bg-red-50"
                     >
-                      <div className="grid md:grid-cols-4 gap-4 items-center">
-                        <div className="md:col-span-1">
+                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-start sm:items-center">
+                        <div className="sm:col-span-1">
                           <div className="heading_h4 text-red-700">
                             {classItem.time}
                           </div>
@@ -334,7 +434,7 @@ const Schedule = () => {
                             {(classItem as ClassItem).period || ''}
                           </div>
                         </div>
-                        <div className="md:col-span-2">
+                        <div className="sm:col-span-2">
                           <h3 className="heading_h5 text-red-800 mb-1">
                             {classItem.class}
                           </h3>
@@ -345,7 +445,7 @@ const Schedule = () => {
                             {(classItem as ClassItem).duration || ''}
                           </p>
                         </div>
-                        <div className="md:col-span-1 flex flex-col items-end gap-2">
+                        <div className="sm:col-span-1 flex flex-row sm:flex-col items-start sm:items-end gap-2">
                           <span className="px-3 py-1 rounded-md text-xs font-bold text-white bg-red-600">
                             KURSSI
                           </span>
@@ -370,8 +470,8 @@ const Schedule = () => {
                       borderLeftColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
                     }}
                   >
-                    <div className="grid md:grid-cols-4 gap-4 items-center">
-                      <div className="md:col-span-1">
+                    <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-start sm:items-center">
+                      <div className="sm:col-span-1">
                         <div className="heading_h4 text-sage">
                           {classItem.time}
                         </div>
@@ -379,7 +479,7 @@ const Schedule = () => {
                           {classItem.sali}
                         </div>
                       </div>
-                      <div className="md:col-span-2">
+                      <div className="sm:col-span-2">
                         <h3 className="heading_h5 text-charcoal mb-1">
                           {classItem.class}
                         </h3>
@@ -387,7 +487,7 @@ const Schedule = () => {
                           Opettaja: <span className="font-medium">{classItem.instructor}</span>
                         </p>
                       </div>
-                      <div className="md:col-span-1 flex flex-col items-end gap-2">
+                      <div className="sm:col-span-1 flex flex-row sm:flex-col items-start sm:items-end gap-2">
                         <span 
                           className="px-2 py-1 rounded-md text-xs font-medium text-white"
                           style={{ 
@@ -402,48 +502,39 @@ const Schedule = () => {
                 ))
               )}
             </motion.div>
-          </>
+          </div>
         )}
 
         {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-12 bg-neutral-primary rounded-xl p-8 shadow-lg"
-        >
-          <h3 className="heading_h3 text-charcoal mb-6 text-center">
-            Tärkeää tietoa tunneista
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="heading_h6 text-charcoal mb-2">📅 Aikataulut</h4>
-              <p className="paragraph_small text-charcoal/80">
-                Aikataulut voivat muuttua loma-aikoina. Tarkista aina ajankohtaiset tiedot nettisivuiltamme.
-              </p>
-            </div>
-            <div>
-              <h4 className="heading_h6 text-charcoal mb-2">👥 Ryhmäkoot</h4>
-              <p className="paragraph_small text-charcoal/80">
-                Rajoitamme ryhmäkokoja laadun takaamiseksi. Ilmoittaudu ajoissa!
-              </p>
-            </div>
-            <div>
-              <h4 className="heading_h6 text-charcoal mb-2">💳 Hinnat</h4>
-              <p className="paragraph_small text-charcoal/80">
-                Yksittäinen tunti 25€, kuukausikortit alkaen 80€. Tutustumistunti ilmainen!
-              </p>
-            </div>
-            <div>
-              <h4 className="heading_h6 text-charcoal mb-2">👕 Vaatetus</h4>
-              <p className="paragraph_small text-charcoal/80">
-                Mukavat liikuntavaatteet riittävät. Balettitossut ja tanssijalkineet myytävänä studiolta.
-              </p>
-            </div>
+        {calendarView === 'list' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="mt-12 bg-neutral-primary rounded-xl p-8 shadow-lg"
+            >
+              <h3 className="heading_h3 text-charcoal mb-6 text-center">
+                Tärkeää tietoa tunneista
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="heading_h6 text-charcoal mb-2">📅 Aikataulut</h4>
+                  <p className="paragraph_small text-charcoal/80">
+                    Aikataulut voivat muuttua loma-aikoina. Tarkista aina ajankohtaiset tiedot nettisivuiltamme.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="heading_h6 text-charcoal mb-2">👥 Ryhmäkoot</h4>
+                  <p className="paragraph_small text-charcoal/80">
+                    Rajoitamme ryhmäkokoja laadun takaamiseksi. Ilmoittaudu ajoissa!
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
-      </div>
+        )}
     </section>
   );
 };

@@ -195,12 +195,12 @@ const Registration = () => {
         </motion.div>
 
         {/* Progress Bar */}
-        <div className="flex justify-center mb-8">
-          <div className="flex items-center space-x-4">
+        <div className="flex justify-center mb-6 sm:mb-8">
+          <div className="flex items-center space-x-2 sm:space-x-4 overflow-x-auto pb-2">
             {[1, 2, 3, 4].map((step) => (
-              <div key={step} className="flex items-center">
+              <div key={step} className="flex items-center flex-shrink-0">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-semibold text-sm sm:text-base ${
                     step <= currentStep
                       ? 'bg-accent-primary text-white'
                       : 'bg-gray-200 text-gray-500'
@@ -210,7 +210,7 @@ const Registration = () => {
                 </div>
                 {step < 4 && (
                   <div
-                    className={`w-8 h-0.5 ${
+                    className={`w-4 sm:w-8 h-0.5 ${
                       step < currentStep ? 'bg-accent-primary' : 'bg-gray-200'
                     }`}
                   />
@@ -220,7 +220,7 @@ const Registration = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-2xl p-8 shadow-lg">
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg">
           <AnimatePresence mode="wait">
             {currentStep === 1 && (
               <motion.div
@@ -234,34 +234,36 @@ const Registration = () => {
                   Henkilötiedot
                 </h3>
                 
-                <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="paragraph_small font-medium text-charcoal mb-2 block">
-                    Oppilaan Etunimi *
-                  </label>
-                  <input
-                    {...register('firstName')}
-                    className="input-field"
-                    placeholder="Anna"
-                  />
-                  {errors.firstName && (
-                    <p className="text-red-500 paragraph_small mt-1">{errors.firstName.message}</p>
-                  )}
-                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div>
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
+                      Oppilaan Etunimi *
+                    </label>
+                    <input
+                      {...register('firstName')}
+                      className="input-field"
+                      placeholder="Anna"
+                    />
+                    {errors.firstName && (
+                      <p className="text-red-500 paragraph_small mt-1">{errors.firstName.message}</p>
+                    )}
+                  </div>
 
-                <div>
-                  <label className="paragraph_small font-medium text-charcoal mb-2 block">
-                    Oppilaan Sukunimi *
-                  </label>
-                  <input
-                    {...register('lastName')}
-                    className="input-field"
-                    placeholder="Virtanen"
-                  />
-                  {errors.lastName && (
-                    <p className="text-red-500 paragraph_small mt-1">{errors.lastName.message}</p>
-                  )}
-                </div>                  <div>
+                  <div>
+                    <label className="paragraph_small font-medium text-charcoal mb-2 block">
+                      Oppilaan Sukunimi *
+                    </label>
+                    <input
+                      {...register('lastName')}
+                      className="input-field"
+                      placeholder="Virtanen"
+                    />
+                    {errors.lastName && (
+                      <p className="text-red-500 paragraph_small mt-1">{errors.lastName.message}</p>
+                    )}
+                  </div>
+                  
+                  <div>
                     <label className="paragraph_small font-medium text-charcoal mb-2 block">
                       Sähköposti *
                     </label>
@@ -294,9 +296,9 @@ const Registration = () => {
                     )}
                   </div>
 
-                  <div>
+                  <div className="sm:col-span-2">
                     <label className="paragraph_small font-medium text-charcoal mb-2 block">
-                                                  Oppilaan syntymäaika *
+                      Oppilaan syntymäaika *
                     </label>
                     <input
                       {...register('birthDate')}
@@ -309,7 +311,7 @@ const Registration = () => {
                   </div>
                 </div>
                 
-                <div className="col-span-full">
+                <div className="mt-4 sm:mt-6">
                   <label className="flex items-center space-x-3">
                     <input
                       {...register('isNewStudent')}
@@ -354,7 +356,7 @@ const Registration = () => {
                           name="danceClasses"
                           control={control}
                           render={({ field }) => (
-                            <div className="grid md:grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                               {danceStyleOptions.map((style) => (
                                 <label
                                   key={style}
@@ -376,7 +378,7 @@ const Registration = () => {
                                     }}
                                     className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-accent-primary"
                                   />
-                                  <span className="ml-3 font-medium text-charcoal">
+                                  <span className="ml-3 font-medium text-charcoal text-sm sm:text-base">
                                     {style}
                                   </span>
                                 </label>
@@ -472,7 +474,7 @@ const Registration = () => {
                                     </p>
                                   </div>
                                 )}
-                                <div className="grid md:grid-cols-2 gap-3">
+                                <div className="grid grid-cols-1 gap-3">
                                   {dayClasses.map((classItem) => {
                                     const classValue = `${day.toLowerCase()}-${classItem.time}-${classItem.class.toLowerCase().replace(/\s+/g, '-')}`;
                                     const classLabel = day === 'SARKOLAN TANSSITUNNIT' 
@@ -571,7 +573,7 @@ const Registration = () => {
                     const isMinor = birthDate ? (new Date().getFullYear() - new Date(birthDate).getFullYear()) < 18 : false;
                     
                     return (
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
                           <label className={`paragraph_small font-medium mb-2 block ${isMinor ? 'text-charcoal' : 'text-gray-400'}`}>
                             {isMinor ? 'Huoltaja *' : 'Huoltaja (Jos oppilas on alaikäinen)'}
@@ -707,30 +709,30 @@ const Registration = () => {
             )}
           </AnimatePresence>
 
-          <div className="flex justify-between mt-8">
+          <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 mt-6 sm:mt-8">
             {currentStep > 1 && (
               <button
                 type="button"
                 onClick={prevStep}
-                className="btn btn_secondary_outlined"
+                className="btn btn_secondary_outlined order-2 sm:order-1"
               >
                 Takaisin
               </button>
             )}
             
-            <div className="ml-auto">
+            <div className={`${currentStep === 1 ? 'w-full' : 'order-1 sm:order-2 sm:ml-auto'}`}>
               {currentStep < totalSteps ? (
                 <button
                   type="button"
                   onClick={nextStep}
-                  className="btn btn_accent_solid"
+                  className="btn btn_accent_solid w-full sm:w-auto"
                 >
                   Seuraava
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="btn btn_primary_solid"
+                  className="btn btn_primary_solid w-full sm:w-auto"
                 >
                   Lähetä ilmoittautuminen
                 </button>

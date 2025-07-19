@@ -179,7 +179,7 @@ export default function ClassOffering() {
 					>
 						{classes.map((danceClass) => (
 							<SwiperSlide key={danceClass.id}>
-								<div className="card hover:shadow-2xl transition-all duration-500 overflow-hidden group transform hover:-translate-y-2 relative h-[650px]">
+								<div className="card hover:shadow-2xl transition-all duration-500 overflow-hidden group transform hover:-translate-y-2 relative h-[750px] sm:h-[650px]">
 									<div className="absolute top-0 left-0 w-full overflow-hidden h-[240px]">
 										<Image
 											src="/images/show.jpg"
@@ -212,12 +212,6 @@ export default function ClassOffering() {
 							</SwiperSlide>
 						))}
 					</Swiper>
-				</div>
-
-				<div className="text-center mt-12">
-					<button className="btn btn_accent_solid btn_large">
-						Tutustu Lajitarjontaan
-					</button>
 				</div>
 			</div>
 

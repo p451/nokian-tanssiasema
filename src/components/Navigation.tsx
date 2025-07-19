@@ -20,7 +20,7 @@ const Navigation = () => {
 
   const navItems = [
     { href: '#home', label: 'Koti' },
-    { href: '#classes', label: 'Tunnit' },
+    { href: '#lajiesittely', label: 'Lajiesittely' },
     { href: '#schedule', label: 'Aikataulu' },
     { href: '#gallery', label: 'Galleria' },
     { href: '#contact', label: 'Yhteystiedot' }
@@ -32,7 +32,7 @@ const Navigation = () => {
     }`}>
       <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex items-center h-24 relative">
-          {/* Left spacer to balance the right side */}
+          {/* Left spacer to balance the right side - Desktop only */}
           <div className="hidden md:block flex-1"></div>
           
           {/* Logo - Centered */}
@@ -55,7 +55,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-white hover:text-accent-primary transition-colors duration-200 px-3 py-2 paragraph_default font-medium"
+                  className="text_white hover:text_accent_primary transition-colors duration-200 px-3 py-2 paragraph_default font-bold"
                 >
                   {item.label}
                 </Link>
@@ -69,11 +69,11 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu button - Right corner */}
+          <div className="md:hidden absolute right-0 z-20">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-accent-primary focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text_white hover:text_accent_primary focus:outline-none"
             >
               <svg
                 className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
@@ -110,7 +110,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-white hover:text-accent-primary block px-3 py-2 paragraph_default font-medium"
+                  className="text_white hover:text_accent_primary block px-3 py-2 paragraph_default font-bold"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

@@ -4,6 +4,7 @@ import ClassOffering from '@/components/ClassOffering';
 import Schedule from '@/components/Schedule';
 import Gallery from '@/components/Gallery';
 import Registration from '@/components/Registration';
+import Opettajat from '@/components/Opettajat';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -27,6 +28,7 @@ export default function Home() {
       <Schedule />
       <Gallery />
       <Registration />
+      <Opettajat />
       <Contact />
       <Footer />
     </main>

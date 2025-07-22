@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function TermsOfUse() {
   return (
     <div className="min-h-screen bg-neutral-secondary/10 py-20">
@@ -29,6 +31,12 @@ export default function TermsOfUse() {
 
             <h2>Poikkeustilanteet</h2>
             <p>Meistä riippumattoman ylivoimaisen esteen sattuessa, esim. Covid-19 kaltaisen epidemian ilmaantuessa, tanssikoulun opetus siirtyy etäopetukseen hallituksen tai Avi:n linjauksen mukaan. Tanssikoulu ei ole velvollinen korvaamaan tilanteesta peruuntuvia lähiopetustunteja.</p>
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/" className="btn btn_primary_solid">
+              Palaa etusivulle
+            </Link>
           </div>
         </div>
       </div>

@@ -319,35 +319,6 @@ const Schedule = () => {
             </motion.div>
           </div>
         )}
-
-        {/* Additional Info */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="mt-12 bg-neutral-primary rounded-xl p-8 shadow-lg"
-            >
-              <h3 className="heading_h3 text-charcoal mb-6 text-center">
-                Tärkeää tietoa tunneista
-              </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="heading_h6 text-charcoal mb-2">📅 Aikataulut</h4>
-                  <p className="paragraph_small text-charcoal/80">
-                    Aikataulut voivat muuttua loma-aikoina. Tarkista aina ajankohtaiset tiedot nettisivuiltamme.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="heading_h6 text-charcoal mb-2">👥 Ryhmäkoot</h4>
-                  <p className="paragraph_small text-charcoal/80">
-                    Rajoitamme ryhmäkokoja laadun takaamiseksi. Ilmoittaudu ajoissa!
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
     </section>
   );
 };

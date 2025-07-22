@@ -35,8 +35,8 @@ const Contact = () => {
         </svg>
       ),
       title: 'Osoite',
-      content: 'Keskuskatu 5, 37100 Nokia',
-      link: 'https://maps.google.com/?q=Keskuskatu+5,+37100+Nokia'
+      content: 'Nokian valtatie 25, 37100 Nokia',
+      link: 'https://maps.google.com/?q=Nokian+valtatie+25,+37100+Nokia'
     },
     {
       icon: (
@@ -45,8 +45,8 @@ const Contact = () => {
         </svg>
       ),
       title: 'Puhelin',
-      content: '+358 40 123 4567',
-      link: 'tel:+358401234567'
+      content: '050 554 1382',
+      link: 'tel:+358505541382'
     },
     {
       icon: (
@@ -57,16 +57,6 @@ const Contact = () => {
       title: 'Sähköposti',
       content: 'info@nokiantanssiasema.fi',
       link: 'mailto:info@nokiantanssiasema.fi'
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-      title: 'Aukioloajat',
-      content: 'Ma-Pe 15:00-21:00\nLa 10:00-15:00',
-      link: null
     }
   ];
 
@@ -85,7 +75,7 @@ const Contact = () => {
       url: 'https://instagram.com/nokiantanssiasema',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM15.856 16.294c-2.3 2.3-6.012 2.3-8.312 0-2.3-2.3-2.3-6.012 0-8.312 2.3-2.3 6.012-2.3 8.312 0 2.3 2.3 2.3 6.012 0 8.312z"/>
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
       )
     }
@@ -138,7 +128,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="heading_h6 mb-1">
+                    <h4 className="heading_h5 mb-1">
                       {item.title}
                     </h4>
                     {item.link ? (
@@ -160,7 +150,7 @@ const Contact = () => {
 
             {/* Social Media Links */}
             <div className="mt-8">
-              <h4 className="heading_h6 mb-4">
+              <h4 className="heading_h5 mb-4">
                 Seuraa meitä sosiaalisessa mediassa
               </h4>
               <div className="flex space-x-4">
@@ -190,12 +180,12 @@ const Contact = () => {
             >
               <div className="bg-neutral-primary/10 rounded-lg p-6 text-center">
                 <div className="text-4xl mb-2">📍</div>
-                <p className="paragraph_default text-white/80">
-                  Sijaitsemme Nokian keskustassa, helposti saavutettavissa 
+                <p className="paragraph_default text-charcoal/70">
+                  Sijaitsemme Nokian valtatiellä, helposti saavutettavissa 
                   julkisilla kulkuvälineillä ja omalla autolla.
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Keskuskatu+5,+37100+Nokia"
+                  href="https://maps.google.com/?q=Nokian+valtatie+25,+37100+Nokia"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn_accent_solid mt-4"

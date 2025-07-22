@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-neutral-secondary/10 py-20">
@@ -118,6 +120,12 @@ export default function PrivacyPolicy() {
 
             <hr className="my-8" />
             <p className="text-center"><em>Tämä tietosuojaseloste on laadittu EU:n yleisen tietosuoja-asetuksen (GDPR) ja Suomen tietosuojalain vaatimusten mukaisesti.</em></p>
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/" className="btn btn_primary_solid">
+              Palaa etusivulle
+            </Link>
           </div>
         </div>
       </div>

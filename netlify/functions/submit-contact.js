@@ -62,7 +62,7 @@ Lähetetty: ${new Date().toLocaleString('fi-FI')}
 
     // Send email
     await transporter.sendMail({
-      from: `"Nokian Tanssiasema Nettisivu" <${process.env.BREVO_SMTP_USER}>`,
+      from: `"Nokian Tanssiasema" <info@nokiantanssiasema.fi>`,
       to: 'info@nokiantanssiasema.fi',
       subject: `Yhteydenotto: ${data.subject || 'Ei aihetta'}`,
       text: emailContent,

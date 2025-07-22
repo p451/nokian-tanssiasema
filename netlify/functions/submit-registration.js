@@ -98,7 +98,7 @@ Ilmoittautumisaika: ${new Date().toLocaleString('fi-FI')}
 
     // Send email
     await transporter.sendMail({
-      from: `"Nokian Tanssiasema Nettisivu" <${process.env.BREVO_SMTP_USER}>`,
+      from: `"Nokian Tanssiasema" <info@nokiantanssiasema.fi>`,
       to: 'info@nokiantanssiasema.fi',
       subject: `Uusi ilmoittautuminen: ${data.firstName || 'Tuntematon'} ${data.lastName || 'Oppilas'}`,
       text: emailContent,

@@ -33,7 +33,7 @@ exports.handler = async (event) => {
     console.log('Contact data received:', JSON.stringify(data, null, 2));
     
     // Create transporter using Brevo SMTP
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: 'smtp-relay.brevo.com',
       port: 587,
       secure: false,

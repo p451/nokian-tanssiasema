@@ -1,2 +1,7 @@
+node_modules/
+.next/
+out/
+build/
+dist/
 # Netlify functions are Node.js, not TypeScript
 netlify/functions/

@@ -101,20 +101,39 @@ const Registration = () => {
     }
   };
 
-  const onSubmit = (data: RegistrationFormData) => {
-    console.log('Registration data:', data);
-    setIsSubmitted(true);
-    // Scroll to the success message
-    setTimeout(() => {
-      const successElement = document.getElementById('registration-success');
-      if (successElement) {
-        successElement.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
+  const onSubmit = async (data: RegistrationFormData) => {
+    try {
+      const response = await fetch('/.netlify/functions/submit-registration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('Registration submitted successfully:', result);
+        setIsSubmitted(true);
+        // Scroll to the success message
+        setTimeout(() => {
+          const successElement = document.getElementById('registration-success');
+          if (successElement) {
+            successElement.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+          }
+        }, 100);
+      } else {
+        console.error('Registration submission failed:', result);
+        alert('Virhe ilmoittautumisen lähetyksessä. Yritä uudelleen.');
       }
-    }, 100);
-    // Here you would typically send the data to your backend
+    } catch (error) {
+      console.error('Registration submission error:', error);
+      alert('Virhe ilmoittautumisen lähetyksessä. Tarkista internet-yhteytesi ja yritä uudelleen.');
+    }
   };
 
   const danceClasses = Object.entries(scheduleData).flatMap(([day, classes]) => 

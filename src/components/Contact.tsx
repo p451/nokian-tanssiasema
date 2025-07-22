@@ -18,12 +18,31 @@ const Contact = () => {
     resolver: zodResolver(contactSchema)
   });
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log('Contact form data:', data);
-    setIsSubmitted(true);
-    reset();
-    // Here you would typically send the data to your backend
-    setTimeout(() => setIsSubmitted(false), 3000);
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const response = await fetch('/.netlify/functions/submit-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('Contact form submitted successfully:', result);
+        setIsSubmitted(true);
+        reset();
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        console.error('Contact submission failed:', result);
+        alert('Virhe viestin lähetyksessä. Yritä uudelleen.');
+      }
+    } catch (error) {
+      console.error('Contact submission error:', error);
+      alert('Virhe viestin lähetyksessä. Tarkista internet-yhteytesi ja yritä uudelleen.');
+    }
   };
 
   const contactInfo = [

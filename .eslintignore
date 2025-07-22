@@ -1,0 +1,2 @@
+# Netlify functions are Node.js, not TypeScript
+netlify/functions/

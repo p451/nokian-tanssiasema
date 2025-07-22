@@ -62,7 +62,7 @@ const Navigation = () => {
               ))}
               <Link
                 href="#register"
-                className="btn btn_accent_solid btn_small"
+                className="btn btn_accent_solid btn_medium"
               >
                 Ilmoittaudu
               </Link>

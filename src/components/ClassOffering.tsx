@@ -175,7 +175,7 @@ export default function ClassOffering() {
 								slidesPerView: 3,
 							},
 						}}
-						className="classes-swiper !pb-12"
+						className="classes-swiper !pb-12 [&_.swiper-button-next]:opacity-30 [&_.swiper-button-prev]:opacity-30 [&_.swiper-button-next]:hover:opacity-60 [&_.swiper-button-prev]:hover:opacity-60 [&_.swiper-button-next]:transition-opacity [&_.swiper-button-prev]:transition-opacity [&_.swiper-button-next]:duration-300 [&_.swiper-button-prev]:duration-300 [&_.swiper-button-next]:right-2 [&_.swiper-button-prev]:left-2"
 					>
 						{classes.map((danceClass) => (
 							<SwiperSlide key={danceClass.id}>
@@ -190,7 +190,7 @@ export default function ClassOffering() {
 										/>
 										<div className="absolute inset-0 bg-gradient-to-t from-neutral-inverse/40 via-neutral-inverse/20 to-transparent" />
 										<div className="absolute bottom-4 left-4">
-											<h3 className="heading_h5 text-white drop-shadow-lg">
+											<h3 className="heading_h4 text_white drop-shadow-lg">
 												{danceClass.title}
 											</h3>
 										</div>
@@ -233,7 +233,7 @@ export default function ClassOffering() {
 								×
 							</button>
 							<div className="absolute bottom-6 left-6">
-								<h3 className="heading_h3 text-white drop-shadow-lg">
+								<h3 className="heading_h3 text_white drop-shadow-lg">
 									{selectedClass.title}
 								</h3>
 							</div>

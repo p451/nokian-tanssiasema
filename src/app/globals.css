@@ -23,15 +23,7 @@
     letter-spacing: 0.01em;
   }
   
-  /* Heading elements - use Montserrat Alternates */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat Alternates', sans-serif !important;
-    font-weight: var(--font-black) !important;
-    color: #4A453F !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0.02em !important;
-    font-style: normal !important;
-  }
+
 
   /* Body text elements */
   p, span, div:not(.heading_huge):not(.heading_h1):not(.heading_h2):not(.heading_h3):not(.heading_h4):not(.heading_h5):not(.heading_h6) {
@@ -191,7 +183,7 @@
     font-size: clamp(1.25rem, 3vw, 1.875rem) !important;
     font-weight: var(--font-extrabold) !important;
     line-height: 1.3 !important;
-    color: #8B8680 !important;
+    color: #cfc0ad !important;
     letter-spacing: 0.01em !important;
     margin: 0 !important;
   }
@@ -248,18 +240,18 @@
   }
 
   .paragraph_large {
-    font-family: var(--font-body) !important;
+    font-family: var(--font-heading) !important;
     font-size: clamp(1.125rem, 1.75vw, 1.375rem) !important;
     font-weight: var(--font-normal) !important;
     line-height: 1.6 !important;
-    color: #4d5346 !important;
+    color: #130c03 !important;
     margin: 0 !important;
   }  .paragraph_default {
     font-family: var(--font-body) !important;
     font-size: clamp(1rem, 1.25vw, 1.125rem) !important;
     font-weight: var(--font-normal) !important;
     line-height: 1.6 !important;
-    color: #9B9590 !important;
+    color: #50463d !important;
     margin: 0 !important;
   }
 

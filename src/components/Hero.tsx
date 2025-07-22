@@ -38,7 +38,7 @@ const Hero = () => {
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 1.6, delay: 0.2 }}
             className="font-heading text-white mb-6"
             style={{
               fontSize: 'clamp(2.5rem, 8vw, 5rem)',
@@ -51,11 +51,11 @@ const Hero = () => {
             Jokainen askel kertoo 
             tarinan
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1.1, delay: 1.1 }}
             className="text-white mb-8 font-body"
             style={{ 
               fontSize: 'clamp(1rem, 2vw, 1.125rem)',
@@ -71,7 +71,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
+            transition={{ duration: 1, delay: 1.5 }}
             className="flex flex-col sm:flex-row gap-4"
           >
             <a

@@ -2,16 +2,35 @@
 const nodemailer = require('nodemailer');
 
 exports.handler = async (event) => {
+  // Add CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
+
+  // Handle OPTIONS request for CORS
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: ''
+    };
+  }
+
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers,
       body: JSON.stringify({ error: 'Method not allowed' })
     };
   }
 
   try {
     const data = JSON.parse(event.body);
+    
+    console.log('Contact data received:', JSON.stringify(data, null, 2));
     
     // Create transporter using Brevo SMTP
     const transporter = nodemailer.createTransporter({
@@ -30,13 +49,13 @@ UUSI YHTEYDENOTTO - Nokian Tanssiasema
 
 LÄHETTÄJÄN TIEDOT:
 =================
-Nimi: ${data.name}
-Sähköposti: ${data.email}
-Aihe: ${data.subject}
+Nimi: ${data.name || 'Ei annettu'}
+Sähköposti: ${data.email || 'Ei annettu'}
+Aihe: ${data.subject || 'Ei aihetta'}
 
 VIESTI:
 =======
-${data.message}
+${data.message || 'Ei viestiä'}
 
 Lähetetty: ${new Date().toLocaleString('fi-FI')}
     `;
@@ -45,13 +64,14 @@ Lähetetty: ${new Date().toLocaleString('fi-FI')}
     await transporter.sendMail({
       from: `"Nokian Tanssiasema Nettisivu" <${process.env.BREVO_SMTP_USER}>`,
       to: 'info@nokiantanssiasema.fi',
-      subject: `Yhteydenotto: ${data.subject}`,
+      subject: `Yhteydenotto: ${data.subject || 'Ei aihetta'}`,
       text: emailContent,
-      replyTo: data.email
+      replyTo: data.email || process.env.BREVO_SMTP_USER
     });
 
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify({ 
         success: true, 
         message: 'Viesti lähetetty onnistuneesti!' 
@@ -62,6 +82,7 @@ Lähetetty: ${new Date().toLocaleString('fi-FI')}
     console.error('Contact submission error:', error);
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({ 
         error: 'Virhe viestin lähetyksessä',
         details: error.message 

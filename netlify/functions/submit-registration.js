@@ -45,8 +45,8 @@ exports.handler = async (event) => {
     });
 
     // Format dance classes safely
-    const danceClassesText = data.danceClasses && Array.isArray(data.danceClasses) && data.danceClasses.length > 0 
-      ? data.danceClasses.join(', ')
+    const danceClassesText = data.danceClasses && Array.isArray(data.danceClasses) && data.danceClasses.length > 0
+      ? data.danceClasses.map((c) => `- ${c}`).join('\n')
       : 'Ei valittuja tunteja';
 
     // Check if student is minor

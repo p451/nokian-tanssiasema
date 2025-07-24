@@ -22,6 +22,7 @@ const Navigation = () => {
     { href: '#teachers', label: 'Opettajat' },
     { href: '#lajiesittely', label: 'Lajiesittely' },
     { href: '#schedule', label: 'Aikataulu' },
+    { href: '/hinnasto', label: 'Hinnasto' },
     { href: '#gallery', label: 'Galleria' },
     { href: '#contact', label: 'Yhteystiedot' }
   ];

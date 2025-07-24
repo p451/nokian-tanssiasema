@@ -23,7 +23,7 @@ const Schedule = () => {
   const days = Object.keys(weeklyClasses);
 
   return (
-    <section id="schedule" className="section_primary_default">
+    <section id="schedule" className="section_primary_default" style={{ scrollMarginTop: '110px' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -40,32 +40,35 @@ const Schedule = () => {
           </p>
         </motion.div>
 
-        {/* View Mode Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-neutral-primary rounded-lg p-1 shadow-md">
-            <div className="flex gap-0">
-              <button
-                onClick={() => setViewMode('week')}
-                className={`btn text-sm sm:text-base py-2 sm:py-3 px-4 ${
-                  viewMode === 'week' 
-                    ? 'btn_accent_solid' 
-                    : 'btn_ghost'
-                }`}
-              >
-                Viikkonäkymä
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`btn text-sm sm:text-base py-2 sm:py-3 px-4 ${
-                  viewMode === 'list' 
-                    ? 'btn_accent_solid' 
-                    : 'btn_ghost'
-                }`}
-              >
-                Listanäkymä
-              </button>
-            </div>
-          </div>
+        {/* View Mode Toggle + Ajankohtaista */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+          <button
+            onClick={() => setViewMode('week')}
+            className={`btn text-sm sm:text-base py-2 sm:py-3 px-4 ${
+              viewMode === 'week' 
+                ? 'btn_accent_solid' 
+                : 'btn_ghost'
+            }`}
+          >
+            Viikkonäkymä
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={`btn text-sm sm:text-base py-2 sm:py-3 px-4 ${
+              viewMode === 'list' 
+                ? 'btn_accent_solid' 
+                : 'btn_ghost'
+            }`}
+          >
+            Listanäkymä
+          </button>
+          <a
+            href="#ajankohtaista"
+            className="btn text-sm sm:text-base py-2 sm:py-3 px-4 btn_ghost"
+            style={{ minWidth: '120px', textAlign: 'center' }}
+          >
+            Ajankohtaista
+          </a>
         </div>
 
       </div>
@@ -119,7 +122,7 @@ const Schedule = () => {
                       </h4>
                       
                       <p className="text-xs text-charcoal/70">
-                        {classItem.instructor}
+                        {classItem.instructor === 'S.S' ? 'Simo' : classItem.instructor}
                       </p>
                     </div>
                   ))}
@@ -128,39 +131,39 @@ const Schedule = () => {
             ))}
             
             {/* Sarkola Classes - Special Card */}
-            <div className="bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-300 rounded-xl p-6 shadow-lg">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-300 rounded-xl p-6 shadow-lg">
               <div className="text-center mb-6">
-                <h3 className="heading_h5 text-red-800 mb-2 bg-red-200 py-2 px-4 rounded-lg">
+                <h3 className="heading_h5 text-orange-800 mb-2 bg-orange-200 py-2 px-4 rounded-lg">
                   SARKOLAN TANSSITUNNIT
                 </h3>
-                <p className="text-xs text-red-600 font-medium">Keskiviikkoisin • Vahalanden kulttuuritalo</p>
+                <p className="text-xs text-orange-600 font-medium">Keskiviikkoisin • Vahalanden kulttuuritalo</p>
               </div>
               
               <div className="space-y-3">
                 {weeklyClasses['SARKOLAN TANSSITUNNIT'].map((classItem, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-lg p-3 border-l-4 border-red-400 shadow-sm"
+                    className="bg-white rounded-lg p-3 border-l-4 border-orange-400 shadow-sm"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <div className="text-sm font-bold text-red-700">
+                      <div className="text-sm font-bold text-orange-700">
                         {classItem.time}
                       </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold text-white bg-red-600">
+                      <span className="px-2 py-1 rounded text-xs font-bold text-white bg-orange-600">
                         KURSSI
                       </span>
                     </div>
                     
-                    <h4 className="text-sm font-semibold text-red-800 mb-1">
+                    <h4 className="text-sm font-semibold text-orange-800 mb-1">
                       {classItem.class}
                     </h4>
                     
-                    <p className="text-xs text-red-600">
+                    <p className="text-xs text-orange-600">
                       {classItem.instructor}
                     </p>
                     
                     {(classItem as ClassItem).period && (
-                      <p className="text-xs text-red-500 mt-1">
+                      <p className="text-xs text-orange-500 mt-1">
                         {(classItem as ClassItem).period}
                       </p>
                     )}
@@ -216,16 +219,11 @@ const Schedule = () => {
               {selectedDay === 'SARKOLAN TANSSITUNNIT' ? (
                 // Special layout for Sarkola courses
                 <>
-                  <div className="bg-gradient-to-r from-red-50 to-red-100 border-2 border-red-300 rounded-xl p-6 mb-6">
+                  <div className="bg-gradient-to-r from-orange-50 to-orange-100 border-2 border-orange-300 rounded-xl p-6 mb-6">
                     <div className="text-center">
-                      <h3 className="heading_h3 text-red-800 mb-2">🏛️ SARKOLAN TANSSITUNNIT</h3>
-                      <p className="heading_h5 text-red-700 mb-1">Vahalanden kulttuuritalo</p>
-                      <p className="paragraph_default text-red-600 mb-3">Sarkolantie 476, 37180 Sarkola</p>
-                      <div className="bg-red-200 rounded-lg p-3 inline-block">
-                        <p className="paragraph_small font-bold text-red-800">
-                          ⚠️ HUOM: Tämä on eri sijainti! Ilmoittautuminen erillään.
-                        </p>
-                      </div>
+                      <h3 className="heading_h3 text-orange-800 mb-2">🏛️ SARKOLAN TANSSITUNNIT</h3>
+                      <p className="heading_h5 text-orange-700 mb-1">Vahalanden kulttuuritalo</p>
+                      <p className="paragraph_default text-orange-600 mb-3">Sarkolantie 476, 37180 Sarkola</p>
                     </div>
                   </div>
                   
@@ -235,36 +233,36 @@ const Schedule = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="card transition-all duration-300 border-l-4 border-red-400 bg-red-50"
+                      className="card transition-all duration-300 border-l-4 border-orange-400 bg-orange-50"
                     >
                       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-start sm:items-center">
                         <div className="sm:col-span-1">
-                          <div className="heading_h5 text-red-700">
+                          <div className="heading_h5 text-orange-700">
                             {classItem.time}
                           </div>
-                          <div className="paragraph_small text-red-600 mt-1 font-medium">
+                          <div className="paragraph_small text-orange-600 mt-1 font-medium">
                             Keskiviikkoisin
                           </div>
-                          <div className="paragraph_small text-red-500 mt-1">
+                          <div className="paragraph_small text-orange-500 mt-1">
                             {(classItem as ClassItem).period || ''}
                           </div>
                         </div>
                         <div className="sm:col-span-2">
-                          <h3 className="heading_h5 text-red-800 mb-1">
+                          <h3 className="heading_h5 text-orange-800 mb-1">
                             {classItem.class}
                           </h3>
-                          <p className="paragraph_default text-red-700 mb-1">
+                          <p className="paragraph_default text-orange-700 mb-1">
                             Opettaja: <span className="font-medium">{classItem.instructor}</span>
                           </p>
-                          <p className="paragraph_small text-red-600">
+                          <p className="paragraph_small text-orange-600">
                             {(classItem as ClassItem).duration || ''}
                           </p>
                         </div>
                         <div className="sm:col-span-1 flex flex-row sm:flex-col items-start sm:items-end gap-2">
-                          <span className="px-3 py-1 rounded-md text-xs font-bold text-white bg-red-600">
+                          <span className="px-3 py-1 rounded-md text-xs font-bold text-white bg-orange-600">
                             KURSSI
                           </span>
-                          <span className="px-2 py-1 rounded-md text-xs font-medium text-red-800 bg-red-200">
+                          <span className="px-2 py-1 rounded-md text-xs font-medium text-orange-800 bg-orange-200">
                             Sarkola
                           </span>
                         </div>
@@ -299,7 +297,7 @@ const Schedule = () => {
                           {classItem.class}
                         </h3>
                         <p className="paragraph_default text-charcoal/70">
-                          Opettaja: <span className="font-medium">{classItem.instructor}</span>
+                          Opettaja: <span className="font-medium">{classItem.instructor === 'S.S' ? 'Simo' : classItem.instructor}</span>
                         </p>
                       </div>
                       <div className="sm:col-span-1 flex flex-row sm:flex-col items-start sm:items-end gap-2">
@@ -319,6 +317,23 @@ const Schedule = () => {
             </motion.div>
           </div>
         )}
+      {/* Ajankohtaista Section */}
+      <section
+        id="ajankohtaista"
+        className="max-w-3xl mx-auto my-16 px-4 py-10 rounded-2xl shadow-lg bg-white/90 border border-accent_primary"
+        style={{ scrollMarginTop: '110px' }}
+      >
+        <h2 className="heading_h3 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
+        <div className="paragraph_large text-center text-charcoal mb-4">
+          Tähän tulee ajankohtaiset tiedotteet, uutiset ja tapahtumat. Päivitä sisältö tarpeen mukaan.
+        </div>
+        {/* Ajankohtaista tiedote */}
+        <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
+          <div className="font-semibold text-accent_primary mb-1">Syyskausi 2025 alkaa 4.8.</div>
+          <div className="text-charcoal">Ilmoittautuminen on nyt auki!</div>
+        </div>
+        {/* Lisää tiedotteita tähän */}
+      </section>
     </section>
   );
 };

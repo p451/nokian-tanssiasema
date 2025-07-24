@@ -87,6 +87,26 @@ const Hero = () => {
               Ilmoittaudu
             </a>
           </motion.div>
+
+          {/* Kausi alkaa -info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 2 }}
+            className="mt-6"
+          >
+            <span className="text-white text-lg font-body" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+              Kausi alkaa 4.8.2025. Katso lisätietoja{' '}
+              <a
+                href="#ajankohtaista"
+                className="underline text-accent_primary hover:text-accent_primary/80"
+                style={{ fontStyle: 'italic' }}
+              >
+                täältä
+              </a>
+              .
+            </span>
+          </motion.div>
         </div>
       </motion.div>
     </section>

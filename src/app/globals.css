@@ -1,3 +1,28 @@
+/* Ajankohtaista & accent theme additions */
+:root {
+  --accent-primary: #D4A574;
+  --accent-primary-dark: #8B7355;
+}
+
+.text-accent_primary {
+  color: var(--accent-primary) !important;
+}
+.border-accent_primary {
+  border-color: var(--accent-primary) !important;
+}
+.bg-accent_primary\/10 {
+  background-color: rgba(212, 165, 116, 0.10) !important;
+}
+.btn_accent_solid {
+  background-color: var(--accent-primary) !important;
+  color: #fff !important;
+  border: none;
+}
+.btn_secondary_outlined {
+  background: transparent !important;
+  border: 2px solid var(--accent-primary) !important;
+  color: var(--accent-primary) !important;
+}
 @import "tailwindcss";
 
 /* Import fonts - Fixed Google Fonts URLs with all needed weights */

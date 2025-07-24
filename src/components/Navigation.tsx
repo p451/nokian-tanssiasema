@@ -22,10 +22,14 @@ const Navigation = () => {
     { href: '#teachers', label: 'Opettajat' },
     { href: '#lajiesittely', label: 'Lajiesittely' },
     { href: '#schedule', label: 'Aikataulu' },
+    { href: '#ajankohtaista', label: 'Ajankohtaista' },
     { href: '/hinnasto', label: 'Hinnasto' },
     { href: '#gallery', label: 'Galleria' },
     { href: '#contact', label: 'Yhteystiedot' }
   ];
+
+  // Määritellään tekstiväri taustan perusteella
+  const navTextColor = scrolled ? 'text_white' : 'text_charcoal';
 
   return (
     <>
@@ -35,9 +39,9 @@ const Navigation = () => {
           <Image
             src="/images/logo.png"
             alt="Nokian Tanssiasema"
-            width={320}
-            height={64}
-            className="h-16 w-auto drop-shadow-lg"
+            width={400}
+            height={80}
+            className="h-20 w-auto drop-shadow-lg"
           />
         </Link>
       </div>
@@ -55,7 +59,7 @@ const Navigation = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text_white hover:text_accent_primary transition-colors duration-200 px-2 py-1 paragraph_default font-medium"
+                    className={`${navTextColor} hover:text_accent_primary transition-colors duration-200 px-2 py-1 paragraph_default font-medium`}
                   >
                     {item.label}
                   </Link>
@@ -73,7 +77,7 @@ const Navigation = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text_white hover:text_accent_primary focus:outline-none"
+                className={`${navTextColor} inline-flex items-center justify-center p-2 rounded-md hover:text_accent_primary focus:outline-none`}
               >
                 <svg
                   className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
@@ -110,7 +114,7 @@ const Navigation = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text_white hover:text_accent_primary block px-3 py-2 paragraph_default font-medium"
+                    className={`${navTextColor} hover:text_accent_primary block px-3 py-2 paragraph_default font-medium`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}

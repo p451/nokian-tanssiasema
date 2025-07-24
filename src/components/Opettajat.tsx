@@ -48,6 +48,12 @@ Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssit
       specialties: "",
       image: null,
       bio: ""
+    },
+    {
+      name: "SIMO SALIM",
+      specialties: "",
+      image: null,
+      bio: ""
     }
   ];
 

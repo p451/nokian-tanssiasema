@@ -12,7 +12,7 @@ const classes = [
 	title: 'Lastentanssi',
 	description:
 	  'Lastentanssissa lapset pääsevät tutustumaan tanssin maailmaan hauskojen ja monipuolisten harjoitusten avulla. Tunneilla kehitetään kehonhallintaa, rytmitajua ja luovuutta, sekä opitaan toimimaan sekä yksilönä että osana ryhmää. Baletin perusteisiin tutustutaan leikkien avulla. Tavoitteena on innostaa lapsia tanssin pariin ja antaa hyvät valmiudet jatko-opintoihin.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/lasten.jpg',
 	ageGroup: '3-5 vuotta',
 	level: 'Aloittelijat',
 	duration: '45 min',
@@ -22,7 +22,7 @@ const classes = [
 	title: 'Baletti',
 	description:
 	  'Baletissa syvennetään lastentanssissa opittuja taitoja ja edetään luovista leikeistä tarkempiin tekniikoihin. Tanssillisuus, musikaalisuus sekä kehon voima ja ketteryys kehittyvät innostavissa harjoituksissa. Kurssin tavoitteena on valmistaa oppilaat hyvin baletin perusopintoihin.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/ballet.jpg',
 	ageGroup: '6-8 vuotta',
 	level: 'Alkeet',
 	duration: '60 min',
@@ -32,7 +32,7 @@ const classes = [
 	title: 'Showtanssi',
 	description:
 	  'Showtanssi yhdistää parhaita puolia jazz-tanssista, nykytanssista ja baletista. Tunneilla kehitetään tekniikkaa, ilmaisua sekä tanssillista energiaa monipuolisten tanssisarjojen avulla. Tunnelma tunneilla on aina innostava ja hyväntuulinen.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/show.jpg',
 	ageGroup: '8+ vuotta',
 	level: 'Kaikki tasot',
 	duration: '60 min',
@@ -42,7 +42,7 @@ const classes = [
 	title: 'Nykytanssi',
 	description:
 	  'Nykytanssin tunneilla painotetaan oman tanssillisen ilmaisun löytämistä improvisaation sekä vaihtelevien tanssisarjojen avulla. Release- ja lattiatekniikan kautta kehitetään sulavuutta ja ilmaisua. Tunneilla yhdistetään modernin tanssin tekniikoita ja vaikutteita muista tanssilajeista, mikä tekee tunneista monipuolisia ja innostavia.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/nyky.jpg',
 	ageGroup: '12+ vuotta',
 	level: 'Kaikki tasot',
 	duration: '75 min',
@@ -52,7 +52,7 @@ const classes = [
 	title: 'Dance Mix',
 	description:
 	  'Dance mix -tunnit tarjoavat monipuolisen kattauksen eri tanssilajeja, kuten musikaalitanssia, contemporary jazzia ja street-tanssia. Tunti alkaa lämmittelyllä ja tekniikkaosiolla, jonka jälkeen keskitytään iloiseen ja energiseen koreografiaan.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/dancemix.jpg',
 	ageGroup: '15+ vuotta',
 	level: 'Kaikki tasot',
 	duration: '90 min',
@@ -62,7 +62,7 @@ const classes = [
 	title: 'Commercial Dance',
 	description:
 	  'Commercial dance yhdistää elementtejä jazzista, showsta ja katutanssista, inspiroituen tunnetuista musiikkivideoista ja musikaaleista. Tunneilla harjoitellaan ilmaisullisia ja tyylikkäitä koreografioita, joissa tanssijat pääsevät nauttimaan suosikkikappaleidensa tahdissa.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/commercial.jpg',
 	ageGroup: '13+ vuotta',
 	level: 'Keskitaso+',
 	duration: '75 min',
@@ -82,7 +82,7 @@ const classes = [
 	title: 'Breakdance',
 	description:
 	  'Breakdaance on vauhdikas ja akrobaattinen katutanssilaji, jossa opetellaan lattia- ja ylätason jalkatyöskentelyä, näyttäviä freezejä sekä akrobatiaa. Freestyle-osioissa tanssijat pääsevät kehittämään omaa persoonallista liikekieltään.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/break.jpg',
 	ageGroup: '8+ vuotta',
 	level: 'Aloittelijat',
 	duration: '60 min',
@@ -92,7 +92,7 @@ const classes = [
 	title: 'Heels',
 	description:
 	  'Heels-tunnilla tanssitaan korkokengissä ja keskitytään erityisesti kehonhallintaan, linjauksiin ja naiselliseen ilmaisuun. Tunti kehittää tasapainoa, ryhtiä ja esiintymisvarmuutta. Sopii kaikille, jotka haluavat haastaa itseään ja löytää uudenlaista itsevarmuutta tanssin kautta.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/heels.jpg',
 	ageGroup: '16+ vuotta',
 	level: 'Avoin taso',
 	duration: '60 min',
@@ -143,13 +143,13 @@ export default function ClassOffering() {
 							<SwiperSlide key={danceClass.id}>
 								<div className="card hover:shadow-2xl transition-all duration-500 overflow-hidden group transform hover:-translate-y-2 relative h-[750px] sm:h-[650px]">
 									<div className="absolute top-0 left-0 w-full overflow-hidden h-[240px]">
-										<Image
-											src="/images/show.jpg"
-											alt={danceClass.title}
-											fill
-											className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-											style={{ objectFit: 'cover' }}
-										/>
+<Image
+  src={danceClass.image}
+  alt={danceClass.title}
+  fill
+  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+  style={{ objectFit: 'cover' }}
+/>
 										<div className="absolute inset-0 bg-gradient-to-t from-neutral-inverse/40 via-neutral-inverse/20 to-transparent" />
 										<div className="absolute bottom-4 left-4">
 											<h3 className="heading_h4 text_white drop-shadow-lg">

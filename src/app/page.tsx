@@ -19,8 +19,10 @@ export default function Home() {
         <div className="max-w-xl mx-auto text-center space-y-8 px-8 min-h-[300px] flex flex-col justify-center">
           <h2 className="heading_h2">Nokian Tanssiasema</h2>
           <p className="paragraph_large leading-relaxed">
-            On kulkenut nokialaisten rinnalla jo yli 50 vuotta – tanssin ilon, ilmaisun ja kasvun paikkana. Meillä jokainen saa tanssia omalla tavallaan, omassa tahdissaan. Opetus on monipuolista ja etenee lempeästi tasolta toiselle, kokeneiden ja sydämellisten opettajien ohjauksessa. Tunnit ovat avoimia kaikenikäisille ja -tasoisille – meiltä löydät oman paikkasi tanssin maailmassa.
-          </p>
+on taiteen perusopetusta tarjoava yksityinen tanssikoulu, jonka juuret ulottuvat vuoteen 1963.
+Tanssikoulun perustajana toimi Anneli Suova, joka aloitti Balettikoulun toimintansa Nokian Kerholassa ja johti sitä vuoteen 1991 saakka. Tämän jälkeen vastuun otti hänen tyttärensä, Katja Suova, ja opetusta jatkettiin Myllyhaan koulun tiloissa.
+Vuonna 2012 koulu muutti nykyisiin tiloihinsa Teollisuusasemalle, ja samalla nimi vaihtui Balettikoulu Katja Suovasta Nokian Tanssiasemaksi.
+Vahva tanssiperinne jatkuu nyt jo kolmannessa polvessa, kun myös Katjan tytär, Karita, on liittynyt mukaan opetustyöhön isoäitinsä ja äitinsä jalanjäljissä.          </p>
         </div>
       </section>
 

@@ -89,7 +89,7 @@ const Schedule = () => {
                 className="bg-neutral-primary rounded-xl p-6 shadow-lg"
               >
                 <div className="text-center mb-6">
-                  <h3 className="heading_h4 text_white mb-2 bg-sage/10 py-2 px-4 rounded-lg">
+                  <h3 className="heading_h5 text_white mb-2 bg-sage/10 py-2 px-4 rounded-lg">
                     {day.toUpperCase()}
                   </h3>
                 </div>
@@ -262,9 +262,12 @@ const Schedule = () => {
                           <span className="px-3 py-1 rounded-md text-xs font-bold text-white bg-orange-600">
                             KURSSI
                           </span>
-                          <span className="px-2 py-1 rounded-md text-xs font-medium text-orange-800 bg-orange-200">
-                            Sarkola
-                          </span>
+                          <div className="flex flex-row items-center gap-2 mt-2 sm:mt-0">
+                            <span className="px-2 py-1 rounded-md text-xs font-medium text-orange-800 bg-orange-200">
+                              Sarkola
+                            </span>
+                            <a href="#register" className="btn btn_accent_solid btn_small">Ilmoittaudu</a>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -301,14 +304,17 @@ const Schedule = () => {
                         </p>
                       </div>
                       <div className="sm:col-span-1 flex flex-row sm:flex-col items-start sm:items-end gap-2">
-                        <span 
-                          className="px-2 py-1 rounded-md text-xs font-medium text-white"
-                          style={{ 
-                            backgroundColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
-                          }}
-                        >
-                          {classItem.sali}
-                        </span>
+                        <div className="flex flex-row items-center gap-2 mt-2 sm:mt-0">
+                          <span 
+                            className="px-2 py-1 rounded-md text-xs font-medium text-white"
+                            style={{ 
+                              backgroundColor: classItem.sali === 'Sali 1' ? '#8B7355' : '#D4A574'
+                            }}
+                          >
+                            {classItem.sali}
+                          </span>
+                          <a href="#register" className="btn btn_accent_solid btn_small">Ilmoittaudu</a>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -320,17 +326,21 @@ const Schedule = () => {
       {/* Ajankohtaista Section */}
       <section
         id="ajankohtaista"
-        className="max-w-3xl mx-auto my-16 px-4 py-10 rounded-2xl shadow-lg bg-white/90 border border-accent_primary"
+        className="max-w-3xl mx-auto my-16 px-4 py-10 rounded-2xl shadow-lg bg-white border border-accent_primary"
         style={{ scrollMarginTop: '110px' }}
       >
         <h2 className="heading_h2 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
         <div className="paragraph_large text-center text-charcoal mb-4">
-          Kausi alkaa! Ilmoittaudu pian!
+          <span className="font-bold text-charcoal">Kausi alkaa! Ilmoittaudu pian!</span>
         </div>
         {/* Ajankohtaista tiedote */}
         <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-semibold text-accent_primary mb-3">Syyskausi 2025 alkaa 11.8.2025</div>
-          <div className="text-charcoal">Ilmoittautuminen on nyt auki!</div>
+          <div className="font-bold text-accent_primary mb-3">Syyskausi 2025 alkaa 11.8.2025</div>
+          <div className="font-semibold text-charcoal">Ilmoittautuminen on nyt auki!</div>
+        </div>
+        <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
+          <div className="font-bold text-accent_primary mb-3">Uusi ilmoittautuminen!</div>
+          <div className="font-semibold text-charcoal">Voit nyt ilmoittautua useammalle tunnille yhdellä ilmoittautumisella.</div>
         </div>
         {/* Lisää tiedotteita tähän */}
       </section>

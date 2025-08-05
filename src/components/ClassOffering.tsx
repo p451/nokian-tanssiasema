@@ -72,7 +72,7 @@ const classes = [
 	title: 'HipHop',
 	description:
 	  'Hip hop on katutanssilaji, jossa korostuvat rytmi, liikkeen dynamiikka ja yksilöllinen tyyli. Tunneilla harjoitellaan perusaskeleita, koordinaatiota ja kehonhallintaa sekä rohkaistaan oman liikekielen kehittämiseen. Laji sopii kaikille, jotka haluavat tutustua tanssiin rennossa, mutta tavoitteellisessa ilmapiirissä.',
-	image: '/images/showtanssi.jpg',
+	image: '/images/hiphop.jpg',
 	ageGroup: '10+ vuotta',
 	level: 'Kaikki tasot',
 	duration: '60 min',

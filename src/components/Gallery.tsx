@@ -31,13 +31,7 @@ const Gallery = () => {
       title: 'Show Dance',
       description: 'Näyttävä show dance -esitys'
     },
-    {
-      src: '/images/hero.jpg',
-      alt: 'Tanssijat lavalla',
-      title: 'Esiintyminen',
-      description: 'Oppilaidemme loistavia esityksiä'
-    },
-    // Duplicate images for smoother loop
+       // Duplicate images for smoother loop
     {
       src: '/images/ballet.jpg',
       alt: 'Balettitunti käynnissä',
@@ -56,12 +50,7 @@ const Gallery = () => {
       title: 'Show Dance',
       description: 'Näyttävä show dance -esitys'
     },
-    {
-      src: '/images/hero.jpg',
-      alt: 'Tanssijat lavalla',
-      title: 'Esiintyminen',
-      description: 'Oppilaidemme loistavia esityksiä'
-    },
+  
   ];
 
   return (
@@ -167,12 +156,7 @@ const Gallery = () => {
                       className="object-cover transition-transform duration-300 group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-neutral-inverse/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <h3 className="heading_h5 mb-2">{image.title}</h3>
-                        <p className="paragraph_small">{image.description}</p>
-                      </div>
-                    </div>
+                    {/* Ei tekstiä kuvien päällä */}
                   </div>
                 </motion.div>
               </SwiperSlide>

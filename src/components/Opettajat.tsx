@@ -139,7 +139,7 @@ Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssit
                 viewport={{ once: true }}
                 className={'flex flex-col items-center gap-6'}
               >
-                <h3 className="heading_h4">{teacher.name}</h3>
+                <h3 className="heading_h5">{teacher.name}</h3>
                 {teacher.specialties && (
                   <p className="paragraph_default text_accent_primary font-medium mb-2 text-center">
                     {teacher.specialties}

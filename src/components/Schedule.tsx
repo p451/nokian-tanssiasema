@@ -323,13 +323,13 @@ const Schedule = () => {
         className="max-w-3xl mx-auto my-16 px-4 py-10 rounded-2xl shadow-lg bg-white/90 border border-accent_primary"
         style={{ scrollMarginTop: '110px' }}
       >
-        <h2 className="heading_h3 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
+        <h2 className="heading_h2 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
         <div className="paragraph_large text-center text-charcoal mb-4">
-          Tähän tulee ajankohtaiset tiedotteet, uutiset ja tapahtumat. Päivitä sisältö tarpeen mukaan.
+          Kausi alkaa! Ilmoittaudu pian!
         </div>
         {/* Ajankohtaista tiedote */}
         <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-semibold text-accent_primary mb-1">Syyskausi 2025 alkaa 4.8.</div>
+          <div className="font-semibold text-accent_primary mb-3">Syyskausi 2025 alkaa 11.8.2025</div>
           <div className="text-charcoal">Ilmoittautuminen on nyt auki!</div>
         </div>
         {/* Lisää tiedotteita tähän */}

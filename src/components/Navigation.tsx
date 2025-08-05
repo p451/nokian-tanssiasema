@@ -34,14 +34,14 @@ const Navigation = () => {
   return (
     <>
       {/* Floating Logo */}
-      <div className="fixed top-4 left-4 z-50">
+      <div className="fixed top-2 left-2 z-50 md:top-24 md:left-12">
         <Link href="/" className="block">
           <Image
             src="/images/logo.png"
             alt="Nokian Tanssiasema"
-            width={400}
-            height={80}
-            className="h-20 w-auto drop-shadow-lg"
+            width={800}
+            height={160}
+            className="h-16 w-auto drop-shadow-lg md:h-36"
           />
         </Link>
       </div>
@@ -59,7 +59,7 @@ const Navigation = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`${navTextColor} hover:text_accent_primary transition-colors duration-200 px-2 py-1 paragraph_default font-medium`}
+                    className={`${navTextColor} transition-colors duration-200 px-2 py-1 paragraph_default font-medium rounded-lg hover:bg-accent_primary\/10 hover:text_accent_primary`}
                   >
                     {item.label}
                   </Link>
@@ -114,7 +114,7 @@ const Navigation = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`${navTextColor} hover:text_accent_primary block px-3 py-2 paragraph_default font-medium`}
+                    className={`text-charcoal block px-3 py-2 font-bold rounded-lg transition-colors duration-200 hover:bg-accent_primary/10 hover:text_accent_primary`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}

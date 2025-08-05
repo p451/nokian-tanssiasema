@@ -34,7 +34,7 @@ const Hero = () => {
         style={{ opacity }}
         className="relative z-10 flex items-center h-full px-8 sm:px-12 lg:px-16"
       >
-        <div className="text-left max-w-4xl">
+        <div className="text-left max-w-2xl">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,7 +96,7 @@ const Hero = () => {
             className="mt-6"
           >
             <span className="text-white text-lg font-body" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-              Kausi alkaa 4.8.2025. Katso lisätietoja{' '}
+              Kausi alkaa 11.8.2025. Katso lisätietoja{' '}
               <a
                 href="#ajankohtaista"
                 className="underline text-accent_primary hover:text-accent_primary/80"

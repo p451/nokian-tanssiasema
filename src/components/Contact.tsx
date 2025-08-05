@@ -54,8 +54,8 @@ const Contact = () => {
         </svg>
       ),
       title: 'Osoite',
-      content: 'Nokian valtatie 25, 37100 Nokia',
-      link: 'https://maps.google.com/?q=Nokian+valtatie+25,+37100+Nokia'
+      content: 'Nokian valtatie 25a, 37100 Nokia',
+      link: 'https://maps.google.com/?q=Nokian+valtatie+25a,+37100+Nokia'
     },
     {
       icon: (
@@ -204,7 +204,7 @@ const Contact = () => {
                   julkisilla kulkuvälineillä ja omalla autolla.
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Nokian+valtatie+25,+37100+Nokia"
+                  href="https://maps.google.com/?q=Nokian+valtatie+25a,+37100+Nokia"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn_accent_solid mt-4"

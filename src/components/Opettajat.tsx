@@ -2,9 +2,17 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useState } from 'react';
+
+type Teacher = {
+  name: string;
+  specialties: string;
+  image: string;
+  bio: string;
+};
 
 const Opettajat = () => {
-  const teachers = [
+  const teachers: Teacher[] = [
     {
       name: "KATJA SUOVA",
       specialties: "Baletti",
@@ -21,13 +29,13 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
       name: "KARITA SUOVA",
       specialties: "Nykytanssi, Showtanssi, Baletti",
       image: "/images/karita.jpg",
-      bio: `Karita on valmistunut tanssinopettajaksi Turun Taideakatemiasta (AMK) v.2015. Toisen opiskeluvuotensa kevätkauden hän oli vaihto-oppilaana Ruotsissa Dans- och Cirkushögskolanissa pääaineenaan jazz-tanssi.
+      bio: `Karita on valmistunut tanssinopettajaksi Turun Taideakatemiasta (AMK) v.2015. Opiskeluaikanaan hän oli vaihto-oppilaana Ruotsissa Dans- och Cirkushögskolanissa pääaineenaan jazz-tanssi.
 
-Valmistumisen jälkeen matka jatkui Ruotsin Härnösandiin, jossa Karita opetti vuoden ajan lastentanssia, balettia ja nykytanssia. Omaa tanssitreeniä hän ylläpiti Norrdans-companyn aamutunneilla lukuisien eri opettajien johdolla.
+Valmistumisen jälkeen matka jatkui Ruotsin Härnösandiin, jossa Karita opetti  lastentanssia, balettia ja nykytanssia. Omaa tanssitreeniä hän ylläpiti Norrdans-companyn aamutunneilla lukuisien eri opettajien johdolla.
 
 Esiintymiskokemusta on kertynyt vuosien varrelta eri näytöksistä, kilpailuista, omista sooloprojekteista sekä ryhmäkoreografioista.
 
-Karita käy edelleen treenaamassa eri opettajien tunneilla ja kokeilee uusia tanssilajeja, joista hän ammentaa inspiraatiota omaan työhönsä.
+
 
 Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssitekniikan lisäksi omaa ilmaisua. Hän rohkaisee oppilaitaan löytämään oman luovuutensa kannustamalla heitä ennakkoluulottomaan ja uteliaaseen työskentelyyn. Avoin kommunikointi oppilaan ja opettajan välillä luo tunneille miellyttävän ilmapiirin.`
     },
@@ -47,15 +55,17 @@ Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssit
       name: "AARO JOKINEN",
       specialties: "Breakdance",
       image: "/images/aaro.jpg",
-      bio: ""
+      bio: "Aaro on monipuolinen tanssija ja opettaja, jonka vahvuuksia ovat rauhallisuus, innostavuus ja yksilöllinen ote opetukseen. Hän aloitti tanssin kolmivuotiaana baletin parissa ja siirtyi myöhemmin katutanssin maailmaan, jossa erityisesti breakdance on muodostunut hänen suosikkilajikseen. Opettajana Aaro luo tunneilleen kannustavan ilmapiirin ja huomioi erilaiset oppijat, mahdollistaen jokaiselle omanlaisen kehityspolun tanssitaustasta riippumatta."
     },
     {
       name: "SIMO SALIM",
       specialties: "Hip Hop",
       image: "/images/simon.jpg",
-      bio: ""
+      bio: "Simo on kansainvälinen hip hop -tanssija ja opettaja, joka yhdistää energisyyden ja rauhallisen läsnäolon. Hän opettaa eri tasoisia tanssijoita useissa maissa intohimolla ja sydämellä. Tanssiuransa Salim aloitti vuonna 2007. Hänen repertuaariinsa kuuluvat krump, hip hop, house, locking ja popping. Hän on syventynyt tyylien juuriin ja kehitykseen Marokossa ja kansainvälisesti – mm. Martiniquella, Tšekissä, Turkissa, Alankomaissa ja Suomessa. Hänen sulava ja rytminen liikekielensä pohjautuu vahvaan tekniikkaan ja kehonhallintaan. Salim on edustanut Marokkoa kolmesti ja saavuttanut kaksi MM-pronssia. Opettajana hän on tarkka, innostava ja lämmin. Hän tukee jokaisen oppimista yksilöllisesti ja jakaa tanssin kulttuurista taustaa osana opetustaan."
     }
   ];
+
+  const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
 
   return (
     <section id="teachers" className="section_primary_default_fullwidth py-20">
@@ -68,97 +78,85 @@ Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssit
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="heading_h2 mb-6">
-            Opettajat
-          </h2>
-          <p className="paragraph_large text_charcoal/70">
-            Tutustu kokeneisiin ja sydämellisiin opettajiimme
-          </p>
+          <h2 className="heading_h2 mb-6">Opettajat</h2>
+          <p className="paragraph_large text_charcoal/70">Tutustu kokeneisiin ja sydämellisiin opettajiimme</p>
         </motion.div>
 
-        {/* Teachers Grid */}
-        {/* Katja and Karita: full-width single column, others: 2 by 2 grid */}
-        <div className="space-y-16">
-          {/* Katja and Karita */}
-          {teachers.filter(t => t.name === 'KATJA SUOVA' || t.name === 'KARITA SUOVA').map((teacher, index) => (
+        {/* Teachers Grid: all teachers shown as image + name only, click to open modal */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+          {teachers.map((teacher, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={'flex flex-col lg:flex-row gap-12 items-start'}
+              className="flex flex-col items-center gap-4 cursor-pointer group"
+              onClick={() => setSelectedTeacher(teacher)}
             >
-              {/* Teacher Image */}
-              <div className="relative w-full max-w-xl h-[400px]">
+              <div className="w-full max-w-xs h-[320px] relative overflow-hidden rounded-2xl bg-neutral-secondary/20 shadow-lg">
                 {teacher.image ? (
-                  <div className="relative overflow-hidden rounded-2xl bg-neutral-secondary/20 w-full h-full">
-                    <Image
-                      src={teacher.image}
-                      alt={teacher.name}
-                      fill
-                      className="object-cover rounded-2xl"
-                    />
-                  </div>
+                  <Image
+                    src={teacher.image}
+                    alt={teacher.name}
+                    fill
+                    className="object-cover rounded-2xl transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90"
+                  />
                 ) : (
                   <div className="w-full h-full bg-neutral-secondary/20 rounded-2xl flex items-center justify-center">
                     <span className="text_charcoal/50">Kuva tulossa</span>
                   </div>
                 )}
               </div>
-              {/* Teacher Info */}
-              <div className="space-y-6 flex-1">
-                <div>
-                  <h3 className="heading_h3 mb-2">
-                    {teacher.name}
-                  </h3>
-                  {teacher.specialties && (
-                    <p className="paragraph_default text_accent_primary font-medium">
-                      {teacher.specialties}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-4">
-                  {teacher.bio.split('\n\n').map((paragraph, pIndex) => (
-                    <p key={pIndex} className="paragraph_default text_charcoal leading-relaxed">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
+              <h3 className="heading_h5 text-center mt-2 group-hover:text-accent_primary transition-colors duration-200">{teacher.name}</h3>
             </motion.div>
           ))}
-          {/* Others: 2 by 2 grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {teachers.filter(t => t.name !== 'KATJA SUOVA' && t.name !== 'KARITA SUOVA').map((teacher, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={'flex flex-col items-center gap-6'}
+        </div>
+
+        {/* Modal for teacher bio */}
+        {selectedTeacher && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setSelectedTeacher(null)}>
+            <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative" onClick={e => e.stopPropagation()}>
+              <button
+                className="absolute top-4 right-4 text-xl text-gray-500 hover:text-accent_primary"
+                onClick={() => setSelectedTeacher(null)}
+                aria-label="Sulje"
               >
-                <h3 className="heading_h5">{teacher.name}</h3>
-                {teacher.specialties && (
-                  <p className="paragraph_default text_accent_primary font-medium mb-2 text-center">
-                    {teacher.specialties}
+                &times;
+              </button>
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-40 h-40 relative overflow-hidden rounded-full bg-neutral-secondary/20 mb-2">
+                  {selectedTeacher.image ? (
+                    <Image
+                      src={selectedTeacher.image}
+                      alt={selectedTeacher.name}
+                      fill
+                      className="object-cover rounded-full"
+                    />
+                  ) : (
+                    <span className="text_charcoal/50">Kuva tulossa</span>
+                  )}
+                </div>
+                <h3 className="heading_h4 text-center">{selectedTeacher.name}</h3>
+                {selectedTeacher.specialties && (
+                  <p className="paragraph_default text_accent_primary font-medium text-center mb-2">
+                    {selectedTeacher.specialties}
                   </p>
                 )}
-                {teacher.image && (
-                  <div className="w-full max-w-xl h-[400px] relative overflow-hidden rounded-2xl bg-neutral-secondary/20">
-                    <Image
-                      src={teacher.image}
-                      alt={teacher.name}
-                      fill
-                      className="object-cover rounded-2xl"
-                    />
-                  </div>
-                )}
-              </motion.div>
-            ))}
+                <div className="space-y-4 mt-2">
+                  {selectedTeacher.bio
+                    ? selectedTeacher.bio.split('\n\n').map((paragraph, pIndex) => (
+                        <p key={pIndex} className="paragraph_default text_charcoal leading-relaxed">
+                          {paragraph}
+                        </p>
+                      ))
+                    : <p className="paragraph_default text_charcoal/60 italic">Esittely tulossa.</p>
+                  }
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

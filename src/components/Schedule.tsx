@@ -331,7 +331,7 @@ const Schedule = () => {
       >
         <h2 className="heading_h2 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
         <div className="paragraph_large text-center text-charcoal mb-4">
-          <span className="font-bold text-charcoal">Kausi alkaa! Ilmoittaudu pian!</span>
+          <span className="font-bold text-charcoal">Kausi alkaa, ilmoittaudu nyt!</span>
         </div>
         {/* Ajankohtaista tiedote */}
         <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">

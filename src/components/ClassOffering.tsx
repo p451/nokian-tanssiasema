@@ -21,7 +21,7 @@ const classes = [
 	id: 2,
 	title: 'Baletti',
 	description:
-	  'Baletissa syvennetään lastentanssissa opittuja taitoja ja edetään luovista leikeistä tarkempiin tekniikoihin. Tanssillisuus, musikaalisuus sekä kehon voima ja ketteryys kehittyvät innostavissa harjoituksissa. Kurssin tavoitteena on valmistaa oppilaat hyvin baletin perusopintoihin.',
+	  'Baletti on klassinen tanssilaji, jossa yhdistyvät tarkka tekniikka, kehonhallinta ja taiteellinen ilmaisu. Harjoittelu kehittää muun muassa linjauksia, tasapainoa ja liikkuvuutta. Baletti luo vahvan pohjan kaikelle tanssille ja sopii kaikenikäisille – niin aloittelijoille kuin tavoitteellisesti eteneville',
 	image: '/images/ballet.jpg',
 	ageGroup: '6-8 vuotta',
 	level: 'Alkeet',
@@ -31,7 +31,7 @@ const classes = [
 	id: 3,
 	title: 'Showtanssi',
 	description:
-	  'Showtanssi yhdistää parhaita puolia jazz-tanssista, nykytanssista ja baletista. Tunneilla kehitetään tekniikkaa, ilmaisua sekä tanssillista energiaa monipuolisten tanssisarjojen avulla. Tunnelma tunneilla on aina innostava ja hyväntuulinen.',
+	  'Showtanssi yhdistää parhaita puolia jazz-tanssista, nykytanssista ja baletista. Tunneilla kehitetään tekniikkaa, ilmaisua sekä tanssillista energiaa monipuolisten tanssisarjojen avulla. Tunneilla yhdistyvät hyvä energia, keskittyminen ja tanssin ilo.',
 	image: '/images/show.jpg',
 	ageGroup: '8+ vuotta',
 	level: 'Kaikki tasot',
@@ -51,7 +51,7 @@ const classes = [
 	id: 5,
 	title: 'Dance Mix',
 	description:
-	  'Dance mix -tunnit tarjoavat monipuolisen kattauksen eri tanssilajeja, kuten musikaalitanssia, contemporary jazzia ja street-tanssia. Tunti alkaa lämmittelyllä ja tekniikkaosiolla, jonka jälkeen keskitytään iloiseen ja energiseen koreografiaan.',
+	  'Dance mix -tunnit tarjoavat monipuolisen kattauksen eri tanssilajeja, kuten musikaalitanssia, contemporary jazzia ja street-tanssia. Tunti alkaa lämmittelyllä ja tekniikkaosiolla, jonka jälkeen keskitytään erilaisiin koreografioihin.',
 	image: '/images/dancemix.jpg',
 	ageGroup: '15+ vuotta',
 	level: 'Kaikki tasot',
@@ -61,7 +61,7 @@ const classes = [
 	id: 6,
 	title: 'Commercial Dance',
 	description:
-	  'Commercial dance yhdistää elementtejä jazzista, showsta ja katutanssista, inspiroituen tunnetuista musiikkivideoista ja musikaaleista. Tunneilla harjoitellaan ilmaisullisia ja tyylikkäitä koreografioita, joissa tanssijat pääsevät nauttimaan suosikkikappaleidensa tahdissa.',
+	  'Commercial dance yhdistää elementtejä jazzista, showsta ja katutanssista, inspiroituen musiikkivideoista ja musikaaleista. Tunneilla harjoitellaan ilmaisullisia ja tyylikkäitä koreografioita, jotka kehittävät rytmitajua, kehonhallintaa ja esiintymisvarmuutta.',
 	image: '/images/commercial.jpg',
 	ageGroup: '13+ vuotta',
 	level: 'Keskitaso+',
@@ -71,7 +71,7 @@ const classes = [
 	id: 7,
 	title: 'HipHop',
 	description:
-	  'HipHop-tunneilla keskitytään katutanssin energiseen ja rytmikkääseen liikekieleen. Tunneilla harjoitellaan perusliikkeitä, koordinaatiota ja oman tyylin löytämistä. Sopii kaikille, jotka haluavat nauttia musiikista ja liikkua rennosti.',
+	  'Hip hop on katutanssilaji, jossa korostuvat rytmi, liikkeen dynamiikka ja yksilöllinen tyyli. Tunneilla harjoitellaan perusaskeleita, koordinaatiota ja kehonhallintaa sekä rohkaistaan oman liikekielen kehittämiseen. Laji sopii kaikille, jotka haluavat tutustua tanssiin rennossa, mutta tavoitteellisessa ilmapiirissä.',
 	image: '/images/showtanssi.jpg',
 	ageGroup: '10+ vuotta',
 	level: 'Kaikki tasot',
@@ -81,7 +81,7 @@ const classes = [
 	id: 8,
 	title: 'Breakdance',
 	description:
-	  'Breakdaance on vauhdikas ja akrobaattinen katutanssilaji, jossa opetellaan lattia- ja ylätason jalkatyöskentelyä, näyttäviä freezejä sekä akrobatiaa. Freestyle-osioissa tanssijat pääsevät kehittämään omaa persoonallista liikekieltään.',
+	  'Breakdance on vauhdikas ja akrobaattinen katutanssilaji, jossa opetellaan lattia- ja ylätason jalkatyöskentelyä, näyttäviä freezejä sekä akrobatiaa. Freestyle-osioissa tanssijat pääsevät kehittämään omaa persoonallista liikekieltään.',
 	image: '/images/break.jpg',
 	ageGroup: '8+ vuotta',
 	level: 'Aloittelijat',
@@ -91,7 +91,7 @@ const classes = [
 	id: 9,
 	title: 'Heels',
 	description:
-	  'Heels-tunnilla tanssitaan korkokengissä ja keskitytään erityisesti kehonhallintaan, linjauksiin ja naiselliseen ilmaisuun. Tunti kehittää tasapainoa, ryhtiä ja esiintymisvarmuutta. Sopii kaikille, jotka haluavat haastaa itseään ja löytää uudenlaista itsevarmuutta tanssin kautta.',
+	  'Heels-tunnilla tanssitaan korkokengissä ja keskitytään erityisesti kehonhallintaan, linjauksiin ja feminiiniseen ilmaisuun. Tunti kehittää tasapainoa, ryhtiä ja esiintymisvarmuutta. Sopii kaikille, jotka haluavat haastaa itseään ja löytää uudenlaista itsevarmuutta tanssin kautta.',
 	image: '/images/heels.jpg',
 	ageGroup: '16+ vuotta',
 	level: 'Avoin taso',

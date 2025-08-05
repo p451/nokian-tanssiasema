@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
@@ -33,18 +32,7 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Floating Logo */}
-      <div className="fixed top-2 left-2 z-50 md:top-24 md:left-12">
-        <Link href="/" className="block">
-          <Image
-            src="/images/logo.png"
-            alt="Nokian Tanssiasema"
-            width={800}
-            height={160}
-            className="h-16 w-auto drop-shadow-lg md:h-36"
-          />
-        </Link>
-      </div>
+
 
       {/* Navigation Bar */}
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${

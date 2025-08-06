@@ -116,16 +116,30 @@ Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssit
         {/* Modal for teacher bio */}
         {selectedTeacher && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setSelectedTeacher(null)}>
-            <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative" onClick={e => e.stopPropagation()}>
+            <div
+              className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 relative overflow-y-auto max-h-[90vh] sm:max-h-[80vh] sm:p-8 p-4"
+              style={{
+                boxSizing: 'border-box',
+                maxWidth: '95vw',
+                margin: '16px',
+              }}
+              onClick={e => e.stopPropagation()}
+            >
               <button
-                className="absolute top-4 right-4 text-xl text-gray-500 hover:text-accent_primary"
+                className="fixed sm:absolute top-4 right-4 text-xl text-gray-500 hover:text-accent_primary bg-white/80 rounded-full p-2 z-10 border border-gray-200"
+                style={{
+                  position: 'absolute',
+                  top: 16,
+                  right: 16,
+                  zIndex: 10,
+                }}
                 onClick={() => setSelectedTeacher(null)}
                 aria-label="Sulje"
               >
                 &times;
               </button>
               <div className="flex flex-col items-center gap-4">
-                <div className="w-40 h-40 relative overflow-hidden rounded-full bg-neutral-secondary/20 mb-2">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 relative overflow-hidden rounded-full bg-neutral-secondary/20 mb-2">
                   {selectedTeacher.image ? (
                     <Image
                       src={selectedTeacher.image}

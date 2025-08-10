@@ -29,15 +29,17 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
       name: "KARITA SUOVA",
       specialties: "Nykytanssi, Showtanssi, Baletti",
       image: "/images/karita.jpg",
-      bio: `Karita on valmistunut tanssinopettajaksi Turun Taideakatemiasta (AMK) v.2015. Opiskeluaikanaan hän oli vaihto-oppilaana Ruotsissa Dans- och Cirkushögskolanissa pääaineenaan jazz-tanssi.
-
-Valmistumisen jälkeen matka jatkui Ruotsin Härnösandiin, jossa Karita opetti  lastentanssia, balettia ja nykytanssia. Omaa tanssitreeniä hän ylläpiti Norrdans-companyn aamutunneilla lukuisien eri opettajien johdolla.
-
-Esiintymiskokemusta on kertynyt vuosien varrelta eri näytöksistä, kilpailuista, omista sooloprojekteista sekä ryhmäkoreografioista.
+      bio: `Karita valmistui vuonna 2015 Turun Taideakatemiasta (AMK) tanssinopettajaksi. Osan opinnoistaan hän suoritti vaihto-opiskelijana Ruotsin Dans- och Cirkushögskolanissa. Valmistumisen jälkeen hän vietti vuoden Härnösandissa, Ruotsissa, opettaen ja tanssien eri tanssilajeja. Vuosien varrella Karita on kartuttanut tanssikokemustaan monipuolisesti eri opettajien johdolla. Hän aloitti tanssin 3-vuotiaana baletilla. Nykyisin hänen päälajinsa on nykytanssi, mutta hänellä on myös pitkä tausta jazztanssissa sekä kokemusta muista lajeista. Karita on innostava ja kannustava opettaja, joka nauttii kaikenikäisten oppilaiden kanssa työskentelystä. Karitan tunneilla vallitsee avoin ja salliva ilmapiiri, jossa oppilaat voivat turvallisesti tutkia ja ilmaista omaa luovuuttaan. Opetuksessa hän korostaa sekä teknisten taitojen että luovien harjoitteiden tärkeyttä, tukien oppilaan kokonaisvaltaista kehittymistä tanssijana.
 
 
 
-Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssitekniikan lisäksi omaa ilmaisua. Hän rohkaisee oppilaitaan löytämään oman luovuutensa kannustamalla heitä ennakkoluulottomaan ja uteliaaseen työskentelyyn. Avoin kommunikointi oppilaan ja opettajan välillä luo tunneille miellyttävän ilmapiirin.`
+
+
+
+
+
+
+`
     },
     {
       name: "MILJA LEHTO",
@@ -49,7 +51,7 @@ Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssit
       name: "TIIA-MARIA KIVIMÄKI", 
       specialties: "Heels, Lastentanssi, Kisaryhmät",
       image: "/images/tiia.jpg",
-      bio: ""
+      bio: "Tiia-Maria Kivimäki on juuriltaan kaarinalainen tanssinopettaja, joka aloitti tanssin vuonna 2005. Hänellä on vuosien kokemus useista eri tanssilajeista, tanssikollektiivissa työskentelystä sekä kilpailutoiminnasta. Tanssinopettajaksi hän valmistui Oulun ammattikorkeakoulusta vuonna 2024, ja osan opinnoistaan hän suoritti New Yorkissa Peridance Centerillä. Tiia-Marialle omimpia lajeja ovat show- ja nykytanssi, mutta vuosien varrella osaamista on kertynyt myös baletista, akrobatiasta, commercialista sekä heelsistä. Vaihto-opintojen aikana hän pääsi laajentamaan tanssillista repertuaariaan tutustumalla muun muassa waackingiin ja jazz funk -tyyleihin. Opettajana Tiia-Maria on monipuolinen, tarkka ja positiivinen. Hän haluaa haastaa oppilaitaan sekä liikkeellisesti että musikaalisesti, ja hänen opetustyylinsä painottuu aksentoituun ja energiseen liikkeeseen. Tunneilla kehitetään tekniikkaa tanssin iloa unohtamatta, ja Tiia-Maria pyrkii aina luomaan turvallisen ja yhdenvertaisen ilmapiirin kaikille oppilailleen."
     },
     {
       name: "AARO JOKINEN",

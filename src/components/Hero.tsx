@@ -22,7 +22,7 @@ const Hero = () => {
         className="absolute top-4 left-4 z-30 flex items-start pointer-events-none select-none"
       >
         <Image
-          src="/images/optimized/logo.webp"
+          src="/images/optimized/logo.avif"
           alt="Nokian Tanssiasema"
           width={200}
           height={40}
@@ -36,13 +36,13 @@ const Hero = () => {
         style={{ y }}
         className="absolute inset-0 w-full h-[120%]"
       >
-        {/* Preload kriittinen hero-kuva */}
+        {/* Preload kriittinen hero-kuva - optimoitu LCP:lle */}
         <Image
-          src="/images/optimized/hero.webp"
+          src="/images/optimized/hero.avif"
           alt="Nokian Tanssiasema Hero"
           fill
           priority
-          quality={90}
+          quality={85}
           className="object-cover"
           sizes="100vw"
           placeholder="blur"

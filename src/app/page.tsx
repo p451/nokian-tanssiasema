@@ -1,7 +1,10 @@
-import { Suspense, lazy } from 'react';
+'use client';
+
+import { Suspense, lazy, useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
+import PerformanceMonitor from '@/components/PerformanceMonitor';
 
 // Lazy load raskaimmat komponentit main-thread optimointiin
 const ClassOffering = lazy(() => import('@/components/ClassOffering'));
@@ -11,16 +14,50 @@ const Registration = lazy(() => import('@/components/Registration'));
 const Opettajat = lazy(() => import('@/components/Opettajat'));
 const Contact = lazy(() => import('@/components/Contact'));
 
-// Loading fallback komponentti
+// Parannettu loading fallback komponentti
 const LoadingSpinner = () => (
   <div className="flex justify-center items-center py-12">
     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-primary"></div>
   </div>
 );
 
+// Hook for intersection observer
+const useIntersectionObserver = (threshold = 0.1) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [element, setElement] = useState<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [element, threshold]);
+
+  return [setElement, isVisible] as const;
+};
+
 export default function Home() {
+  const [classRef, classVisible] = useIntersectionObserver();
+  const [scheduleRef, scheduleVisible] = useIntersectionObserver();
+  const [galleryRef, galleryVisible] = useIntersectionObserver();
+  const [registrationRef, registrationVisible] = useIntersectionObserver();
+  const [opettajatRef, opettajatVisible] = useIntersectionObserver();
+  const [contactRef, contactVisible] = useIntersectionObserver();
+
   return (
     <main className="overflow-x-hidden w-full max-w-full">
+      <PerformanceMonitor />
       <Navigation />
       <Hero />
       
@@ -37,29 +74,53 @@ Vahva tanssiperinne jatkuu nyt jo kolmannessa polvessa, kun myös Katjan tytär,
       </section>
 
       {/* Lazy load below-the-fold sisältö */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <ClassOffering />
-      </Suspense>
+      <div ref={classRef}>
+        {classVisible && (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ClassOffering />
+          </Suspense>
+        )}
+      </div>
       
-      <Suspense fallback={<LoadingSpinner />}>
-        <Schedule />
-      </Suspense>
+      <div ref={scheduleRef}>
+        {scheduleVisible && (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Schedule />
+          </Suspense>
+        )}
+      </div>
       
-      <Suspense fallback={<LoadingSpinner />}>
-        <Gallery />
-      </Suspense>
+      <div ref={galleryRef}>
+        {galleryVisible && (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Gallery />
+          </Suspense>
+        )}
+      </div>
       
-      <Suspense fallback={<LoadingSpinner />}>
-        <Registration />
-      </Suspense>
+      <div ref={registrationRef}>
+        {registrationVisible && (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Registration />
+          </Suspense>
+        )}
+      </div>
       
-      <Suspense fallback={<LoadingSpinner />}>
-        <Opettajat />
-      </Suspense>
+      <div ref={opettajatRef}>
+        {opettajatVisible && (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Opettajat />
+          </Suspense>
+        )}
+      </div>
       
-      <Suspense fallback={<LoadingSpinner />}>
-        <Contact />
-      </Suspense>
+      <div ref={contactRef}>
+        {contactVisible && (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Contact />
+          </Suspense>
+        )}
+      </div>
       
       <Footer />
     </main>

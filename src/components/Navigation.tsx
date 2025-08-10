@@ -65,7 +65,7 @@ const Navigation = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`${navTextColor} inline-flex items-center justify-center p-2 rounded-md hover:text_accent_primary focus:outline-none`}
+                className={`inline-flex items-center justify-center p-2 rounded-md bg-black text-white hover:text_accent_primary focus:outline-none`}
               >
                 <svg
                   className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
@@ -95,7 +95,7 @@ const Navigation = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-neutral-inverse/95 backdrop-blur-sm"
+              className="md:hidden bg-white"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navItems.map((item) => (

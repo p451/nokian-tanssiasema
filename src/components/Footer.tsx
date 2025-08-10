@@ -56,7 +56,7 @@ const Footer = () => {
               Nokian Tanssiasema
             </h3>
             <p className="paragraph_default text_charcoal mb-6 leading-relaxed">
-              Nokian johtava tanssioppilaitos vuodesta 2010. Tarjoamme laadukasta 
+               Tarjoamme laadukasta 
               tanssinopetusta kaikenikäisille aloittelijoista kilpatasolla tanssiviin. 
               Meiltä löydät klassisen baletin, modernin tanssin, street dancen ja paljon muuta!
             </p>

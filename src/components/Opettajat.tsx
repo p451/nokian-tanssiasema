@@ -117,7 +117,7 @@ Opettajana Karita on kannustava ja energinen. Hän painottaa tunneillaan tanssit
         {selectedTeacher && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setSelectedTeacher(null)}>
             <div
-              className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 relative overflow-y-auto max-h-[90vh] sm:max-h-[80vh] sm:p-8 p-4"
+              className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 relative overflow-y-auto max-h-[90vh] sm:max-h-[80vh] sm:p-8"
               style={{
                 boxSizing: 'border-box',
                 maxWidth: '95vw',

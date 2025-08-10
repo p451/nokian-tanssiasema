@@ -158,14 +158,14 @@ export default function ClassOffering() {
 										</div>
 									</div>
 
-									<div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col top-[240px]">
-										<p className="paragraph_default leading-relaxed mb-6 flex-1">
+									<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex flex-col top-[240px]">
+										<p className="paragraph_default leading-relaxed mb-4 sm:mb-6 flex-1 text-sm sm:text-base">
 											{danceClass.description}
 										</p>
 
 <Link
   href="#register"
-  className="btn btn_primary_solid btn_large w-full mt-auto"
+  className="btn btn_primary_solid px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-md hover:opacity-90 transition-opacity duration-200 text-center inline-block mt-auto"
 >
   Ilmoittaudu
 </Link>

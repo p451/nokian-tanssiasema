@@ -162,6 +162,13 @@
   }
 }
 
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 @layer utilities {
   /* Brand Typography Hierarchy - Using CSS custom properties */
   .heading_huge {

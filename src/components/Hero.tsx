@@ -1,7 +1,9 @@
+
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 const Hero = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,14 +18,16 @@ const Hero = () => {
   return (
     <section id="home" ref={ref} className="relative h-screen overflow-hidden">
       {/* Staattinen logo headerin yläpuolella */}
-      <div className="absolute top-8 left-0 z-10 flex items-center pointer-events-none select-none" style={{ paddingLeft: '2rem' }}>
-        <img
+      <div
+        className="absolute top-4 left-4 z-30 flex items-start pointer-events-none select-none"
+      >
+        <Image
           src="/images/logo.png"
           alt="Nokian Tanssiasema"
-          width={800}
-          height={160}
-          className="h-20 md:h-36 w-auto drop-shadow-lg opacity-80"
-          style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.18))' }}
+          width={200}
+          height={40}
+          priority
+          className="h-10 w-auto md:h-16 max-w-[40vw] md:max-w-[200px] drop-shadow-lg opacity-90"
         />
       </div>
 

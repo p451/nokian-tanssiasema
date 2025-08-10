@@ -22,7 +22,7 @@ const Hero = () => {
         className="absolute top-4 left-4 z-30 flex items-start pointer-events-none select-none"
       >
         <Image
-          src="/images/logo.png"
+          src="/images/optimized/logo.webp"
           alt="Nokian Tanssiasema"
           width={200}
           height={40}
@@ -31,16 +31,22 @@ const Hero = () => {
         />
       </div>
 
-      {/* Parallax Background */}
+      {/* Parallax Background - optimoitu LCP:lle */}
       <motion.div 
         style={{ y }}
         className="absolute inset-0 w-full h-[120%]"
       >
-        <div 
-          className="w-full h-full bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/images/hero.jpg')"
-          }}
+        {/* Preload kriittinen hero-kuva */}
+        <Image
+          src="/images/optimized/hero.webp"
+          alt="Nokian Tanssiasema Hero"
+          fill
+          priority
+          quality={90}
+          className="object-cover"
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
         />
         <div className="absolute inset-0 bg-neutral-inverse/50" />
       </motion.div>

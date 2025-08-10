@@ -1,12 +1,22 @@
+import { Suspense, lazy } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import ClassOffering from '@/components/ClassOffering';
-import Schedule from '@/components/Schedule';
-import Gallery from '@/components/Gallery';
-import Registration from '@/components/Registration';
-import Opettajat from '@/components/Opettajat';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+
+// Lazy load raskaimmat komponentit main-thread optimointiin
+const ClassOffering = lazy(() => import('@/components/ClassOffering'));
+const Schedule = lazy(() => import('@/components/Schedule'));
+const Gallery = lazy(() => import('@/components/Gallery'));
+const Registration = lazy(() => import('@/components/Registration'));
+const Opettajat = lazy(() => import('@/components/Opettajat'));
+const Contact = lazy(() => import('@/components/Contact'));
+
+// Loading fallback komponentti
+const LoadingSpinner = () => (
+  <div className="flex justify-center items-center py-12">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-primary"></div>
+  </div>
+);
 
 export default function Home() {
   return (
@@ -26,12 +36,31 @@ Vahva tanssiperinne jatkuu nyt jo kolmannessa polvessa, kun myös Katjan tytär,
         </div>
       </section>
 
-      <ClassOffering />
-      <Schedule />
-      <Gallery />
-      <Registration />
-      <Opettajat />
-      <Contact />
+      {/* Lazy load below-the-fold sisältö */}
+      <Suspense fallback={<LoadingSpinner />}>
+        <ClassOffering />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner />}>
+        <Schedule />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner />}>
+        <Gallery />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner />}>
+        <Registration />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner />}>
+        <Opettajat />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner />}>
+        <Contact />
+      </Suspense>
+      
       <Footer />
     </main>
   );

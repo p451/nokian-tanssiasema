@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,36 +88,29 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Navigation Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`text-charcoal block px-3 py-2 font-bold rounded-lg transition-colors duration-200 hover:bg-accent_primary/10 hover:text_accent_primary`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+        {isOpen && (
+          <div className="md:hidden bg-white transition-all duration-300 ease-in-out">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navItems.map((item) => (
                 <Link
-                  href="#register"
-                  className="btn btn_accent_solid btn_small block mx-3 mt-4 text-center"
+                  key={item.href}
+                  href={item.href}
+                  className={`text-charcoal block px-3 py-2 font-bold rounded-lg transition-colors duration-200 hover:bg-accent_primary/10 hover:text_accent_primary`}
                   onClick={() => setIsOpen(false)}
                 >
-                  Ilmoittaudu
+                  {item.label}
                 </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              ))}
+              <Link
+                href="#register"
+                className="btn btn_accent_solid btn_small block mx-3 mt-4 text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Ilmoittaudu
+              </Link>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   );

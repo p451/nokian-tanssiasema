@@ -109,7 +109,9 @@ const Hero = () => {
                 e.preventDefault();
                 const element = document.getElementById('register');
                 if (element) {
-                  const headerOffset = 80; // Navigationin korkeus
+                  // Eri offset mobiilille ja desktopille
+                  const isMobile = window.innerWidth < 768;
+                  const headerOffset = isMobile ? 20 : 80; // Pienempi offset mobiilille
                   const elementPosition = element.getBoundingClientRect().top;
                   const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 

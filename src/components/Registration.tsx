@@ -10,6 +10,7 @@ import scheduleData from '../data/schedule.json';
 const Registration = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [previousExperienceError, setPreviousExperienceError] = useState('');
   const totalSteps = 4;
 
   const {
@@ -52,10 +53,18 @@ const Registration = () => {
           return;
         }
         if (!previousExperience) {
-          // Manually set error for previousExperience
-          alert('Valitse onko sinulla aiempaa tanssikokemusta');
+          // Set error message instead of using alert
+          setPreviousExperienceError('Valitse onko sinulla aiempaa tanssikokemusta');
+          const radioElement = document.querySelector('input[name="previousExperience"]');
+          if (radioElement) {
+            radioElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            (radioElement as HTMLElement).focus();
+          }
           return;
         }
+        
+        // Clear any previous error
+        setPreviousExperienceError('');
         
         // If validation passes, move to next step
         setCurrentStep(currentStep + 1);
@@ -421,6 +430,7 @@ const Registration = () => {
                               type="radio"
                               value="Kyllä"
                               className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 focus:ring-accent-primary"
+                              onChange={() => setPreviousExperienceError('')}
                             />
                             <span className="ml-3 text-charcoal">Kyllä</span>
                           </label>
@@ -430,10 +440,14 @@ const Registration = () => {
                               type="radio"
                               value="Ei"
                               className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 focus:ring-accent-primary"
+                              onChange={() => setPreviousExperienceError('')}
                             />
                             <span className="ml-3 text-charcoal">Ei</span>
                           </label>
                         </div>
+                        {previousExperienceError && (
+                          <p className="text-red-500 text-sm mt-2">{previousExperienceError}</p>
+                        )}
                       </div>
 
                       {hasPreviousExperience === 'Kyllä' && (

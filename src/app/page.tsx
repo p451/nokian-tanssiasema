@@ -10,7 +10,8 @@ import PerformanceMonitor from '@/components/PerformanceMonitor';
 const ClassOffering = lazy(() => import('@/components/ClassOffering'));
 const Schedule = lazy(() => import('@/components/Schedule'));
 const Gallery = lazy(() => import('@/components/Gallery'));
-const Registration = lazy(() => import('@/components/Registration'));
+// Registration poistettu lazy loadingista jotta ankkurilinkki toimii heti
+import Registration from '@/components/Registration';
 const Opettajat = lazy(() => import('@/components/Opettajat'));
 const Contact = lazy(() => import('@/components/Contact'));
 
@@ -51,7 +52,7 @@ export default function Home() {
   const [classRef, classVisible] = useIntersectionObserver();
   const [scheduleRef, scheduleVisible] = useIntersectionObserver();
   const [galleryRef, galleryVisible] = useIntersectionObserver();
-  const [registrationRef, registrationVisible] = useIntersectionObserver();
+  const [registrationRef] = useIntersectionObserver();
   const [opettajatRef, opettajatVisible] = useIntersectionObserver();
   const [contactRef, contactVisible] = useIntersectionObserver();
 
@@ -99,11 +100,7 @@ Vahva tanssiperinne jatkuu nyt jo kolmannessa polvessa, kun myös Katjan tytär,
       </div>
       
       <div ref={registrationRef}>
-        {registrationVisible && (
-          <Suspense fallback={<LoadingSpinner />}>
-            <Registration />
-          </Suspense>
-        )}
+        <Registration />
       </div>
       
       <div ref={opettajatRef}>

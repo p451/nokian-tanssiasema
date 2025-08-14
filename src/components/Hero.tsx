@@ -105,6 +105,20 @@ const Hero = () => {
             <a
               href="#register"
               className="btn btn_light_outlined btn_large"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('register');
+                if (element) {
+                  const headerOffset = 80; // Navigationin korkeus
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
             >
               Ilmoittaudu
             </a>

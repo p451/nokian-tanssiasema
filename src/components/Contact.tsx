@@ -8,6 +8,7 @@ import { contactSchema, type ContactFormData } from '../utils/formValidation';
 
 const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const {
     register,
@@ -19,6 +20,7 @@ const Contact = () => {
   });
 
   const onSubmit = async (data: ContactFormData) => {
+    setSubmitError(''); // Clear any previous error
     try {
       const response = await fetch('/.netlify/functions/submit-contact', {
         method: 'POST',
@@ -37,11 +39,11 @@ const Contact = () => {
         setTimeout(() => setIsSubmitted(false), 3000);
       } else {
         console.error('Contact submission failed:', result);
-        alert('Virhe viestin lähetyksessä. Yritä uudelleen.');
+        setSubmitError('Virhe viestin lähetyksessä. Yritä uudelleen.');
       }
     } catch (error) {
       console.error('Contact submission error:', error);
-      alert('Virhe viestin lähetyksessä. Tarkista internet-yhteytesi ja yritä uudelleen.');
+      setSubmitError('Virhe viestin lähetyksessä. Tarkista internet-yhteytesi ja yritä uudelleen.');
     }
   };
 
@@ -297,6 +299,13 @@ const Contact = () => {
                     <p className="text-red-500 paragraph_small mt-1">{errors.message.message}</p>
                   )}
                 </div>
+
+                {/* Submit error message */}
+                {submitError && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-600 text-sm">{submitError}</p>
+                  </div>
+                )}
 
                 <button
                   type="submit"

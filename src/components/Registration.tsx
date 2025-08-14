@@ -11,6 +11,7 @@ const Registration = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [previousExperienceError, setPreviousExperienceError] = useState('');
+  const [submitError, setSubmitError] = useState('');
   const totalSteps = 4;
 
   const {
@@ -111,6 +112,7 @@ const Registration = () => {
   };
 
   const onSubmit = async (data: RegistrationFormData) => {
+    setSubmitError(''); // Clear any previous error
     try {
       const response = await fetch('/.netlify/functions/submit-registration', {
         method: 'POST',
@@ -137,11 +139,11 @@ const Registration = () => {
         }, 100);
       } else {
         console.error('Registration submission failed:', result);
-        alert('Virhe ilmoittautumisen lähetyksessä. Yritä uudelleen.');
+        setSubmitError('Virhe ilmoittautumisen lähetyksessä. Yritä uudelleen.');
       }
     } catch (error) {
       console.error('Registration submission error:', error);
-      alert('Virhe ilmoittautumisen lähetyksessä. Tarkista internet-yhteytesi ja yritä uudelleen.');
+      setSubmitError('Virhe ilmoittautumisen lähetyksessä. Tarkista internet-yhteytesi ja yritä uudelleen.');
     }
   };
 
@@ -741,6 +743,13 @@ const Registration = () => {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Submit error message */}
+          {submitError && (
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-600 text-sm">{submitError}</p>
+            </div>
+          )}
 
           <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 mt-6 sm:mt-8">
             {currentStep > 1 && (

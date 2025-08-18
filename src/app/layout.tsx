@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nokian Tanssiasema - Ilmaise itsesi tanssin kautta",
+  title: "Nokian Tanssiasema - Jokainen askel kertoo tarinan",
   description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
   keywords: "tanssikoulu, baletti, hip hop, nykytanssi, Nokia, tanssitunnit, opettajat, aikataulu, hinnasto",
   icons: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: "Nokian Tanssiasema - Ilmaise itsesi tanssin kautta",
+    title: "Nokian Tanssiasema - Jokainen askel kertoo tarinan",
     description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
     url: "https://nokiantanssiasema.fi",
     siteName: "Nokian Tanssiasema",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nokian Tanssiasema - Ilmaise itsesi tanssin kautta",
+    title: "Nokian Tanssiasema - Jokainen askel kertoo tarinan",
     description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille.",
     images: ["https://nokiantanssiasema.fi/images/hero.jpg"]
   },

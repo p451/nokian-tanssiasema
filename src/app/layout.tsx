@@ -4,6 +4,57 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Nokian Tanssiasema - Ilmaise itsesi tanssin kautta",
   description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
+  keywords: "tanssikoulu, baletti, hip hop, nykytanssi, Nokia, tanssitunnit, opettajat, aikataulu, hinnasto",
+  icons: {
+    icon: [
+      { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/logo.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/images/logo.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/images/logo.png',
+        color: '#D4A574'
+      }
+    ]
+  },
+  manifest: '/manifest.json',
+  openGraph: {
+    title: "Nokian Tanssiasema - Ilmaise itsesi tanssin kautta",
+    description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
+    url: "https://nokiantanssiasema.fi",
+    siteName: "Nokian Tanssiasema",
+    images: [
+      {
+        url: "https://nokiantanssiasema.fi/images/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Nokian Tanssiasema"
+      }
+    ],
+    locale: "fi_FI",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nokian Tanssiasema - Ilmaise itsesi tanssin kautta",
+    description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille.",
+    images: ["https://nokiantanssiasema.fi/images/hero.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
 };
 
 export default function RootLayout({
@@ -64,6 +115,60 @@ export default function RootLayout({
         {/* DNS prefetch optimointiin */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Strukturoitu data Googlea varten */}
+        <script 
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Nokian Tanssiasema",
+              "url": "https://nokiantanssiasema.fi",
+              "logo": "https://nokiantanssiasema.fi/images/logo.png",
+              "description": "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nokia",
+                "addressCountry": "FI"
+              },
+              "sameAs": [
+                "https://www.facebook.com/nokiantanssiasema",
+                "https://www.instagram.com/nokiantanssiasema"
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Tanssitunnit",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Baletti",
+                      "url": "https://nokiantanssiasema.fi#lajiesittely"
+                    }
+                  },
+                  {
+                    "@type": "Offer", 
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Hip Hop",
+                      "url": "https://nokiantanssiasema.fi#lajiesittely"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service", 
+                      "name": "Nykytanssi",
+                      "url": "https://nokiantanssiasema.fi#lajiesittely"
+                    }
+                  }
+                ]
+              }
+            })
+          }}
+        />
       </head>
       <body className="antialiased overflow-x-hidden">
         {children}

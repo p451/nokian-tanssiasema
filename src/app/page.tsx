@@ -1,61 +1,19 @@
 'use client';
 
-import { Suspense, lazy, useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import PerformanceMonitor from '@/components/PerformanceMonitor';
 
-// Lazy load raskaimmat komponentit main-thread optimointiin
-const ClassOffering = lazy(() => import('@/components/ClassOffering'));
-const Schedule = lazy(() => import('@/components/Schedule'));
-const Gallery = lazy(() => import('@/components/Gallery'));
-// Registration poistettu lazy loadingista jotta ankkurilinkki toimii heti
+// Komponentit ladataan normaalisti jotta ankkurilinkit toimivat
+import ClassOffering from '@/components/ClassOffering';
+import Schedule from '@/components/Schedule';
+import Gallery from '@/components/Gallery';
 import Registration from '@/components/Registration';
-const Opettajat = lazy(() => import('@/components/Opettajat'));
-const Contact = lazy(() => import('@/components/Contact'));
-
-// Parannettu loading fallback komponentti
-const LoadingSpinner = () => (
-  <div className="flex justify-center items-center py-12">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-primary"></div>
-  </div>
-);
-
-// Hook for intersection observer
-const useIntersectionObserver = (threshold = 0.1) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [element, setElement] = useState<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [element, threshold]);
-
-  return [setElement, isVisible] as const;
-};
+import Opettajat from '@/components/Opettajat';
+import Contact from '@/components/Contact';
 
 export default function Home() {
-  const [classRef, classVisible] = useIntersectionObserver();
-  const [scheduleRef, scheduleVisible] = useIntersectionObserver();
-  const [galleryRef, galleryVisible] = useIntersectionObserver();
-  const [registrationRef] = useIntersectionObserver();
-  const [opettajatRef, opettajatVisible] = useIntersectionObserver();
-  const [contactRef, contactVisible] = useIntersectionObserver();
-
   return (
     <main className="overflow-x-hidden w-full max-w-full">
       <PerformanceMonitor />
@@ -74,50 +32,12 @@ Vahva tanssiperinne jatkuu nyt jo kolmannessa polvessa, kun myös Katjan tytär,
         </div>
       </section>
 
-      {/* Lazy load below-the-fold sisältö */}
-      <div ref={classRef}>
-        {classVisible && (
-          <Suspense fallback={<LoadingSpinner />}>
-            <ClassOffering />
-          </Suspense>
-        )}
-      </div>
-      
-      <div ref={scheduleRef}>
-        {scheduleVisible && (
-          <Suspense fallback={<LoadingSpinner />}>
-            <Schedule />
-          </Suspense>
-        )}
-      </div>
-      
-      <div ref={galleryRef}>
-        {galleryVisible && (
-          <Suspense fallback={<LoadingSpinner />}>
-            <Gallery />
-          </Suspense>
-        )}
-      </div>
-      
-      <div ref={registrationRef}>
-        <Registration />
-      </div>
-      
-      <div ref={opettajatRef}>
-        {opettajatVisible && (
-          <Suspense fallback={<LoadingSpinner />}>
-            <Opettajat />
-          </Suspense>
-        )}
-      </div>
-      
-      <div ref={contactRef}>
-        {contactVisible && (
-          <Suspense fallback={<LoadingSpinner />}>
-            <Contact />
-          </Suspense>
-        )}
-      </div>
+      <ClassOffering />
+      <Schedule />
+      <Gallery />
+      <Registration />
+      <Opettajat />
+      <Contact />
       
       <Footer />
     </main>

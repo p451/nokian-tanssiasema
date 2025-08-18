@@ -17,12 +17,12 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { href: '#teachers', label: 'Opettajat' },
     { href: '#lajiesittely', label: 'Lajiesittely' },
     { href: '#schedule', label: 'Aikataulu' },
     { href: '#ajankohtaista', label: 'Ajankohtaista' },
     { href: '/hinnasto', label: 'Hinnasto' },
     { href: '#gallery', label: 'Galleria' },
+    { href: '#teachers', label: 'Opettajat' },
     { href: '#contact', label: 'Yhteystiedot' }
   ];
 

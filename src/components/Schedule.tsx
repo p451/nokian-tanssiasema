@@ -24,6 +24,21 @@ const Schedule = () => {
 
   return (
     <section id="schedule" className="section_primary_default" style={{ scrollMarginTop: '110px' }}>
+      {/* Strukturoitu data aikataululle */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPageElement",
+            "@id": "https://nokiantanssiasema.fi#schedule",
+            "name": "Aikataulu",
+            "description": "Katso tanssituntien aikataulu",
+            "url": "https://nokiantanssiasema.fi#schedule"
+          })
+        }}
+      />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

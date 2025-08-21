@@ -117,6 +117,21 @@ export default function ClassOffering() {
 		   className="section_secondary py-20"
 		   style={{ scrollMarginTop: '110px' }}
 	   >
+			{/* Strukturoitu data lajiesittelylle */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "WebPageElement",
+						"@id": "https://nokiantanssiasema.fi#lajiesittely",
+						"name": "Lajiesittely",
+						"description": "Tutustu tanssikoulumme monipuolisiin lajeihin",
+						"url": "https://nokiantanssiasema.fi#lajiesittely"
+					})
+				}}
+			/>
+			
 			<div className="container mx-auto px-6 text-center">
 				<div className="text-center mb-16">
 					<h2 className="heading_h2 mb-6">Lajiesittely</h2>

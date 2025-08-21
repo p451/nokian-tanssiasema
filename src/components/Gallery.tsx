@@ -56,6 +56,21 @@ const Gallery = () => {
 
   return (
     <section id="gallery" className="section_secondary_fullwidth py-20">
+      {/* Strukturoitu data gallerialle */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPageElement",
+            "@id": "https://nokiantanssiasema.fi#gallery",
+            "name": "Galleria",
+            "description": "Kuvia tanssikoulumme toiminnasta",
+            "url": "https://nokiantanssiasema.fi#gallery"
+          })
+        }}
+      />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

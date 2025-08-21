@@ -208,6 +208,21 @@ const Registration = () => {
 
   return (
     <section id="register" className="section_accent_tertiary_fullwidth py-20">
+      {/* Strukturoitu data ilmoittautumiselle */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPageElement",
+            "@id": "https://nokiantanssiasema.fi#register",
+            "name": "Ilmoittautuminen",
+            "description": "Ilmoittaudu tanssitunneille",
+            "url": "https://nokiantanssiasema.fi#register"
+          })
+        }}
+      />
+      
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -71,6 +71,21 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
 
   return (
     <section id="teachers" className="section_primary_default_fullwidth py-20">
+      {/* Strukturoitu data opettajille */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPageElement",
+            "@id": "https://nokiantanssiasema.fi#teachers",
+            "name": "Opettajat",
+            "description": "Tutustu ammattitaitoisiin opettajiimme",
+            "url": "https://nokiantanssiasema.fi#teachers"
+          })
+        }}
+      />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

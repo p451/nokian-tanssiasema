@@ -104,6 +104,21 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section_primary_default_fullwidth py-20">
+      {/* Strukturoitu data yhteystiedoille */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPageElement",
+            "@id": "https://nokiantanssiasema.fi#contact",
+            "name": "Yhteystiedot",
+            "description": "Ota yhteyttä tanssikouluun",
+            "url": "https://nokiantanssiasema.fi#contact"
+          })
+        }}
+      />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

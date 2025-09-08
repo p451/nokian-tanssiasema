@@ -75,17 +75,6 @@ const classes = [
   },
   {
 	id: 7,
-	title: 'HipHop',
-	description:
-	  'Hip hop on katutanssilaji, jossa korostuvat rytmi, liikkeen dynamiikka ja yksilöllinen tyyli. Tunneilla harjoitellaan perusaskeleita, koordinaatiota ja kehonhallintaa sekä rohkaistaan oman liikekielen kehittämiseen. Laji sopii kaikille, jotka haluavat tutustua tanssiin rennossa, mutta tavoitteellisessa ilmapiirissä.',
-	image: '/images/optimized/hiphop.webp',
-	imageFallback: '/images/hiphop.jpg',
-	ageGroup: '10+ vuotta',
-	level: 'Kaikki tasot',
-	duration: '60 min',
-  },
-  {
-	id: 8,
 	title: 'Breakdance',
 	description:
 	  'Breakdance on vauhdikas ja akrobaattinen katutanssilaji, jossa opetellaan lattia- ja ylätason jalkatyöskentelyä, näyttäviä freezejä sekä akrobatiaa. Freestyle-osioissa tanssijat pääsevät kehittämään omaa persoonallista liikekieltään.',
@@ -96,7 +85,7 @@ const classes = [
 	duration: '60 min',
   },
   {
-	id: 9,
+	id: 8,
 	title: 'Heels',
 	description:
 	  'Heels-tunnilla tanssitaan korkokengissä ja keskitytään erityisesti kehonhallintaan, linjauksiin ja feminiiniseen ilmaisuun. Tunti kehittää tasapainoa, ryhtiä ja esiintymisvarmuutta. Sopii kaikille, jotka haluavat haastaa itseään ja löytää uudenlaista itsevarmuutta tanssin kautta.',

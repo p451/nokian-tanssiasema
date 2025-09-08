@@ -1,28 +1,4 @@
 {
-  "SARKOLAN TANSSITUNNIT": [
-    {
-      "class": "Dancemix (8–13v)",
-      "time": "17:30-18:30",
-      "instructor": "Milja",
-      "sali": "Vahalanden kulttuuritalo",
-      "location": "Sarkola",
-      "address": "Sarkolantie 476, 37180 Sarkola",
-      "duration": "10 x tanssikurssi",
-      "period": "3.9.–12.11.25",
-      "isCourse": true
-    },
-    {
-      "class": "Dancemix (Aikuiset)",
-      "time": "18:30-19:30", 
-      "instructor": "Milja",
-      "sali": "Vahalanden kulttuuritalo",
-      "location": "Sarkola",
-      "address": "Sarkolantie 476, 37180 Sarkola",
-      "duration": "10 x tanssikurssi",
-      "period": "3.9.–12.11.25",
-      "isCourse": true
-    }
-  ],
   "Maanantai": [
     {
       "time": "16:30-17:30",
@@ -31,34 +7,16 @@
       "sali": "Sali 1"
     },
     {
-      "time": "17:30-18:15",
-      "class": "Hip hop 6-9v",
-      "instructor": "Simo",
-      "sali": "Sali 2"
-    },
-    {
       "time": "17:30-18:30",
       "class": "Baletti 3 (8-11v)",
       "instructor": "Katja",
       "sali": "Sali 1"
     },
     {
-      "time": "18:15-19:00",
-      "class": "Hip hop 10-13v",
-      "instructor": "Simo",
-      "sali": "Sali 2"
-    },
-    {
       "time": "18:30-19:30",
       "class": "Aikuisbaletti jatkotaso",
       "instructor": "Katja",
       "sali": "Sali 1"
-    },
-    {
-      "time": "19:00-20:00",
-      "class": "Hip hop 13v+",
-      "instructor": "Simo",
-      "sali": "Sali 2"
     },
     {
       "time": "19:30-20:15",
@@ -105,7 +63,7 @@
       "sali": "Sali 2"
     },
     {
-      "time": "20:00-20:45",
+      "time": "20:00-20:30",
       "class": "Kärkitossut alkeet/perustaso 16v+",
       "instructor": "Katja",
       "sali": "Sali 1"

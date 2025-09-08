@@ -162,7 +162,6 @@ const Registration = () => {
   // Dance style options for new students
   const danceStyleOptions = [
     'Baletti',
-    'Hip hop',
     'Show',
     'Nykytanssi',
     'Commercial / Street',
@@ -287,7 +286,7 @@ const Registration = () => {
                     <input
                       {...register('firstName')}
                       className="input-field"
-                      placeholder="Anna"
+                      placeholder="Etunimi"
                     />
                     {errors.firstName && (
                       <p className="text-red-500 paragraph_small mt-1">{errors.firstName.message}</p>
@@ -301,7 +300,7 @@ const Registration = () => {
                     <input
                       {...register('lastName')}
                       className="input-field"
-                      placeholder="Virtanen"
+                      placeholder="Sukunimi"
                     />
                     {errors.lastName && (
                       <p className="text-red-500 paragraph_small mt-1">{errors.lastName.message}</p>
@@ -316,7 +315,7 @@ const Registration = () => {
                       {...register('email')}
                       type="email"
                       className="input-field"
-                      placeholder="anna.virtanen@email.com"
+                      placeholder="sähköposti@esimerkki.com"
                     />
                     {errors.email && (
                       <p className="text-red-500 paragraph_small mt-1">{errors.email.message}</p>
@@ -334,7 +333,7 @@ const Registration = () => {
                       {...register('phone')}
                       type="tel"
                       className="input-field"
-                      placeholder="050 123 4567"
+                      placeholder="040 123 4567"
                     />
                     {errors.phone && (
                       <p className="text-red-500 paragraph_small mt-1">{errors.phone.message}</p>
@@ -475,7 +474,7 @@ const Registration = () => {
                           <textarea
                             {...register('medicalConditions')}
                             className="input-field min-h-[100px]"
-                            placeholder="Esim. Olen harrastanut balettia 2 vuotta ja jazztanssia 1 vuoden..."
+                            placeholder="Kerro tanssikokemuksestasi..."
                           />
                         </div>
                       )}
@@ -633,7 +632,7 @@ const Registration = () => {
                               required: isMinor ? 'Huoltajan nimi vaaditaan' : false
                             })}
                             className={`input-field ${!isMinor ? 'bg-gray-100 text-gray-400' : ''}`}
-                            placeholder="Matti Virtanen"
+                            placeholder="Huoltajan nimi"
                             disabled={!isMinor}
                           />
                           {errors.emergencyContact && (
@@ -651,7 +650,7 @@ const Registration = () => {
                             })}
                             type="tel"
                             className={`input-field ${!isMinor ? 'bg-gray-100 text-gray-400' : ''}`}
-                            placeholder="050 987 6543"
+                            placeholder="040 123 4567"
                             disabled={!isMinor}
                           />
                           {errors.emergencyPhone && (

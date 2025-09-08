@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Nokian Tanssiasema - Jokainen askel kertoo tarinan",
   description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
-  keywords: "tanssikoulu, baletti, hip hop, nykytanssi, Nokia, tanssitunnit, opettajat, aikataulu, hinnasto",
+  keywords: "tanssikoulu, baletti, nykytanssi, Nokia, tanssitunnit, opettajat, aikataulu, hinnasto",
   icons: {
     icon: [
       { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
@@ -160,14 +160,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Baletti",
-                      "url": "https://nokiantanssiasema.fi#lajiesittely"
-                    }
-                  },
-                  {
-                    "@type": "Offer", 
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Hip Hop",
                       "url": "https://nokiantanssiasema.fi#lajiesittely"
                     }
                   },

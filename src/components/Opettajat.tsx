@@ -58,12 +58,6 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
       specialties: "Breakdance",
       image: "/images/aaro.jpg",
       bio: "Aaro on monipuolinen tanssija ja opettaja, jonka vahvuuksia ovat rauhallisuus, innostavuus ja yksilöllinen ote opetukseen. Hän aloitti tanssin kolmivuotiaana baletin parissa ja siirtyi myöhemmin katutanssin maailmaan, jossa erityisesti breakdance on muodostunut hänen suosikkilajikseen. Opettajana Aaro luo tunneilleen kannustavan ilmapiirin ja huomioi erilaiset oppijat, mahdollistaen jokaiselle omanlaisen kehityspolun tanssitaustasta riippumatta."
-    },
-    {
-      name: "SIMO SALIM",
-      specialties: "Hip Hop",
-      image: "/images/simon.jpg",
-      bio: "Simo on kansainvälinen hip hop -tanssija ja opettaja, joka yhdistää energisyyden ja rauhallisen läsnäolon. Hän opettaa eri tasoisia tanssijoita useissa maissa intohimolla ja sydämellä. Tanssiuransa Salim aloitti vuonna 2007. Hänen repertuaariinsa kuuluvat krump, hip hop, house, locking ja popping. Hän on syventynyt tyylien juuriin ja kehitykseen Marokossa ja kansainvälisesti – mm. Martiniquella, Tšekissä, Turkissa, Alankomaissa ja Suomessa. Hänen sulava ja rytminen liikekielensä pohjautuu vahvaan tekniikkaan ja kehonhallintaan. Salim on edustanut Marokkoa kolmesti ja saavuttanut kaksi MM-pronssia. Opettajana hän on tarkka, innostava ja lämmin. Hän tukee jokaisen oppimista yksilöllisesti ja jakaa tanssin kulttuurista taustaa osana opetustaan."
     }
   ];
 

@@ -26,12 +26,6 @@ const Gallery = () => {
       title: 'Show Dance',
       description: 'Näyttävä show dance -esitys'
     },
-    {
-      src: '/images/hiphop.jpg',
-      alt: 'Hip Hop tunti',
-      title: 'Hip Hop',
-      description: 'Energinen hip hop -tunti'
-    },
        // Duplicate images for smoother loop
     {
       src: '/images/ballet.jpg',
@@ -44,12 +38,6 @@ const Gallery = () => {
       alt: 'Show Dance esitys',
       title: 'Show Dance',
       description: 'Näyttävä show dance -esitys'
-    },
-    {
-      src: '/images/hiphop.jpg',
-      alt: 'Hip Hop tunti',
-      title: 'Hip Hop',
-      description: 'Energinen hip hop -tunti'
     },
   
   ];

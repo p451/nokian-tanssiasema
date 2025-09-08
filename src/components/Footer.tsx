@@ -58,7 +58,7 @@ const Footer = () => {
             <p className="paragraph_default text_charcoal mb-6 leading-relaxed">
                Tarjoamme laadukasta 
               tanssinopetusta kaikenikäisille aloittelijoista kilpatasolla tanssiviin. 
-              Meiltä löydät klassisen baletin, modernin tanssin, street dancen ja paljon muuta!
+              Meiltä löydät klassisen baletin, street dancen ja paljon muuta!
             </p>
             
             {/* Contact Info */}

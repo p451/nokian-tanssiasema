@@ -10,16 +10,6 @@ const Schedule = () => {
 
   const weeklyClasses = scheduleData;
 
-  // Type for class items that might have additional Sarkola properties
-  type ClassItem = {
-    class: string;
-    time: string;
-    instructor: string;
-    sali: string;
-    period?: string;
-    duration?: string;
-  };
-
   const days = Object.keys(weeklyClasses);
 
   return (
@@ -98,7 +88,7 @@ const Schedule = () => {
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {days.filter(day => day !== 'SARKOLAN TANSSITUNNIT').map((day) => (
+            {days.map((day) => (
               <div
                 key={day}
                 className="bg-neutral-primary rounded-xl p-6 shadow-lg"
@@ -137,55 +127,13 @@ const Schedule = () => {
                       </h4>
                       
                       <p className="text-xs text-charcoal/70">
-                        {classItem.instructor === 'S.S' ? 'Simo' : classItem.instructor}
+                        {classItem.instructor}
                       </p>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
-            
-            {/* Sarkola Classes - Special Card */}
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-300 rounded-xl p-6 shadow-lg">
-              <div className="text-center mb-6">
-                <h3 className="heading_h5 text-orange-800 mb-2 bg-orange-200 py-2 px-4 rounded-lg">
-                  SARKOLAN TANSSITUNNIT
-                </h3>
-                <p className="text-xs text-orange-600 font-medium">Keskiviikkoisin • Vahalanden kulttuuritalo</p>
-              </div>
-              
-              <div className="space-y-3">
-                {weeklyClasses['SARKOLAN TANSSITUNNIT'].map((classItem, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-lg p-3 border-l-4 border-orange-400 shadow-sm"
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="text-sm font-bold text-orange-700">
-                        {classItem.time}
-                      </div>
-                      <span className="px-2 py-1 rounded text-xs font-bold text-white bg-orange-600">
-                        KURSSI
-                      </span>
-                    </div>
-                    
-                    <h4 className="text-sm font-semibold text-orange-800 mb-1">
-                      {classItem.class}
-                    </h4>
-                    
-                    <p className="text-xs text-orange-600">
-                      {classItem.instructor}
-                    </p>
-                    
-                    {(classItem as ClassItem).period && (
-                      <p className="text-xs text-orange-500 mt-1">
-                        {(classItem as ClassItem).period}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </motion.div>
       )}
@@ -213,10 +161,10 @@ const Schedule = () => {
                     }`}
                   >
                     <span className="block sm:hidden lg:block">
-                      {day === 'SARKOLAN TANSSITUNNIT' ? 'Sarkola' : day}
+                      {day}
                     </span>
                     <span className="hidden sm:block lg:hidden">
-                      {day === 'SARKOLAN TANSSITUNNIT' ? 'Sarkola' : day.substring(0, 2)}
+                      {day.substring(0, 2)}
                     </span>
                   </button>
                 ))}
@@ -231,66 +179,8 @@ const Schedule = () => {
               transition={{ duration: 0.4 }}
               className="grid gap-4 md:gap-6"
             >
-              {selectedDay === 'SARKOLAN TANSSITUNNIT' ? (
-                // Special layout for Sarkola courses
-                <>
-                  <div className="bg-gradient-to-r from-orange-50 to-orange-100 border-2 border-orange-300 rounded-xl p-6 mb-6">
-                    <div className="text-center">
-                      <h3 className="heading_h3 text-orange-800 mb-2">🏛️ SARKOLAN TANSSITUNNIT</h3>
-                      <p className="heading_h5 text-orange-700 mb-1">Vahalanden kulttuuritalo</p>
-                      <p className="paragraph_default text-orange-600 mb-3">Sarkolantie 476, 37180 Sarkola</p>
-                    </div>
-                  </div>
-                  
-                  {weeklyClasses[selectedDay as keyof typeof weeklyClasses].map((classItem, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="card transition-all duration-300 border-l-4 border-orange-400 bg-orange-50"
-                    >
-                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-start sm:items-center">
-                        <div className="sm:col-span-1">
-                          <div className="heading_h5 text-orange-700">
-                            {classItem.time}
-                          </div>
-                          <div className="paragraph_small text-orange-600 mt-1 font-medium">
-                            Keskiviikkoisin
-                          </div>
-                          <div className="paragraph_small text-orange-500 mt-1">
-                            {(classItem as ClassItem).period || ''}
-                          </div>
-                        </div>
-                        <div className="sm:col-span-2">
-                          <h3 className="heading_h5 text-orange-800 mb-1">
-                            {classItem.class}
-                          </h3>
-                          <p className="paragraph_default text-orange-700 mb-1">
-                            Opettaja: <span className="font-medium">{classItem.instructor}</span>
-                          </p>
-                          <p className="paragraph_small text-orange-600">
-                            {(classItem as ClassItem).duration || ''}
-                          </p>
-                        </div>
-                        <div className="sm:col-span-1 flex flex-row sm:flex-col items-start sm:items-end gap-2">
-                          <span className="px-3 py-1 rounded-md text-xs font-bold text-white bg-orange-600">
-                            KURSSI
-                          </span>
-                          <div className="flex flex-row items-center gap-2 mt-2 sm:mt-0">
-                            <span className="px-2 py-1 rounded-md text-xs font-medium text-orange-800 bg-orange-200">
-                              Sarkola
-                            </span>
-                            <a href="#register" className="btn btn_accent_solid btn_small">Ilmoittaudu</a>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </>
-              ) : (
-                // Regular classes layout
-                weeklyClasses[selectedDay as keyof typeof weeklyClasses].map((classItem, index) => (
+              {/* Regular classes layout */}
+              {weeklyClasses[selectedDay as keyof typeof weeklyClasses].map((classItem, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -315,7 +205,7 @@ const Schedule = () => {
                           {classItem.class}
                         </h3>
                         <p className="paragraph_default text-charcoal/70">
-                          Opettaja: <span className="font-medium">{classItem.instructor === 'S.S' ? 'Simo' : classItem.instructor}</span>
+                          Opettaja: <span className="font-medium">{classItem.instructor}</span>
                         </p>
                       </div>
                       <div className="sm:col-span-1 flex flex-row sm:flex-col items-start sm:items-end gap-2">
@@ -333,8 +223,7 @@ const Schedule = () => {
                       </div>
                     </div>
                   </motion.div>
-                ))
-              )}
+                ))}
             </motion.div>
           </div>
         )}

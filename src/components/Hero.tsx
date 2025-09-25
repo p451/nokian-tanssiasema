@@ -134,7 +134,8 @@ const Hero = () => {
             className="mt-6"
           >
             <span className="text-white text-lg font-body" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-              Kausi alkaa 11.8.2025. Katso lisätietoja{' '}
+              Syysloma 13.10.-19.10.25
+ Katso lisätietoja{' '}
               <a
                 href="#ajankohtaista"
                 className="underline text-accent_primary hover:text-accent_primary/80"

@@ -29,6 +29,27 @@ const Navigation = () => {
   // Määritellään tekstiväri taustan perusteella
   const navTextColor = scrolled ? 'text_white' : 'text_charcoal';
 
+  // Handle smooth scroll with offset
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    if (href.startsWith('#')) {
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        const offsetTop = targetElement.offsetTop - 110; // Account for fixed header
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      // For external links, use normal navigation
+      window.location.href = href;
+    }
+  };
+
   return (
     <>
 
@@ -46,6 +67,7 @@ const Navigation = () => {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className={`${navTextColor} transition-colors duration-200 px-2 py-1 paragraph_default font-medium rounded-lg hover:bg-accent_primary\/10 hover:text_accent_primary`}
                   >
                     {item.label}
@@ -96,7 +118,10 @@ const Navigation = () => {
                   key={item.href}
                   href={item.href}
                   className={`text-charcoal block px-3 py-2 font-bold rounded-lg transition-colors duration-200 hover:bg-accent_primary/10 hover:text_accent_primary`}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    handleNavClick(e, item.href);
+                    setIsOpen(false);
+                  }}
                 >
                   {item.label}
                 </Link>

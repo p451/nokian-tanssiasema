@@ -4,6 +4,11 @@
   --accent-primary-dark: #8B7355;
 }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 .text-accent_primary {
   color: var(--accent-primary) !important;
 }

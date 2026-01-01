@@ -126,7 +126,7 @@ const Hero = () => {
             </a>
           </motion.div>
 
-          {/* Kausi alkaa -info */}
+          {/* Ajankohtaista - lyhyt hero-teksti */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,14 +134,13 @@ const Hero = () => {
             className="mt-6"
           >
             <span className="text-white text-lg font-body" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-              Syysloma 13.10.-19.10.25
- Katso lisätietoja{' '}
+              Uusia tunteja tarjolla Lauantaisin! {' '}
               <a
-                href="#ajankohtaista"
+                href="#schedule"
                 className="underline text-accent_primary hover:text-accent_primary/80"
                 style={{ fontStyle: 'italic' }}
               >
-                täältä
+                Katso aikataulumme
               </a>
               .
             </span>

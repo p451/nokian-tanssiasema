@@ -227,44 +227,18 @@ const Schedule = () => {
             </motion.div>
           </div>
         )}
-      {/* Ajankohtaista Section */}
+      {/* Ajankohtaista Section - pidetään vain kevätkausi-ilmoitus */}
       <section
         id="ajankohtaista"
         className="max-w-3xl mx-auto my-16 px-4 py-10 rounded-2xl shadow-lg bg-white border border-accent_primary"
         style={{ scrollMarginTop: '110px' }}
       >
         <h2 className="heading_h2 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
-        <div className="paragraph_large text-center text-charcoal mb-4">
-          <span className="font-bold text-charcoal">Syysloma 13.10.-19.10.25</span>
+
+        <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-6 rounded">
+          <div className="font-bold text-accent_primary mb-2">Kevätkausi 2026 alkaa</div>
+          <div className="font-semibold text-charcoal">Kevätkausi-26 alkaa 7.1.2026</div>
         </div>
-        {/* Ajankohtaista tiedote */}
-        <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-bold text-accent_primary mb-3">Syysloma 13.10.-19.10.25</div>
-          <div className="font-semibold text-charcoal">Syyslomalla ei tanssitunteja</div>
-        </div>
-              <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-bold text-accent_primary mb-3">Halloween viikko 27.10. - 1.11.25
-</div>
-          <div className="font-semibold text-charcoal"></div>
-        </div>
-        <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-bold text-accent_primary mb-3">Avoimet ovet 3.11. - 8.11.25</div>
-          <div className="font-semibold text-charcoal"></div>
-        </div>
-        <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-bold text-accent_primary mb-3">Joulunäytös Kerholassa 13.12.25</div>
-          <div className="font-semibold text-charcoal"></div>
-        </div>
-          <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-bold text-accent_primary mb-3">Syyskausi päättyy 16.12.25</div>
-          <div className="font-semibold text-charcoal"></div>
-        </div>
-          <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-4 rounded mb-2">
-          <div className="font-bold text-accent_primary mb-3">Kevätkausi-26 alkaa 7.1.26</div>
-          <div className="font-semibold text-charcoal"></div>
-        </div>
-        
-        {/* Lisää tiedotteita tähän */}
       </section>
     </section>
   );

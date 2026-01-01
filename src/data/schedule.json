@@ -174,13 +174,25 @@
     },
     {
       "time": "11:15-12:15",
-      "class": "Nuoriso / Aikuisbaletti alkeet",
+      "class": "Aikuisbaletti alkeet",
+      "instructor": "Katja",
+      "sali": "Sali 1"
+    },
+    {
+      "time": "12:15-12:45",
+      "class": "Kärkitossut aikuiset alkeistaso",
       "instructor": "Katja",
       "sali": "Sali 1"
     },
     {
       "time": "13:00-14:00",
       "class": "Breikki jatkotaso 13v+",
+      "instructor": "Aaro",
+      "sali": "Sali 2"
+    },
+    {
+      "time": "14:00-15:00",
+      "class": "Breikki sparraustunti 9v+",
       "instructor": "Aaro",
       "sali": "Sali 2"
     }

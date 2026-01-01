@@ -29,6 +29,10 @@ const nextConfig: NextConfig = {
     // Optimoi bundle koko
     optimizePackageImports: ['framer-motion'],
   },
+
+  // Turbopack config - tyhjä objekti sallii Turbopackin käytön yhdessä Webpack-konfiguraation kanssa
+  // Tämä poistaa virheilmoituksen "using Turbopack with a webpack config" rakennusympäristössä.
+  turbopack: {},
   
   // Webpack optimoinnit
   webpack: (config, { dev, isServer }) => {

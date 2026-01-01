@@ -38,7 +38,7 @@ const Hero = () => {
       >
         {/* Preload kriittinen hero-kuva - optimoitu LCP:lle */}
         <Image
-          src="/images/optimized/hero.avif?v=20250810-2"
+          src="/images/optimized/hero.avif"
           alt="Nokian Tanssiasema Hero"
           fill
           priority

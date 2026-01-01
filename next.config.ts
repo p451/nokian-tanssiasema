@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     // Kuvalaadun optimointi
     minimumCacheTTL: 31536000, // 1 vuosi
+  // Jos deploy-ympäristössä (esim. Netlify) image-optimointi aiheuttaa virheitä,
+  // voit kytkeä optimoinnin pois käyttämällä `unoptimized: true`.
+  // Tämä ohittaa Next.js:n kuvaliitännäisen optimoinnin ja palauttaa alkuperäiset kuvat suoraan.
+  unoptimized: true,
     // Lisää domains jos käytät ulkoisia kuvia
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

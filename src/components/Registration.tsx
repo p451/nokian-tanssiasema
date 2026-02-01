@@ -69,6 +69,13 @@ const Registration = () => {
         
         // If validation passes, move to next step
         setCurrentStep(currentStep + 1);
+        // Scrollaa lomakkeen ylälaitaan
+        setTimeout(() => {
+          const formElement = document.getElementById('register');
+          if (formElement) {
+            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
         return;
       } else {
         fieldsToValidate = ['danceClasses'];
@@ -96,18 +103,39 @@ const Registration = () => {
       
       // If we get here, validation passed
       setCurrentStep(currentStep + 1);
+      // Scrollaa lomakkeen ylälaitaan
+      setTimeout(() => {
+        const formElement = document.getElementById('register');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
       return;
     }
 
     const isValid = await trigger(fieldsToValidate);
     if (isValid && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
+      // Scrollaa lomakkeen ylälaitaan
+      setTimeout(() => {
+        const formElement = document.getElementById('register');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   };
 
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      // Scrollaa lomakkeen ylälaitaan
+      setTimeout(() => {
+        const formElement = document.getElementById('register');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   };
 
@@ -258,11 +286,18 @@ const Registration = () => {
             Täytä lomake ja valitse haluamasi tunnit
           </p>
           
-          {/* Kesäleiri-ilmoittautuminen korostus */}
-          <div className="mt-6 p-4 bg-sage/15 border border-sage/30 rounded-xl">
-            <p className="text-sage font-semibold text-center">
-              🏕️ Ilmoittaudu kesäleireille täältä! Valitse leiri vaiheessa 2.
-            </p>
+          {/* Kesäleiri ja muskari -ilmoittautuminen korostus */}
+          <div className="mt-6 space-y-3">
+            <div className="p-4 bg-sage/15 border border-sage/30 rounded-xl">
+              <p className="text-sage font-semibold text-center">
+                🏕️ Ilmoittaudu kesäleireille täältä! Valitse leiri vaiheessa 2.
+              </p>
+            </div>
+            <div className="p-4 bg-pink-50 border border-pink-300 rounded-xl">
+              <p className="text-pink-700 font-semibold text-center">
+                🎵 Ilmoittaudu Tanssimuskariin täältä! Valitse muskari vaiheessa 2 (Keskiviikko).
+              </p>
+            </div>
           </div>
         </motion.div>
 
@@ -612,6 +647,9 @@ const Registration = () => {
                                       ? `Opettaja: ${classItem.instructor} - Keskiviikkoisin 3.9.–12.12.25`
                                       : `Opettaja: ${classItem.instructor} - ${classItem.sali}`;
                                     
+                                    // Tarkista onko muskari-tunti
+                                    const isMuskari = classItem.class.toLowerCase().includes('tanssimuskari') || classItem.class.toLowerCase().includes('soivat askeleet');
+                                    
                                     return (
                                       <label
                                         key={classValue}
@@ -619,12 +657,21 @@ const Registration = () => {
                                           field.value.includes(classValue)
                                             ? day === 'SARKOLAN TANSSITUNNIT'
                                               ? 'border-red-500 bg-red-100'
-                                              : 'border-accent-primary bg-accent-primary/5'
+                                              : isMuskari
+                                                ? 'border-pink-500 bg-pink-100'
+                                                : 'border-accent-primary bg-accent-primary/5'
                                             : day === 'SARKOLAN TANSSITUNNIT'
                                               ? 'border-red-300 hover:border-red-400'
-                                              : 'border-gray-200 hover:border-accent-primary/50'
+                                              : isMuskari
+                                                ? 'border-pink-300 bg-pink-50 hover:border-pink-400'
+                                                : 'border-gray-200 hover:border-accent-primary/50'
                                         }`}
                                       >
+                                        {isMuskari && (
+                                          <span className="absolute -top-2 -right-2 px-2 py-0.5 rounded text-xs font-bold text-white bg-pink-500">
+                                            🎵 UUTTA
+                                          </span>
+                                        )}
                                         <div className="flex items-center mb-2">
                                           <input
                                             type="checkbox"
@@ -639,13 +686,15 @@ const Registration = () => {
                                             className={`w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 ${
                                               day === 'SARKOLAN TANSSITUNNIT'
                                                 ? 'text-red-600 focus:ring-red-500'
-                                                : 'text-accent-primary focus:ring-accent-primary'
+                                                : isMuskari
+                                                  ? 'text-pink-600 focus:ring-pink-500'
+                                                  : 'text-accent-primary focus:ring-accent-primary'
                                             }`}
                                           />
                                           <span className={`ml-2 font-medium text-sm ${
-                                            day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-800' : 'text-charcoal'
+                                            day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-800' : isMuskari ? 'text-pink-700' : 'text-charcoal'
                                           }`}>
-                                            {classLabel}
+                                            {isMuskari ? `🎵 ${classLabel}` : classLabel}
                                           </span>
                                         </div>
                                         <p className={`paragraph_small ${
@@ -672,7 +721,16 @@ const Registration = () => {
                         <h4 className="heading_h6 text-charcoal mb-2">Valitsemasi tunnit:</h4>
                         <ul className="list-disc list-inside paragraph_small text-charcoal/80">
                           {watchedDanceClasses.map((classValue: string) => {
+                            // Tarkista onko leiri
+                            if (classValue.startsWith('leiri-')) {
+                              const camp = summerCamps.find(c => `leiri-${c.id}` === classValue);
+                              return camp ? <li key={classValue} className="text-accent-primary font-medium">🏕️ {camp.name} ({camp.dates})</li> : null;
+                            }
+                            // Tarkista onko muskari
                             const classInfo = danceClasses.find(c => c.value === classValue);
+                            if (classInfo && classValue.includes('tanssimuskari')) {
+                              return <li key={classValue} className="text-pink-600 font-medium">🎵 {classInfo.label}</li>;
+                            }
                             return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
                           })}
                         </ul>
@@ -783,6 +841,17 @@ const Registration = () => {
                         <strong>Valitut tunnit:</strong>
                         <ul className="list-disc list-inside ml-4">
                           {watch('danceClasses')?.map((classValue: string) => {
+                            // Tarkista onko leiri
+                            if (classValue.startsWith('leiri-')) {
+                              const camp = summerCamps.find(c => `leiri-${c.id}` === classValue);
+                              return camp ? <li key={classValue}>{camp.name} ({camp.dates})</li> : null;
+                            }
+                            // Tarkista onko muskari
+                            if (classValue.includes('tanssimuskari')) {
+                              const classInfo = danceClasses.find(c => c.value === classValue);
+                              return classInfo ? <li key={classValue} className="text-red-600 font-medium">🎵 {classInfo.label}</li> : null;
+                            }
+                            // Tavallinen tunti
                             const classInfo = danceClasses.find(c => c.value === classValue);
                             return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
                           })}

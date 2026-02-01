@@ -133,16 +133,19 @@ const Hero = () => {
             transition={{ duration: 1, delay: 2 }}
             className="mt-6"
           >
-            <span className="text-white text-lg font-body" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-              UUTTA: Tanssimuskari Soivat askeleet vauvoille! Yhteistyössä Musiikkikoulu Josetten kanssa.{' '}
+            <span className="inline-block px-4 py-2 bg-pink-500/90 rounded-lg text-white text-lg font-body font-semibold" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.3)' }}>
+              🎵 UUTTA: Tanssimuskari Soivat askeleet – musiikkia ja liikettä pienimmille!{' '}
               <a
                 href="#register"
-                className="underline text-accent_primary hover:text-accent_primary/80"
+                className="underline text-white hover:text-pink-100"
                 style={{ fontStyle: 'italic' }}
               >
                 Ilmoittaudu nyt
               </a>
               !
+            </span>
+            <span className="block mt-2 text-white/90 text-sm" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              Yhteistyössä Musiikkikoulu Josetten kanssa.
             </span>
           </motion.div>
         </div>

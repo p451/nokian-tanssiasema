@@ -134,7 +134,7 @@ const Hero = () => {
             className="mt-6"
           >
             <span className="inline-block px-4 py-2 bg-pink-500/90 rounded-lg text-white text-lg font-body font-semibold" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.3)' }}>
-              🎵 UUTTA: Tanssimuskari Soivat askeleet – musiikkia ja liikettä pienimmille!{' '}
+              🎵 UUTTA: Tanssimuskari Soivat askeleet – musiikkia ja liikettä vauvoille!{' '}
               <a
                 href="#register"
                 className="underline text-white hover:text-pink-100"

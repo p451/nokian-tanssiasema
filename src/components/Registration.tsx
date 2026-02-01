@@ -700,10 +700,15 @@ const Registration = () => {
                                           </span>
                                         </div>
                                         <p className={`paragraph_small ${
-                                          day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-700' : 'text-charcoal/70'
+                                          day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-700' : isMuskari ? 'text-pink-600' : 'text-charcoal/70'
                                         }`}>
                                           {classDescription}
                                         </p>
+                                        {isMuskari && (
+                                          <p className="paragraph_small text-pink-700 font-medium mt-1">
+                                            180€ (8 krt) | Keskiviikkoisin 4.3.–29.4.26 | Ilm. 20.2. mennessä
+                                          </p>
+                                        )}
                                       </label>
                                     );
                                   })}

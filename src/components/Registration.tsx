@@ -418,6 +418,7 @@ const Registration = () => {
                   </div>
                 </div>
                 
+                {/* Piilotettu toistaiseksi
                 <div className="mt-4 sm:mt-6">
                   <label className="flex items-center space-x-3">
                     <input
@@ -430,6 +431,7 @@ const Registration = () => {
                     </span>
                   </label>
                 </div>
+                */}
               </motion.div>
             )}
 

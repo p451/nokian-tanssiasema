@@ -255,9 +255,14 @@ const Schedule = () => {
             <a href="#register" className="text-accent_primary underline hover:text-accent_primary/80">Ilmoittaudu kesäleireille →</a>
           </div>
 
-          <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-6 rounded">
-            <div className="font-bold text-accent_primary mb-2">🎵 Ilmoittautuminen muskariin nyt auki!</div>
+          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 rounded">
+            <div className="font-bold text-pink-600 mb-2">🎵 Ilmoittautuminen muskariin nyt auki!</div>
             <div className="font-semibold text-charcoal mb-3">Tanssimuskari Soivat askeleet – yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josetten kanssa</div>
+            
+            <p className="text-charcoal/80 text-sm mb-3 italic">
+              Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunnit koostuvat erilaisista tansseista, lauluista, loruista ja soittamisesta.
+            </p>
+            
             <div className="space-y-2 text-charcoal/80 text-sm mb-3">
               <div className="flex flex-col sm:flex-row sm:gap-4">
                 <span className="font-medium">Vauvat 3-7kk:</span>
@@ -267,13 +272,18 @@ const Schedule = () => {
                 <span className="font-medium">Vauvat 8-12kk:</span>
                 <span>klo 13.00-13.45</span>
               </div>
-              <div className="mt-2 pt-2 border-t border-accent_primary/20">
+              <div className="mt-2 pt-2 border-t border-pink-300">
                 <p><span className="font-medium">Aikataulu:</span> Keskiviikkoisin 4.3.–29.4.26 (Ryhmä ei kokoonnu 1.4.)</p>
                 <p><span className="font-medium">Hinta:</span> 180€ (8 krt)</p>
-                <p className="font-medium text-accent_primary mt-2">Ilmoittautuminen 20.2.26 mennessä!</p>
+                <p className="font-medium text-pink-600 mt-2">Ilmoittautuminen 20.2.26 mennessä!</p>
               </div>
             </div>
-            <a href="#register" className="text-accent_primary underline hover:text-accent_primary/80">Ilmoittaudu muskariin →</a>
+            
+            <p className="text-charcoal/70 text-xs mb-3 bg-pink-100 p-2 rounded">
+              👕 Pukeuduthan liikkumiseen sopiviin vaatteisiin ja varaat jalkaasi pitävät tossut!
+            </p>
+            
+            <a href="#register" className="text-pink-600 underline hover:text-pink-500 font-medium">Ilmoittaudu muskariin →</a>
           </div>
 
           <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded">

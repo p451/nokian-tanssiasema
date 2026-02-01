@@ -290,12 +290,12 @@ const Registration = () => {
           <div className="mt-6 space-y-3">
             <div className="p-4 bg-sage/15 border border-sage/30 rounded-xl">
               <p className="text-sage font-semibold text-center">
-                🏕️ Ilmoittaudu kesäleireille täältä! Valitse leiri vaiheessa 2.
+                🏕️ Ilmoittaudu kesäleireille alla olevalla lomakkeella! Valitse leiri vaiheessa 2.
               </p>
             </div>
             <div className="p-4 bg-pink-50 border border-pink-300 rounded-xl">
               <p className="text-pink-700 font-semibold text-center">
-                🎵 Ilmoittaudu Tanssimuskariin täältä! Valitse muskari vaiheessa 2 (Keskiviikko).
+                🎵 Ilmoittaudu Tanssimuskariin alla olevalla lomakkeella! Valitse muskari vaiheessa 2 (Keskiviikko).
               </p>
             </div>
           </div>

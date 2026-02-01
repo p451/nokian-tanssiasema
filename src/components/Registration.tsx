@@ -169,7 +169,28 @@ const Registration = () => {
     'Heels',
     'Breikki',
     'Kärkitossut',
-    'Lastentanssi'
+    'Lastentanssi',
+    'Tanssimuskari'
+  ];
+
+  // Kesäleirit
+  const summerCamps = [
+    {
+      id: 'nuorten-tanssileiri',
+      name: 'NUORTEN TANSSILEIRI (13-16v)',
+      dates: '1.6.-4.6.2026',
+      time: 'klo 9.30-15.00',
+      price: '200€',
+      includes: 'sisältää lounaan'
+    },
+    {
+      id: 'lasten-tanssileiri',
+      name: 'LASTEN TANSSILEIRI (8-12v)',
+      dates: '8.6.-10.6.2026',
+      time: 'klo 10.00-14.30',
+      price: '160€',
+      includes: 'sisältää lounaan'
+    }
   ];
 
   if (isSubmitted) {
@@ -236,6 +257,13 @@ const Registration = () => {
           <p className="paragraph_large text-center">
             Täytä lomake ja valitse haluamasi tunnit
           </p>
+          
+          {/* Kesäleiri-ilmoittautuminen korostus */}
+          <div className="mt-6 p-4 bg-sage/15 border border-sage/30 rounded-xl">
+            <p className="text-sage font-semibold text-center">
+              🏕️ Ilmoittaudu kesäleireille täältä! Valitse leiri vaiheessa 2.
+            </p>
+          </div>
         </motion.div>
 
         {/* Progress Bar */}
@@ -487,6 +515,57 @@ const Registration = () => {
                       Valitse tunnit
                     </h3>
                     
+                    {/* Kesäleirit - ensimmäisenä */}
+                    <div className="mb-6">
+                      <label className="paragraph_small font-medium text-charcoal mb-4 block">
+                        🏕️ Kesäleirit 2026
+                      </label>
+                      <Controller
+                        name="danceClasses"
+                        control={control}
+                        render={({ field }) => (
+                          <div className="border-2 border-accent_primary rounded-lg p-4 bg-accent_primary/5 mb-6">
+                            <div className="grid grid-cols-1 gap-3">
+                              {summerCamps.map((camp) => {
+                                const campValue = `leiri-${camp.id}`;
+                                return (
+                                  <label
+                                    key={camp.id}
+                                    className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                                      field.value.includes(campValue)
+                                        ? 'border-accent-primary bg-accent-primary/10'
+                                        : 'border-gray-200 bg-white hover:border-accent-primary/50'
+                                    }`}
+                                  >
+                                    <div className="flex items-center mb-2">
+                                      <input
+                                        type="checkbox"
+                                        checked={field.value.includes(campValue)}
+                                        onChange={(e) => {
+                                          if (e.target.checked) {
+                                            field.onChange([...field.value, campValue]);
+                                          } else {
+                                            field.onChange(field.value.filter((v: string) => v !== campValue));
+                                          }
+                                        }}
+                                        className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-accent-primary"
+                                      />
+                                      <span className="ml-2 font-bold text-charcoal">
+                                        {camp.name}
+                                      </span>
+                                    </div>
+                                    <p className="paragraph_small text-charcoal/70">
+                                      {camp.dates} | {camp.time} | {camp.price} ({camp.includes})
+                                    </p>
+                                  </label>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      />
+                    </div>
+
                     <div className="mb-6">
                       <label className="paragraph_small font-medium text-charcoal mb-4 block">
                         Tanssilajit * (Voit valita useita)

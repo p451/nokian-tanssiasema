@@ -71,6 +71,18 @@
   ],
   "Keskiviikko": [
     {
+      "time": "12:15-13:00",
+      "class": "Tanssimuskari Soivat askeleet (3-7kk)",
+      "instructor": "Musiikkikoulu Josette",
+      "sali": "Sali 2"
+    },
+    {
+      "time": "13:00-13:45",
+      "class": "Tanssimuskari Soivat askeleet (8-12kk)",
+      "instructor": "Musiikkikoulu Josette",
+      "sali": "Sali 2"
+    },
+    {
       "time": "16:30-17:30",
       "class": "Baletti 5 (11-13v)",
       "instructor": "Katja",

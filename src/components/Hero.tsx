@@ -134,15 +134,15 @@ const Hero = () => {
             className="mt-6"
           >
             <span className="text-white text-lg font-body" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-              Uusia tunteja tarjolla Lauantaisin! {' '}
+              UUTTA: Tanssimuskari Soivat askeleet vauvoille! Yhteistyössä Musiikkikoulu Josetten kanssa.{' '}
               <a
-                href="#schedule"
+                href="#register"
                 className="underline text-accent_primary hover:text-accent_primary/80"
                 style={{ fontStyle: 'italic' }}
               >
-                Katso aikataulumme
+                Ilmoittaudu nyt
               </a>
-              .
+              !
             </span>
           </motion.div>
         </div>

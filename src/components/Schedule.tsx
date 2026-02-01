@@ -227,7 +227,7 @@ const Schedule = () => {
             </motion.div>
           </div>
         )}
-      {/* Ajankohtaista Section - pidetään vain kevätkausi-ilmoitus */}
+      {/* Ajankohtaista Section */}
       <section
         id="ajankohtaista"
         className="max-w-3xl mx-auto my-16 px-4 py-10 rounded-2xl shadow-lg bg-white border border-accent_primary"
@@ -235,9 +235,51 @@ const Schedule = () => {
       >
         <h2 className="heading_h2 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
 
-        <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-6 rounded">
-          <div className="font-bold text-accent_primary mb-2">Kevätkausi 2026 alkaa</div>
-          <div className="font-semibold text-charcoal">Kevätkausi-26 alkaa 7.1.2026</div>
+        <div className="space-y-4">
+          <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-6 rounded">
+            <div className="font-bold text-accent_primary mb-2">🏕️ Kesäleirien ilmoittautuminen nyt auki!</div>
+            <div className="space-y-4 text-charcoal/80 text-sm mb-3">
+              <div className="bg-white/50 rounded-lg p-3">
+                <div className="font-semibold text-charcoal mb-1">NUORTEN TANSSILEIRI (13-16v)</div>
+                <p><span className="font-medium">Ajankohta:</span> 1.6.–4.6.2026</p>
+                <p><span className="font-medium">Kellonaika:</span> klo 9.30–15.00</p>
+                <p><span className="font-medium">Hinta:</span> 200€ (sisältää lounaan)</p>
+              </div>
+              <div className="bg-white/50 rounded-lg p-3">
+                <div className="font-semibold text-charcoal mb-1">LASTEN TANSSILEIRI (8-12v)</div>
+                <p><span className="font-medium">Ajankohta:</span> 8.6.–10.6.2026</p>
+                <p><span className="font-medium">Kellonaika:</span> klo 10.00–14.30</p>
+                <p><span className="font-medium">Hinta:</span> 160€ (sisältää lounaan)</p>
+              </div>
+            </div>
+            <a href="#register" className="text-accent_primary underline hover:text-accent_primary/80">Ilmoittaudu kesäleireille →</a>
+          </div>
+
+          <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-6 rounded">
+            <div className="font-bold text-accent_primary mb-2">🎵 Ilmoittautuminen muskariin nyt auki!</div>
+            <div className="font-semibold text-charcoal mb-3">Tanssimuskari Soivat askeleet – yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josetten kanssa</div>
+            <div className="space-y-2 text-charcoal/80 text-sm mb-3">
+              <div className="flex flex-col sm:flex-row sm:gap-4">
+                <span className="font-medium">Vauvat 3-7kk:</span>
+                <span>klo 12.15-13.00</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:gap-4">
+                <span className="font-medium">Vauvat 8-12kk:</span>
+                <span>klo 13.00-13.45</span>
+              </div>
+              <div className="mt-2 pt-2 border-t border-accent_primary/20">
+                <p><span className="font-medium">Aikataulu:</span> Keskiviikkoisin 4.3.–29.4.26 (Ryhmä ei kokoonnu 1.4.)</p>
+                <p><span className="font-medium">Hinta:</span> 180€ (8 krt)</p>
+                <p className="font-medium text-accent_primary mt-2">Ilmoittautuminen 20.2.26 mennessä!</p>
+              </div>
+            </div>
+            <a href="#register" className="text-accent_primary underline hover:text-accent_primary/80">Ilmoittaudu muskariin →</a>
+          </div>
+
+          <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded">
+            <div className="font-bold text-yellow-700 mb-2">❄️ Talviloma</div>
+            <div className="font-semibold text-charcoal">23.2.-1.3.2026 – ei tunteja</div>
+          </div>
         </div>
       </section>
     </section>

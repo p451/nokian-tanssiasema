@@ -95,6 +95,17 @@ const classes = [
 	level: 'Avoin taso',
 	duration: '60 min',
   },
+  {
+	id: 9,
+	title: 'Tanssimuskari',
+	description:
+	  'Tanssimuskari Soivat askeleet on vauvoille suunnattu musiikki- ja liikuntahetki, joka toteutetaan yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josetten kanssa. Tunneilla tutustutaan musiikkiin ja liikkeeseen yhdessä vanhemman kanssa turvallisessa ja lämpimässä ilmapiirissä. Ryhmät: 3-7kk ja 8-12kk.',
+	image: '/images/optimized/lasten.webp',
+	imageFallback: '/images/lasten.jpg',
+	ageGroup: '3-12 kuukautta',
+	level: 'Vauvat + vanhempi',
+	duration: '45 min',
+  },
 ];
 
 

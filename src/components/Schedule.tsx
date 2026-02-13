@@ -262,6 +262,9 @@ const Schedule = () => {
             <p className="text-charcoal/80 text-sm mb-3 italic">
               Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunnit koostuvat erilaisista tansseista, lauluista, loruista ja soittamisesta.
             </p>
+            <p className="text-charcoal/80 text-sm mb-3 font-medium">
+              Opettajina Josette Tuomisto ja Tiia-Maria Kivimäki
+            </p>
             
             <div className="space-y-2 text-charcoal/80 text-sm mb-3">
               <div className="flex flex-col sm:flex-row sm:gap-4">
@@ -289,6 +292,11 @@ const Schedule = () => {
           <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded">
             <div className="font-bold text-yellow-700 mb-2">❄️ Talviloma</div>
             <div className="font-semibold text-charcoal">23.2.-1.3.2026 – ei tunteja</div>
+          </div>
+
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+            <div className="font-bold text-amber-700 mb-2">🌸 Kevätnäytös</div>
+            <div className="font-semibold text-charcoal">24.5.2026 Kerholassa</div>
           </div>
         </div>
       </section>

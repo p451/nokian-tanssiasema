@@ -22,6 +22,4 @@ declare module '*.svg';
 // Allow importing raw text files if used
 declare module '*.txt';
 
-// If you need stricter typings later, replace the `any` with proper interfaces
-declare const cssModule: { [className: string]: string };
-export default cssModule;
+

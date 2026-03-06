@@ -42,7 +42,7 @@ const Hinnasto = () => {
             className="text-center mb-16"
           >
             <h1 className="heading_h1 mb-6">
-              Hinnasto Syksy 2025
+              Hinnasto Kevät 2026
             </h1>
             <p className="paragraph_large text_charcoal/70">
               Katso kaikki hinnat viikoittaisille tunneille ja tanssikorteillemme

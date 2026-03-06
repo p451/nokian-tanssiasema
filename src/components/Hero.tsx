@@ -126,7 +126,7 @@ const Hero = () => {
             </a>
           </motion.div>
 
-          {/* Ajankohtaista - lyhyt hero-teksti */}
+          {/* Ajankohtaista - tanssileirit */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,18 +134,26 @@ const Hero = () => {
             className="mt-6"
           >
             <span className="inline-block px-4 py-2 bg-pink-500/90 rounded-lg text-white text-lg font-body font-semibold" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.3)' }}>
-              🎵 UUTTA: Tanssimuskari Soivat askeleet – vauvalle ja vanhemmalle.{' '}
+              ☀️ Kesän tanssileirit tulossa!{' '}
               <a
                 href="#register"
                 className="underline text-white hover:text-pink-100"
                 style={{ fontStyle: 'italic' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('register');
+                  if (element) {
+                    const isMobile = window.innerWidth < 768;
+                    const headerOffset = isMobile ? 20 : 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }}
               >
                 Ilmoittaudu nyt
               </a>
               !
-            </span>
-            <span className="block mt-2 text-white/90 text-sm" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
-              Yhteistyössä Musiikkikoulu Josetten kanssa.
             </span>
           </motion.div>
         </div>

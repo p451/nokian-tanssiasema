@@ -254,8 +254,7 @@ const Registration = () => {
     );
   }
 
-  // ⚠️ HUOLTOKATKO: Poista tämä muuttuja (aseta false) kun ilmoittautuminen avataan takaisin
-  const MAINTENANCE_MODE = true;
+  const MAINTENANCE_MODE = false;
 
   return (
     <section id="register" className="section_accent_tertiary_fullwidth py-20">
@@ -275,28 +274,7 @@ const Registration = () => {
       />
       
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* 🔧 HUOLTOKATKO-ILMOITUS – Poista tämä blokki kun ilmoittautuminen avataan */}
-        {MAINTENANCE_MODE && (
-          <div className="absolute inset-0 z-50 flex items-start justify-center pt-20" style={{ backdropFilter: 'blur(4px)' }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white border-2 border-accent-primary rounded-2xl shadow-2xl p-8 sm:p-10 max-w-lg mx-4 text-center"
-            >
-              <div className="text-5xl mb-4">🔧</div>
-              <h3 className="text-2xl font-bold text-accent-primary-dark mb-3">
-                Huoltotauko
-              </h3>
-              <p className="text-warm-700 text-lg mb-2">
-                Teemme ilmoittautumisjärjestelmään huoltotöitä.
-              </p>
-              <p className="text-warm-500">
-                Ilmoittautuminen ei ole tällä hetkellä mahdollista. Pahoittelemme häiriötä – palaamme pian!
-              </p>
-            </motion.div>
-          </div>
-        )}
+
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}

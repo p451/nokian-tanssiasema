@@ -101,8 +101,7 @@ Ilmoittautumisaika: ${new Date().toLocaleString('fi-FI')}
       from: `"Nokian Tanssiasema" <info@nokiantanssiasema.fi>`,
       to: 'info@nokiantanssiasema.fi',
       subject: `Uusi ilmoittautuminen: ${data.firstName || 'Tuntematon'} ${data.lastName || 'Oppilas'}`,
-      text: emailContent,
-      replyTo: data.email || process.env.BREVO_SMTP_USER
+      text: `Lähettäjän sähköposti: ${data.email}\n\n${emailContent}`
     });
 
     return {

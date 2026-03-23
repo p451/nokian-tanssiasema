@@ -65,8 +65,7 @@ Lähetetty: ${new Date().toLocaleString('fi-FI')}
       from: `"Nokian Tanssiasema" <info@nokiantanssiasema.fi>`,
       to: 'info@nokiantanssiasema.fi',
       subject: `Yhteydenotto: ${data.subject || 'Ei aihetta'}`,
-      text: emailContent,
-      replyTo: data.email || process.env.BREVO_SMTP_USER
+      text: `Lähettäjän sähköposti: ${data.email}\n\n${emailContent}`
     });
 
     return {

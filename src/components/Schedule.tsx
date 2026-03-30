@@ -255,43 +255,21 @@ const Schedule = () => {
             <a href="#register" className="text-accent_primary underline hover:text-accent_primary/80">Ilmoittaudu kesäleireille →</a>
           </div>
 
-          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 rounded">
-            <div className="font-bold text-pink-600 mb-2">🎵 Ilmoittautuminen muskariin nyt auki!</div>
-            <div className="font-semibold text-charcoal mb-3">Tanssimuskari Soivat askeleet – yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josetten kanssa</div>
-            
-            <p className="text-charcoal/80 text-sm mb-3 italic">
-              Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunnit koostuvat erilaisista tansseista, lauluista, loruista ja soittamisesta.
-            </p>
-            <p className="text-charcoal/80 text-sm mb-3 font-medium">
-              Opettajina Josette Tuomisto ja Tiia-Maria Kivimäki
-            </p>
-            
-            <div className="space-y-2 text-charcoal/80 text-sm mb-3">
-              <div className="flex flex-col sm:flex-row sm:gap-4">
-                <span className="font-medium">Vauvat 3-7kk:</span>
-                <span>klo 12.15-13.00</span>
-              </div>
-              <div className="flex flex-col sm:flex-row sm:gap-4">
-                <span className="font-medium">Vauvat 8-12kk:</span>
-                <span>klo 13.00-13.45</span>
-              </div>
-              <div className="mt-2 pt-2 border-t border-pink-300">
-                <p><span className="font-medium">Aikataulu:</span> Keskiviikkoisin 4.3.–29.4.26 (Ryhmä ei kokoonnu 1.4.)</p>
-                <p><span className="font-medium">Hinta:</span> 180€ (8 krt)</p>
-                <p className="font-medium text-pink-600 mt-2">Ilmoittautuminen 20.2.26 mennessä!</p>
-              </div>
-            </div>
-            
-            <p className="text-charcoal/70 text-xs mb-3 bg-pink-100 p-2 rounded">
-              👕 Pukeuduthan liikkumiseen sopiviin vaatteisiin ja varaat jalkaasi pitävät tossut!
-            </p>
-            
-            <a href="#register" className="text-pink-600 underline hover:text-pink-500 font-medium">Ilmoittaudu muskariin →</a>
+          <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded">
+            <div className="font-bold text-yellow-700 mb-2">🐣 Pääsiäinen</div>
+            <div className="font-semibold text-charcoal">pe 3.4. – ma 6.4.2026 – ei tunteja</div>
           </div>
 
           <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded">
-            <div className="font-bold text-yellow-700 mb-2">❄️ Talviloma</div>
-            <div className="font-semibold text-charcoal">23.2.-1.3.2026 – ei tunteja</div>
+            <div className="font-bold text-yellow-700 mb-2">🎉 Vappu</div>
+            <div className="font-semibold text-charcoal">30.4. – 1.5.2026 – ei tunteja</div>
+          </div>
+
+          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 rounded">
+            <div className="font-bold text-pink-600 mb-2">🎵 Tanssimuskari</div>
+            <div className="font-semibold text-charcoal mb-2">Muskari jatkuu taas syksyllä!</div>
+            <p className="text-charcoal/80 text-sm mb-3">Lisätietoa tulossa kesän aikana! Voit myös ilmoittaa kiinnostuksesi yhteydenottolomakkeella.</p>
+            <a href="#contact" className="text-pink-600 underline hover:text-pink-500 font-medium">Ota yhteyttä →</a>
           </div>
 
           <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">

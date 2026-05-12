@@ -256,6 +256,18 @@ const Schedule = () => {
             <div className="font-bold text-amber-700 mb-2">Valitse useampi tunti</div>
             <div className="font-semibold text-charcoal">Voit ilmoittautua samalla lomakkeella yhdelle tai useammalle kesätunnille.</div>
           </div>
+
+          <div className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded">
+            <div className="font-bold text-rose-700 mb-2">🌸 Kevätnäytös</div>
+            <div className="font-semibold text-charcoal">24.5.2026 Kerholassa</div>
+          </div>
+
+          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 rounded">
+            <div className="font-bold text-pink-600 mb-2">🎵 Tanssimuskari</div>
+            <div className="font-semibold text-charcoal mb-2">Muskari jatkuu taas syksyllä!</div>
+            <p className="text-charcoal/80 text-sm mb-3">Lisätietoa tulossa kesän aikana! Voit myös ilmoittaa kiinnostuksesi yhteydenottolomakkeella.</p>
+            <a href="#contact" className="text-pink-600 underline hover:text-pink-500 font-medium">Ota yhteyttä →</a>
+          </div>
         </div>
       </section>
     </section>

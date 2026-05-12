@@ -8,6 +8,16 @@ import { registrationSchema, type RegistrationFormData } from '../utils/formVali
 import scheduleData from '../data/schedule.json';
 
 const Registration = () => {
+  const slugify = (value: string) =>
+    value
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\u00e5\u00e4\u00f6]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+  const createClassValue = (week: string, classItem: { date: string; time: string; class: string }) =>
+    `${slugify(week)}-${slugify(classItem.date)}-${slugify(classItem.time)}-${slugify(classItem.class)}`;
+
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [previousExperienceError, setPreviousExperienceError] = useState('');
@@ -142,12 +152,22 @@ const Registration = () => {
   const onSubmit = async (data: RegistrationFormData) => {
     setSubmitError(''); // Clear any previous error
     try {
+      const selectedDanceClassLabels = data.danceClasses.map(
+        (classValue) =>
+          summerCamps.find((camp) => camp.value === classValue)?.label ??
+          danceClasses.find((danceClass) => danceClass.value === classValue)?.label ??
+          classValue
+      );
+
       const response = await fetch('/.netlify/functions/submit-registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          danceClasses: selectedDanceClassLabels
+        }),
       });
 
       const result = await response.json();
@@ -175,36 +195,24 @@ const Registration = () => {
     }
   };
 
-  const danceClasses = Object.entries(scheduleData).flatMap(([day, classes]) => 
+  const danceClasses = Object.entries(scheduleData).flatMap(([week, classes]) => 
     classes.map((classItem) => ({
-      value: `${day.toLowerCase()}-${classItem.time}-${classItem.class.toLowerCase().replace(/\s+/g, '-')}`,
-      label: `${classItem.class} (${day} ${classItem.time})`,
-      description: `Opettaja: ${classItem.instructor} - ${classItem.sali}`,
-      day: day,
+      value: createClassValue(week, classItem),
+      label: `${classItem.class} (${week}, ${classItem.day} ${classItem.date} klo ${classItem.time})`,
+      description: `${week} | ${classItem.day} ${classItem.date} | Opettaja: ${classItem.instructor}`,
+      week,
+      day: classItem.day,
+      date: classItem.date,
       time: classItem.time,
-      instructor: classItem.instructor,
-      sali: classItem.sali
+      instructor: classItem.instructor
     }))
   );
 
-  // Dance style options for new students
-  const danceStyleOptions = [
-    'Baletti',
-    'Show',
-    'Nykytanssi',
-    'Commercial / Street',
-    'Dancemix',
-    'Heels',
-    'Breikki',
-    'Kärkitossut',
-    'Lastentanssi',
-    'Tanssimuskari'
-  ];
-
-  // Kesäleirit
   const summerCamps = [
     {
       id: 'nuorten-tanssileiri',
+      value: 'leiri-nuorten-tanssileiri',
+      label: 'NUORTEN TANSSILEIRI (13-16v) (1.6.-4.6.2026, klo 9.30-15.00)',
       name: 'NUORTEN TANSSILEIRI (13-16v)',
       dates: '1.6.-4.6.2026',
       time: 'klo 9.30-15.00',
@@ -213,12 +221,28 @@ const Registration = () => {
     },
     {
       id: 'lasten-tanssileiri',
+      value: 'leiri-lasten-tanssileiri',
+      label: 'LASTEN TANSSILEIRI (8-12v) (8.6.-10.6.2026, klo 10.00-14.30)',
       name: 'LASTEN TANSSILEIRI (8-12v)',
       dates: '8.6.-10.6.2026',
       time: 'klo 10.00-14.30',
       price: '160€',
       includes: 'sisältää lounaan'
     }
+  ];
+
+  // Dance style options for new students
+  const danceStyleOptions = [
+    'Baletti jatkotaso 15v+',
+    'Aikuisbaletti jatkotaso',
+    'Aikuisbaletti alkeet/perustaso',
+    'Aikuisbaletti avoin taso',
+    'Heels',
+    'K-pop',
+    'Lyrical',
+    'Zumba',
+    'Kärkitossut',
+    'Muu kesätunti'
   ];
 
   if (isSubmitted) {
@@ -237,7 +261,7 @@ const Registration = () => {
             </h2>
             <p className="paragraph_default text-charcoal/70 mb-6">
               Olemme vastaanottaneet ilmoittautumisesi. Otamme sinuun yhteyttä pian 
-              sähköpostitse vahvistaaksemme paikkasi valitsemillasi tunneilla.
+              sähköpostitse vahvistaaksemme paikkasi valitsemillasi tunneilla tai leirillä.
             </p>
             <button
               onClick={() => {
@@ -287,19 +311,18 @@ const Registration = () => {
             Ilmoittautuminen
           </h2>
           <p className="paragraph_large text-center">
-            Täytä lomake ja valitse haluamasi tunnit
+            Täytä lomake ja valitse haluamasi kesätunnit tai kesäleiri
           </p>
           
-          {/* Kesäleiri ja muskari -ilmoittautuminen korostus */}
           <div className="mt-6 space-y-3">
             <div className="p-4 bg-sage/15 border border-sage/30 rounded-xl">
               <p className="text-sage font-semibold text-center">
-                🏕️ Ilmoittaudu kesäleireille alla olevalla lomakkeella! Valitse leiri vaiheessa 2.
+                Kesän tunnit nuorille ja aikuisille 13€/h. Ilmoittautuminen tunneille on sitovaa.
               </p>
             </div>
             <div className="p-4 bg-pink-50 border border-pink-300 rounded-xl">
               <p className="text-pink-700 font-semibold text-center">
-                🎵 Ilmoittaudu Tanssimuskariin alla olevalla lomakkeella! Valitse muskari vaiheessa 2 (Keskiviikko).
+                Kesäleireille ilmoittaudutaan samalla lomakkeella. Valitse leiri vaiheessa 2.
               </p>
             </div>
           </div>
@@ -553,13 +576,12 @@ const Registration = () => {
                   // Existing student flow
                   <>
                     <h3 className="heading_h3 mb-6">
-                      Valitse tunnit
+                      Valitse kesätunnit ja leirit
                     </h3>
-                    
-                    {/* Kesäleirit - ensimmäisenä */}
+
                     <div className="mb-6">
                       <label className="paragraph_small font-medium text-charcoal mb-4 block">
-                        🏕️ Kesäleirit 2026
+                        Kesäleirit 2026
                       </label>
                       <Controller
                         name="danceClasses"
@@ -567,40 +589,37 @@ const Registration = () => {
                         render={({ field }) => (
                           <div className="border-2 border-accent_primary rounded-lg p-4 bg-accent_primary/5 mb-6">
                             <div className="grid grid-cols-1 gap-3">
-                              {summerCamps.map((camp) => {
-                                const campValue = `leiri-${camp.id}`;
-                                return (
-                                  <label
-                                    key={camp.id}
-                                    className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                                      field.value.includes(campValue)
-                                        ? 'border-accent-primary bg-accent-primary/10'
-                                        : 'border-gray-200 bg-white hover:border-accent-primary/50'
-                                    }`}
-                                  >
-                                    <div className="flex items-center mb-2">
-                                      <input
-                                        type="checkbox"
-                                        checked={field.value.includes(campValue)}
-                                        onChange={(e) => {
-                                          if (e.target.checked) {
-                                            field.onChange([...field.value, campValue]);
-                                          } else {
-                                            field.onChange(field.value.filter((v: string) => v !== campValue));
-                                          }
-                                        }}
-                                        className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-accent-primary"
-                                      />
-                                      <span className="ml-2 font-bold text-charcoal">
-                                        {camp.name}
-                                      </span>
-                                    </div>
-                                    <p className="paragraph_small text-charcoal/70">
-                                      {camp.dates} | {camp.time} | {camp.price} ({camp.includes})
-                                    </p>
-                                  </label>
-                                );
-                              })}
+                              {summerCamps.map((camp) => (
+                                <label
+                                  key={camp.id}
+                                  className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                                    field.value.includes(camp.value)
+                                      ? 'border-accent-primary bg-accent-primary/10'
+                                      : 'border-gray-200 bg-white hover:border-accent-primary/50'
+                                  }`}
+                                >
+                                  <div className="flex items-center mb-2">
+                                    <input
+                                      type="checkbox"
+                                      checked={field.value.includes(camp.value)}
+                                      onChange={(e) => {
+                                        if (e.target.checked) {
+                                          field.onChange([...field.value, camp.value]);
+                                        } else {
+                                          field.onChange(field.value.filter((v: string) => v !== camp.value));
+                                        }
+                                      }}
+                                      className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-accent-primary"
+                                    />
+                                    <span className="ml-2 font-bold text-charcoal">
+                                      {camp.name}
+                                    </span>
+                                  </div>
+                                  <p className="paragraph_small text-charcoal/70">
+                                    {camp.dates} | {camp.time} | {camp.price} ({camp.includes})
+                                  </p>
+                                </label>
+                              ))}
                             </div>
                           </div>
                         )}
@@ -609,75 +628,38 @@ const Registration = () => {
 
                     <div className="mb-6">
                       <label className="paragraph_small font-medium text-charcoal mb-4 block">
-                        Tanssilajit * (Voit valita useita)
+                        Kesätunnit * (Voit valita useita)
                       </label>
                       <Controller
                         name="danceClasses"
                         control={control}
                         render={({ field }) => (
                           <div className="space-y-6">
-                            {Object.entries(scheduleData).map(([day, dayClasses]) => (
-                              <div key={day} className={`border rounded-lg p-4 ${
-                                day === 'SARKOLAN TANSSITUNNIT' 
-                                  ? 'border-red-300 bg-red-50' 
-                                  : 'border-gray-200'
-                              }`}>
+                            {Object.entries(scheduleData).map(([week, weekClasses]) => (
+                              <div key={week} className="border border-gray-200 rounded-lg p-4 bg-white">
                                 <div className="flex items-center justify-between mb-3">
-                                  <h4 className={`heading_h5 ${
-                                    day === 'SARKOLAN TANSSITUNNIT' 
-                                      ? 'text-red-800' 
-                                      : 'text-charcoal'
-                                  }`}>
-                                    {day}
+                                  <h4 className="heading_h5 text-charcoal">
+                                    {week}
                                   </h4>
-                                  {day === 'SARKOLAN TANSSITUNNIT' && (
-                                    <span className="px-2 py-1 rounded text-xs font-bold text-white bg-red-600">
-                                      ERI SIJAINTI
-                                    </span>
-                                  )}
+                                  <span className="px-2 py-1 rounded text-xs font-bold text-white bg-accent-primary">
+                                    13€/h
+                                  </span>
                                 </div>
-                                {day === 'SARKOLAN TANSSITUNNIT' && (
-                                  <div className="mb-3 p-2 bg-red-100 border border-red-300 rounded">
-                                    <p className="text-xs text-red-700 font-medium">
-                                      📍 Vahalanden kulttuuritalo, Sarkolantie 476, 37180 Sarkola
-                                    </p>
-                                  </div>
-                                )}
                                 <div className="grid grid-cols-1 gap-3">
-                                  {dayClasses.map((classItem) => {
-                                    const classValue = `${day.toLowerCase()}-${classItem.time}-${classItem.class.toLowerCase().replace(/\s+/g, '-')}`;
-                                    const classLabel = day === 'SARKOLAN TANSSITUNNIT' 
-                                      ? `${classItem.class} (${classItem.time})` 
-                                      : `${classItem.class} (${classItem.time})`;
-                                    const classDescription = day === 'SARKOLAN TANSSITUNNIT'
-                                      ? `Opettaja: ${classItem.instructor} - Keskiviikkoisin 3.9.–12.12.25`
-                                      : `Opettaja: ${classItem.instructor} - ${classItem.sali}`;
-                                    
-                                    // Tarkista onko muskari-tunti
-                                    const isMuskari = classItem.class.toLowerCase().includes('tanssimuskari') || classItem.class.toLowerCase().includes('soivat askeleet');
-                                    
+                                  {weekClasses.map((classItem) => {
+                                    const classValue = createClassValue(week, classItem);
+                                    const classLabel = `${classItem.day} ${classItem.date} | ${classItem.time} | ${classItem.class}`;
+                                    const classDescription = `Opettaja: ${classItem.instructor}`;
+
                                     return (
                                       <label
                                         key={classValue}
                                         className={`relative flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                                           field.value.includes(classValue)
-                                            ? day === 'SARKOLAN TANSSITUNNIT'
-                                              ? 'border-red-500 bg-red-100'
-                                              : isMuskari
-                                                ? 'border-pink-500 bg-pink-100'
-                                                : 'border-accent-primary bg-accent-primary/5'
-                                            : day === 'SARKOLAN TANSSITUNNIT'
-                                              ? 'border-red-300 hover:border-red-400'
-                                              : isMuskari
-                                                ? 'border-pink-300 bg-pink-50 hover:border-pink-400'
-                                                : 'border-gray-200 hover:border-accent-primary/50'
+                                            ? 'border-accent-primary bg-accent-primary/5'
+                                            : 'border-gray-200 hover:border-accent-primary/50'
                                         }`}
                                       >
-                                        {isMuskari && (
-                                          <span className="absolute -top-2 -right-2 px-2 py-0.5 rounded text-xs font-bold text-white bg-pink-500">
-                                            🎵 UUTTA
-                                          </span>
-                                        )}
                                         <div className="flex items-center mb-2">
                                           <input
                                             type="checkbox"
@@ -689,30 +671,15 @@ const Registration = () => {
                                                 field.onChange(field.value.filter((v: string) => v !== classValue));
                                               }
                                             }}
-                                            className={`w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 ${
-                                              day === 'SARKOLAN TANSSITUNNIT'
-                                                ? 'text-red-600 focus:ring-red-500'
-                                                : isMuskari
-                                                  ? 'text-pink-600 focus:ring-pink-500'
-                                                  : 'text-accent-primary focus:ring-accent-primary'
-                                            }`}
+                                            className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 text-accent-primary focus:ring-accent-primary"
                                           />
-                                          <span className={`ml-2 font-medium text-sm ${
-                                            day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-800' : isMuskari ? 'text-pink-700' : 'text-charcoal'
-                                          }`}>
-                                            {isMuskari ? `🎵 ${classLabel}` : classLabel}
+                                          <span className="ml-2 font-medium text-sm text-charcoal">
+                                            {classLabel}
                                           </span>
                                         </div>
-                                        <p className={`paragraph_small ${
-                                          day === 'SARKOLAN TANSSITUNNIT' ? 'text-red-700' : isMuskari ? 'text-pink-600' : 'text-charcoal/70'
-                                        }`}>
+                                        <p className="paragraph_small text-charcoal/70">
                                           {classDescription}
                                         </p>
-                                        {isMuskari && (
-                                          <p className="paragraph_small text-pink-700 font-medium mt-1">
-                                            180€ (8 krt) | Keskiviikkoisin 4.3.–29.4.26 | Ilm. 20.2. mennessä
-                                          </p>
-                                        )}
                                       </label>
                                     );
                                   })}
@@ -729,19 +696,14 @@ const Registration = () => {
 
                     {watchedDanceClasses.length > 0 && (
                       <div className="mt-6 p-4 bg-accent-secondary/10 rounded-lg">
-                        <h4 className="heading_h6 text-charcoal mb-2">Valitsemasi tunnit:</h4>
+                        <h4 className="heading_h6 text-charcoal mb-2">Valitsemasi kesätunnit:</h4>
                         <ul className="list-disc list-inside paragraph_small text-charcoal/80">
                           {watchedDanceClasses.map((classValue: string) => {
-                            // Tarkista onko leiri
-                            if (classValue.startsWith('leiri-')) {
-                              const camp = summerCamps.find(c => `leiri-${c.id}` === classValue);
-                              return camp ? <li key={classValue} className="text-accent-primary font-medium">🏕️ {camp.name} ({camp.dates})</li> : null;
+                            const campInfo = summerCamps.find((camp) => camp.value === classValue);
+                            if (campInfo) {
+                              return <li key={classValue} className="text-accent-primary font-medium">{campInfo.label}</li>;
                             }
-                            // Tarkista onko muskari
                             const classInfo = danceClasses.find(c => c.value === classValue);
-                            if (classInfo && classValue.includes('tanssimuskari')) {
-                              return <li key={classValue} className="text-pink-600 font-medium">🎵 {classInfo.label}</li>;
-                            }
                             return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
                           })}
                         </ul>
@@ -852,23 +814,22 @@ const Registration = () => {
                         <strong>Valitut tunnit:</strong>
                         <ul className="list-disc list-inside ml-4">
                           {watch('danceClasses')?.map((classValue: string) => {
-                            // Tarkista onko leiri
-                            if (classValue.startsWith('leiri-')) {
-                              const camp = summerCamps.find(c => `leiri-${c.id}` === classValue);
-                              return camp ? <li key={classValue}>{camp.name} ({camp.dates})</li> : null;
+                            const campInfo = summerCamps.find((camp) => camp.value === classValue);
+                            if (campInfo) {
+                              return <li key={classValue}>{campInfo.label}</li>;
                             }
-                            // Tarkista onko muskari
-                            if (classValue.includes('tanssimuskari')) {
-                              const classInfo = danceClasses.find(c => c.value === classValue);
-                              return classInfo ? <li key={classValue} className="text-red-600 font-medium">🎵 {classInfo.label}</li> : null;
-                            }
-                            // Tavallinen tunti
                             const classInfo = danceClasses.find(c => c.value === classValue);
                             return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
                           })}
                         </ul>
                       </div>
                     </div>
+                  </div>
+
+                  <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-4">
+                    <p className="text-sm font-semibold text-yellow-800">
+                      Huomio: ilmoittautuminen kesän tunneille on sitova.
+                    </p>
                   </div>
 
                   <div className="space-y-4">

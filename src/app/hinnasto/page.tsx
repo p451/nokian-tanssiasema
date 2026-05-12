@@ -4,6 +4,12 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const Hinnasto = () => {
+  const summerPricing = {
+    title: 'Kesän tunnit nuorille ja aikuisille',
+    price: '13€/h',
+    description: 'Ilmoittautuminen kesän tunneille on sitovaa.'
+  };
+
   const weeklyPricing = [
     { duration: '30min', price: '44€' },
     { duration: '45min', price: '51€' },
@@ -42,11 +48,24 @@ const Hinnasto = () => {
             className="text-center mb-16"
           >
             <h1 className="heading_h1 mb-6">
-              Hinnasto Kevät 2026
+              Hinnasto 2026
             </h1>
             <p className="paragraph_large text_charcoal/70">
-              Katso kaikki hinnat viikoittaisille tunneille ja tanssikorteillemme
+              Katso kesän tuntien hinta sekä muut viikoittaiset hinnat ja tanssikortit
             </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-16"
+          >
+            <div className="bg-accent-primary/10 border border-accent-primary/20 rounded-2xl p-8 text-center">
+              <p className="heading_h4 mb-3">{summerPricing.title}</p>
+              <p className="text-3xl font-bold text-accent-primary mb-3">{summerPricing.price}</p>
+              <p className="paragraph_default text_charcoal/70">{summerPricing.description}</p>
+            </div>
           </motion.div>
 
           {/* Weekly Classes Pricing */}

@@ -97,10 +97,10 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <a
-              href="#lajiesittely"
+              href="#schedule"
               className="btn btn_accent_solid btn_large"
             >
-              Tutustu Lajitarjontaan
+              Katso Kesätunnit
             </a>
             <a
               href="#register"
@@ -122,19 +122,19 @@ const Hero = () => {
                 }
               }}
             >
-              Ilmoittaudu
+              Ilmoittaudu Kesään
             </a>
           </motion.div>
 
-          {/* Ajankohtaista - tanssileirit */}
+          {/* Ajankohtaista - kesätunnit ja leirit */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 2 }}
-            className="mt-6"
+            className="mt-6 flex flex-col gap-3"
           >
             <span className="inline-block px-4 py-2 bg-pink-500/90 rounded-lg text-white text-lg font-body font-semibold" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.3)' }}>
-              ☀️ Kesän tanssileirit tulossa!{' '}
+              ☀️ Kesätunnit nuorille ja aikuisille 13€/h.{' '}
               <a
                 href="#register"
                 className="underline text-white hover:text-pink-100"
@@ -153,7 +153,29 @@ const Hero = () => {
               >
                 Ilmoittaudu nyt
               </a>
-              !
+              .
+            </span>
+            <span className="inline-block px-4 py-2 bg-amber-500/90 rounded-lg text-white text-lg font-body font-semibold" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.3)' }}>
+              🏕️ Myös kesäleirit ovat mukana.{' '}
+              <a
+                href="#register"
+                className="underline text-white hover:text-amber-100"
+                style={{ fontStyle: 'italic' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('register');
+                  if (element) {
+                    const isMobile = window.innerWidth < 768;
+                    const headerOffset = isMobile ? 20 : 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }}
+              >
+                Varaa paikka leirille
+              </a>
+              .
             </span>
           </motion.div>
         </div>

@@ -1,194 +1,423 @@
 {
-  "Viikko 23": [
+  "summerCamps": [
     {
-      "day": "Maanantai",
-      "date": "1.6.",
-      "time": "18.00-19.00",
-      "class": "Baletti jatkotaso 15v+",
-      "instructor": "Katja"
+      "id": "nuorten-tanssileiri",
+      "value": "leiri-nuorten-tanssileiri",
+      "label": "NUORTEN TANSSILEIRI (13-16v) (1.6.-4.6.2026, klo 9.30-15.00)",
+      "name": "NUORTEN TANSSILEIRI (13-16v)",
+      "dates": "1.6.-4.6.2026",
+      "time": "klo 9.30-15.00",
+      "price": "200€",
+      "includes": "sisältää lounaan"
     },
     {
-      "day": "Maanantai",
-      "date": "1.6.",
-      "time": "19.00-20.00",
-      "class": "Aikuisbaletti jatkotaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Maanantai",
-      "date": "1.6.",
-      "time": "20.00-20.30",
-      "class": "Kärkitossut jatkotaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "3.6.",
-      "time": "17.30-18.30",
-      "class": "Aikuisbaletti alkeet/perustaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "3.6.",
-      "time": "18.30-19.00",
-      "class": "Kärkitossut alkeet/perustaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "3.6.",
-      "time": "18.30-19.30",
-      "class": "K-pop aikuiset",
-      "instructor": "Marika"
-    },
-    {
-      "day": "Torstai",
-      "date": "4.6.",
-      "time": "17.30-18.30",
-      "class": "Zumba",
-      "instructor": "Susanna"
-    },
-    {
-      "day": "Torstai",
-      "date": "4.6.",
-      "time": "18.30-19.30",
-      "class": "Lyrical avoin taso",
-      "instructor": "Iisa"
+      "id": "lasten-tanssileiri",
+      "value": "leiri-lasten-tanssileiri",
+      "label": "LASTEN TANSSILEIRI (8-12v) (8.6.-10.6.2026, klo 10.00-14.30)",
+      "name": "LASTEN TANSSILEIRI (8-12v)",
+      "dates": "8.6.-10.6.2026",
+      "time": "klo 10.00-14.30",
+      "price": "160€",
+      "includes": "sisältää lounaan"
     }
   ],
-  "Viikko 24": [
-    {
-      "day": "Maanantai",
-      "date": "8.6.",
-      "time": "18.00-19.00",
-      "class": "Baletti jatkotaso 15v+",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Maanantai",
-      "date": "8.6.",
-      "time": "19.00-20.00",
-      "class": "Aikuisbaletti jatkotaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Maanantai",
-      "date": "8.6.",
-      "time": "19.00-20.00",
-      "class": "Heels aikuiset avoin taso",
-      "instructor": "Tiia-Maria"
-    },
-    {
-      "day": "Maanantai",
-      "date": "8.6.",
-      "time": "20.00-20.30",
-      "class": "Kärkitossut jatkotaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Tiistai",
-      "date": "9.6.",
-      "time": "18.30-19.30",
-      "class": "Lyrical avoin taso",
-      "instructor": "Iisa"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "10.6.",
-      "time": "17.30-18.30",
-      "class": "Aikuisbaletti alkeet/perustaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "10.6.",
-      "time": "18.30-19.00",
-      "class": "Kärkitossut alkeet/perustaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "10.6.",
-      "time": "18.30-19.30",
-      "class": "K-pop aikuiset",
-      "instructor": "Marika"
-    },
-    {
-      "day": "Torstai",
-      "date": "11.6.",
-      "time": "17.30-18.30",
-      "class": "Zumba",
-      "instructor": "Susanna"
-    }
-  ],
-  "Viikko 25": [
-    {
-      "day": "Maanantai",
-      "date": "15.6.",
-      "time": "18.00-19.00",
-      "class": "Baletti jatkotaso 15v+",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Maanantai",
-      "date": "15.6.",
-      "time": "19.00-20.00",
-      "class": "Aikuisbaletti jatkotaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Maanantai",
-      "date": "15.6.",
-      "time": "20.00-20.30",
-      "class": "Kärkitossut jatkotaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "17.6.",
-      "time": "17.30-18.30",
-      "class": "Aikuisbaletti alkeet/perustaso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "17.6.",
-      "time": "18.30-19.00",
-      "class": "Kärkitossut alkeet/perustaso",
-      "instructor": "Katja"
-    }
-  ],
-  "Viikko 30": [
-    {
-      "day": "Maanantai",
-      "date": "20.7.",
-      "time": "18.00-19.00",
-      "class": "Aikuisbaletti avoin taso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "22.7.",
-      "time": "18.00-19.00",
-      "class": "Aikuisbaletti avoin taso",
-      "instructor": "Katja"
-    }
-  ],
-  "Viikko 31": [
-    {
-      "day": "Maanantai",
-      "date": "27.7.",
-      "time": "18.00-19.00",
-      "class": "Aikuisbaletti avoin taso",
-      "instructor": "Katja"
-    },
-    {
-      "day": "Keskiviikko",
-      "date": "29.7.",
-      "time": "18.00-19.00",
-      "class": "Aikuisbaletti avoin taso",
-      "instructor": "Katja"
-    }
-  ]
+  "summerClassesByWeek": {
+    "Viikko 23": [
+      {
+        "day": "Maanantai",
+        "date": "1.6.",
+        "time": "18.00-19.00",
+        "class": "Baletti jatkotaso 15v+",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Maanantai",
+        "date": "1.6.",
+        "time": "19.00-20.00",
+        "class": "Aikuisbaletti jatkotaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Maanantai",
+        "date": "1.6.",
+        "time": "20.00-20.30",
+        "class": "Kärkitossut jatkotaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "3.6.",
+        "time": "17.30-18.30",
+        "class": "Aikuisbaletti alkeet/perustaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "3.6.",
+        "time": "18.30-19.00",
+        "class": "Kärkitossut alkeet/perustaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "3.6.",
+        "time": "18.30-19.30",
+        "class": "K-pop aikuiset",
+        "instructor": "Marika"
+      },
+      {
+        "day": "Torstai",
+        "date": "4.6.",
+        "time": "17.30-18.30",
+        "class": "Zumba",
+        "instructor": "Susanna"
+      },
+      {
+        "day": "Torstai",
+        "date": "4.6.",
+        "time": "18.30-19.30",
+        "class": "Lyrical avoin taso",
+        "instructor": "Iisa"
+      }
+    ],
+    "Viikko 24": [
+      {
+        "day": "Maanantai",
+        "date": "8.6.",
+        "time": "18.00-19.00",
+        "class": "Baletti jatkotaso 15v+",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Maanantai",
+        "date": "8.6.",
+        "time": "19.00-20.00",
+        "class": "Aikuisbaletti jatkotaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Maanantai",
+        "date": "8.6.",
+        "time": "19.00-20.00",
+        "class": "Heels aikuiset avoin taso",
+        "instructor": "Tiia-Maria"
+      },
+      {
+        "day": "Maanantai",
+        "date": "8.6.",
+        "time": "20.00-20.30",
+        "class": "Kärkitossut jatkotaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Tiistai",
+        "date": "9.6.",
+        "time": "18.30-19.30",
+        "class": "Lyrical avoin taso",
+        "instructor": "Iisa"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "10.6.",
+        "time": "17.30-18.30",
+        "class": "Aikuisbaletti alkeet/perustaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "10.6.",
+        "time": "18.30-19.00",
+        "class": "Kärkitossut alkeet/perustaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "10.6.",
+        "time": "18.30-19.30",
+        "class": "K-pop aikuiset",
+        "instructor": "Marika"
+      },
+      {
+        "day": "Torstai",
+        "date": "11.6.",
+        "time": "17.30-18.30",
+        "class": "Zumba",
+        "instructor": "Susanna"
+      }
+    ],
+    "Viikko 25": [
+      {
+        "day": "Maanantai",
+        "date": "15.6.",
+        "time": "18.00-19.00",
+        "class": "Baletti jatkotaso 15v+",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Maanantai",
+        "date": "15.6.",
+        "time": "19.00-20.00",
+        "class": "Aikuisbaletti jatkotaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Maanantai",
+        "date": "15.6.",
+        "time": "20.00-20.30",
+        "class": "Kärkitossut jatkotaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "17.6.",
+        "time": "17.30-18.30",
+        "class": "Aikuisbaletti alkeet/perustaso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "17.6.",
+        "time": "18.30-19.00",
+        "class": "Kärkitossut alkeet/perustaso",
+        "instructor": "Katja"
+      }
+    ],
+    "Viikko 30": [
+      {
+        "day": "Maanantai",
+        "date": "20.7.",
+        "time": "18.00-19.00",
+        "class": "Aikuisbaletti avoin taso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "22.7.",
+        "time": "18.00-19.00",
+        "class": "Aikuisbaletti avoin taso",
+        "instructor": "Katja"
+      }
+    ],
+    "Viikko 31": [
+      {
+        "day": "Maanantai",
+        "date": "27.7.",
+        "time": "18.00-19.00",
+        "class": "Aikuisbaletti avoin taso",
+        "instructor": "Katja"
+      },
+      {
+        "day": "Keskiviikko",
+        "date": "29.7.",
+        "time": "18.00-19.00",
+        "class": "Aikuisbaletti avoin taso",
+        "instructor": "Katja"
+      }
+    ]
+  },
+  "autumnSeasonLabel": "Lukujärjestys 2026-2027",
+  "autumnClassesByDay": {
+    "Maanantai": [
+      {
+        "time": "16.30-17.30",
+        "class": "Baletti 5 (12-14v)",
+        "instructor": "Katja"
+      },
+      {
+        "time": "16.30-17.30",
+        "class": "Show (6-8v) - uudet alkeet",
+        "instructor": "Kaisla"
+      },
+      {
+        "time": "17.30-18.30",
+        "class": "Baletti 3 (9-12v)",
+        "instructor": "Katja"
+      },
+      {
+        "time": "17.30-18.00",
+        "class": "Temppu & Tanssi (3-5v)",
+        "instructor": "Kaisla"
+      },
+      {
+        "time": "18.00-19.00",
+        "class": "Show (8-12v) - uudet alkeet",
+        "instructor": "Kaisla"
+      },
+      {
+        "time": "18.30-19.30",
+        "class": "Aikuisbaletti jatkotaso",
+        "instructor": "Katja"
+      }
+    ],
+    "Tiistai": [
+      {
+        "time": "16.00-17.00",
+        "class": "Kisaryhmä",
+        "instructor": "Karita"
+      },
+      {
+        "time": "17.00-18.00",
+        "class": "Show perustaso (10-12v)",
+        "instructor": "Karita"
+      },
+      {
+        "time": "17.15-18.30",
+        "class": "Baletti (15v+)",
+        "instructor": "Katja"
+      },
+      {
+        "time": "18.00-18.45",
+        "class": "Alkeisbaletti (5-7v)",
+        "instructor": "Karita"
+      },
+      {
+        "time": "18.30-19.30",
+        "class": "Aikuisbaletti perustaso",
+        "instructor": "Katja"
+      },
+      {
+        "time": "18.45-19.45",
+        "class": "Show aikuiset - uudet alkeet",
+        "instructor": "Karita"
+      },
+      {
+        "time": "19.30-20.00",
+        "class": "Kärkitossut aikuiset perus/jatko",
+        "instructor": "Katja"
+      }
+    ],
+    "Keskiviikko": [
+      {
+        "time": "12.15-13.00",
+        "class": "Tanssimuskari vauvat alle 1v (10 kertaa 2.9.-11.11.)",
+        "instructor": "Tiia-Maria ja Josette"
+      },
+      {
+        "time": "13.00-13.45",
+        "class": "Tanssimuskari vauvat 1-2v (10 kertaa 2.9.-11.11.)",
+        "instructor": "Tiia-Maria ja Josette"
+      },
+      {
+        "time": "16.45-17.45",
+        "class": "Baletti 5 (12-14v)",
+        "instructor": "Katja"
+      },
+      {
+        "time": "17.00-17.30",
+        "class": "Lastentanssi (3-4v)",
+        "instructor": "Tiia-Maria"
+      },
+      {
+        "time": "17.30-18.15",
+        "class": "Baletti 1 (7-8v)",
+        "instructor": "Tiia-Maria"
+      },
+      {
+        "time": "17.45-18.45",
+        "class": "Baletti 3 (9-12v)",
+        "instructor": "Katja"
+      },
+      {
+        "time": "18.15-19.15",
+        "class": "Show perustaso (12-14v)",
+        "instructor": "Tiia-Maria"
+      },
+      {
+        "time": "18.45-19.45",
+        "class": "Baletti (15v+)",
+        "instructor": "Katja"
+      },
+      {
+        "time": "19.15-20.15",
+        "class": "Heels aikuiset",
+        "instructor": "Tiia-Maria"
+      }
+    ],
+    "Torstai": [
+      {
+        "time": "16.30-17.30",
+        "class": "Nykytanssi perustaso (13-16v)",
+        "instructor": "Karita"
+      },
+      {
+        "time": "17.30-18.30",
+        "class": "Nykytanssi (10-12v)",
+        "instructor": "Karita"
+      },
+      {
+        "time": "17.45-18.30",
+        "class": "Breikki alkeet (6-9v)",
+        "instructor": "Aaro"
+      },
+      {
+        "time": "18.30-19.30",
+        "class": "Show aikuiset avoin taso",
+        "instructor": "Karita"
+      },
+      {
+        "time": "18.30-19.30",
+        "class": "Breikki perustaso (10-13v)",
+        "instructor": "Aaro"
+      },
+      {
+        "time": "19.30-20.30",
+        "class": "Nykytanssi aikuiset avoin taso",
+        "instructor": "Karita"
+      }
+    ],
+    "Perjantai": [
+      {
+        "time": "16.15-17.15",
+        "class": "Commercial/street uudet (10-14v), avoin taso",
+        "instructor": "Milja"
+      },
+      {
+        "time": "17.15-18.15",
+        "class": "Commercial/street (15-17v)",
+        "instructor": "Milja"
+      },
+      {
+        "time": "18.15-19.15",
+        "class": "Commercial/Street aikuiset avoin taso",
+        "instructor": "Milja"
+      }
+    ],
+    "Lauantai": [
+      {
+        "time": "10.00-11.15",
+        "class": "Baletti edistyneet + pointe",
+        "instructor": "Katja"
+      },
+      {
+        "time": "10.30-11.15",
+        "class": "Show alkeet (5-7v)",
+        "instructor": "Tiia-Maria"
+      },
+      {
+        "time": "11.15-12.15",
+        "class": "Kisaryhmä NTA juniors",
+        "instructor": "Tiia-Maria"
+      },
+      {
+        "time": "11.15-12.30",
+        "class": "Aikuisbaletti alkeet + pointe",
+        "instructor": "Katja"
+      },
+      {
+        "time": "12.15-13.15",
+        "class": "Akrobatia",
+        "instructor": "Tiia-Maria"
+      },
+      {
+        "time": "13.00-14.00",
+        "class": "Breikki jatkotaso",
+        "instructor": "Aaro"
+      },
+      {
+        "time": "14.00-15.00",
+        "class": "Breikki sparraustunti",
+        "instructor": "Aaro"
+      }
+    ]
+  }
 }

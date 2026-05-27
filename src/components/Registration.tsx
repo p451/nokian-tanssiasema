@@ -15,13 +15,18 @@ const Registration = () => {
       .replace(/[^a-z0-9\u00e5\u00e4\u00f6]+/g, '-')
       .replace(/^-+|-+$/g, '');
 
-  const createClassValue = (week: string, classItem: { date: string; time: string; class: string }) =>
-    `${slugify(week)}-${slugify(classItem.date)}-${slugify(classItem.time)}-${slugify(classItem.class)}`;
+  const createClassValue = (category: string, group: string, classItem: { date?: string; time: string; class: string }) =>
+    `${slugify(category)}-${slugify(group)}-${slugify(classItem.date ?? 'jatkuva')}-${slugify(classItem.time)}-${slugify(classItem.class)}`;
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [previousExperienceError, setPreviousExperienceError] = useState('');
   const [submitError, setSubmitError] = useState('');
+  const [expandedGroups, setExpandedGroups] = useState({
+    summerCamps: false,
+    summerClasses: false,
+    autumnClasses: false
+  });
   const totalSteps = 4;
 
   const {
@@ -47,6 +52,41 @@ const Registration = () => {
   const watchedDanceClasses = watch('danceClasses');
   const isNewStudent = watch('isNewStudent');
   const hasPreviousExperience = watch('previousExperience');
+
+  const summerCamps = scheduleData.summerCamps;
+
+  const summerDanceClasses = Object.entries(scheduleData.summerClassesByWeek).flatMap(([week, classes]) =>
+    classes.map((classItem) => ({
+      value: createClassValue('kesatunnit', week, classItem),
+      label: `${classItem.class} (${week}, ${classItem.day} ${classItem.date} klo ${classItem.time})`,
+      description: `${week} | ${classItem.day} ${classItem.date} | Opettaja: ${classItem.instructor}`,
+      group: week
+    }))
+  );
+
+  const autumnDanceClasses = Object.entries(scheduleData.autumnClassesByDay).flatMap(([day, classes]) =>
+    classes.map((classItem) => ({
+      value: createClassValue('syksyntunnit', day, classItem),
+      label: `${classItem.class} (${day} klo ${classItem.time})`,
+      description: `${scheduleData.autumnSeasonLabel} | ${day} | Opettaja: ${classItem.instructor}`,
+      group: day
+    }))
+  );
+
+  const classLookup = new Map(
+    [
+      ...summerCamps.map((camp) => ({ value: camp.value, label: camp.label })),
+      ...summerDanceClasses.map((danceClass) => ({ value: danceClass.value, label: danceClass.label })),
+      ...autumnDanceClasses.map((danceClass) => ({ value: danceClass.value, label: danceClass.label }))
+    ].map((item) => [item.value, item.label])
+  );
+
+  const toggleGroup = (group: 'summerCamps' | 'summerClasses' | 'autumnClasses') => {
+    setExpandedGroups((previous) => ({
+      ...previous,
+      [group]: !previous[group]
+    }));
+  };
 
   const nextStep = async () => {
     let fieldsToValidate: (keyof RegistrationFormData)[] = [];
@@ -152,12 +192,7 @@ const Registration = () => {
   const onSubmit = async (data: RegistrationFormData) => {
     setSubmitError(''); // Clear any previous error
     try {
-      const selectedDanceClassLabels = data.danceClasses.map(
-        (classValue) =>
-          summerCamps.find((camp) => camp.value === classValue)?.label ??
-          danceClasses.find((danceClass) => danceClass.value === classValue)?.label ??
-          classValue
-      );
+      const selectedDanceClassLabels = data.danceClasses.map((classValue) => classLookup.get(classValue) ?? classValue);
 
       const response = await fetch('/.netlify/functions/submit-registration', {
         method: 'POST',
@@ -194,42 +229,6 @@ const Registration = () => {
       setSubmitError('Virhe ilmoittautumisen lähetyksessä. Tarkista internet-yhteytesi ja yritä uudelleen.');
     }
   };
-
-  const danceClasses = Object.entries(scheduleData).flatMap(([week, classes]) => 
-    classes.map((classItem) => ({
-      value: createClassValue(week, classItem),
-      label: `${classItem.class} (${week}, ${classItem.day} ${classItem.date} klo ${classItem.time})`,
-      description: `${week} | ${classItem.day} ${classItem.date} | Opettaja: ${classItem.instructor}`,
-      week,
-      day: classItem.day,
-      date: classItem.date,
-      time: classItem.time,
-      instructor: classItem.instructor
-    }))
-  );
-
-  const summerCamps = [
-    {
-      id: 'nuorten-tanssileiri',
-      value: 'leiri-nuorten-tanssileiri',
-      label: 'NUORTEN TANSSILEIRI (13-16v) (1.6.-4.6.2026, klo 9.30-15.00)',
-      name: 'NUORTEN TANSSILEIRI (13-16v)',
-      dates: '1.6.-4.6.2026',
-      time: 'klo 9.30-15.00',
-      price: '200€',
-      includes: 'sisältää lounaan'
-    },
-    {
-      id: 'lasten-tanssileiri',
-      value: 'leiri-lasten-tanssileiri',
-      label: 'LASTEN TANSSILEIRI (8-12v) (8.6.-10.6.2026, klo 10.00-14.30)',
-      name: 'LASTEN TANSSILEIRI (8-12v)',
-      dates: '8.6.-10.6.2026',
-      time: 'klo 10.00-14.30',
-      price: '160€',
-      includes: 'sisältää lounaan'
-    }
-  ];
 
   // Dance style options for new students
   const danceStyleOptions = [
@@ -311,18 +310,18 @@ const Registration = () => {
             Ilmoittautuminen
           </h2>
           <p className="paragraph_large text-center">
-            Täytä lomake ja valitse haluamasi kesätunnit tai kesäleiri
+            Täytä lomake ja valitse haluamasi kesäleirit, kesätunnit ja syksyn tunnit
           </p>
           
           <div className="mt-6 space-y-3">
             <div className="p-4 bg-sage/15 border border-sage/30 rounded-xl">
               <p className="text-sage font-semibold text-center">
-                Kesän tunnit nuorille ja aikuisille 13€/h. Ilmoittautuminen tunneille on sitovaa.
+                Voit ilmoittautua samalla lomakkeella kesäleireille, kesätunneille ja syksyn tunneille.
               </p>
             </div>
             <div className="p-4 bg-pink-50 border border-pink-300 rounded-xl">
               <p className="text-pink-700 font-semibold text-center">
-                Kesäleireille ilmoittaudutaan samalla lomakkeella. Valitse leiri vaiheessa 2.
+                Vaiheessa 2 voit avata ja sulkea ryhmiä sekä valita useita tunteja eri ryhmistä.
               </p>
             </div>
           </div>
@@ -576,135 +575,190 @@ const Registration = () => {
                   // Existing student flow
                   <>
                     <h3 className="heading_h3 mb-6">
-                      Valitse kesätunnit ja leirit
+                      Valitse kesäleirit, kesätunnit ja syksyn tunnit
                     </h3>
 
-                    <div className="mb-6">
-                      <label className="paragraph_small font-medium text-charcoal mb-4 block">
-                        Kesäleirit 2026
-                      </label>
-                      <Controller
-                        name="danceClasses"
-                        control={control}
-                        render={({ field }) => (
-                          <div className="border-2 border-accent_primary rounded-lg p-4 bg-accent_primary/5 mb-6">
-                            <div className="grid grid-cols-1 gap-3">
-                              {summerCamps.map((camp) => (
-                                <label
-                                  key={camp.id}
-                                  className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                                    field.value.includes(camp.value)
-                                      ? 'border-accent-primary bg-accent-primary/10'
-                                      : 'border-gray-200 bg-white hover:border-accent-primary/50'
-                                  }`}
-                                >
-                                  <div className="flex items-center mb-2">
-                                    <input
-                                      type="checkbox"
-                                      checked={field.value.includes(camp.value)}
-                                      onChange={(e) => {
-                                        if (e.target.checked) {
-                                          field.onChange([...field.value, camp.value]);
-                                        } else {
-                                          field.onChange(field.value.filter((v: string) => v !== camp.value));
-                                        }
-                                      }}
-                                      className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-accent-primary"
-                                    />
-                                    <span className="ml-2 font-bold text-charcoal">
-                                      {camp.name}
-                                    </span>
-                                  </div>
-                                  <p className="paragraph_small text-charcoal/70">
-                                    {camp.dates} | {camp.time} | {camp.price} ({camp.includes})
-                                  </p>
-                                </label>
-                              ))}
+                    <Controller
+                      name="danceClasses"
+                      control={control}
+                      render={({ field }) => {
+                        const selectedValues = field.value ?? [];
+
+                        return (
+                          <div className="space-y-4">
+                            <div className="border border-gray-200 rounded-lg bg-white">
+                              <button
+                                type="button"
+                                onClick={() => toggleGroup('summerCamps')}
+                                className="w-full flex items-center justify-between p-4 text-left"
+                              >
+                                <span className="font-semibold text-charcoal">Kesäleirit 2026</span>
+                                <span className="text-accent-primary font-semibold">{expandedGroups.summerCamps ? 'Sulje' : 'Avaa'}</span>
+                              </button>
+                              {expandedGroups.summerCamps && (
+                                <div className="px-4 pb-4 grid grid-cols-1 gap-3 border-t border-gray-100">
+                                  {summerCamps.map((camp) => (
+                                    <label
+                                      key={camp.id}
+                                      className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                                        selectedValues.includes(camp.value)
+                                          ? 'border-accent-primary bg-accent-primary/10'
+                                          : 'border-gray-200 bg-white hover:border-accent-primary/50'
+                                      }`}
+                                    >
+                                      <div className="flex items-center mb-2">
+                                        <input
+                                          type="checkbox"
+                                          checked={selectedValues.includes(camp.value)}
+                                          onChange={(e) => {
+                                            if (e.target.checked) {
+                                              field.onChange([...selectedValues, camp.value]);
+                                            } else {
+                                              field.onChange(selectedValues.filter((v: string) => v !== camp.value));
+                                            }
+                                          }}
+                                          className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-accent-primary"
+                                        />
+                                        <span className="ml-2 font-bold text-charcoal">{camp.name}</span>
+                                      </div>
+                                      <p className="paragraph_small text-charcoal/70">
+                                        {camp.dates} | {camp.time} | {camp.price} ({camp.includes})
+                                      </p>
+                                    </label>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="border border-gray-200 rounded-lg bg-white">
+                              <button
+                                type="button"
+                                onClick={() => toggleGroup('summerClasses')}
+                                className="w-full flex items-center justify-between p-4 text-left"
+                              >
+                                <span className="font-semibold text-charcoal">Kesätunnit</span>
+                                <span className="text-accent-primary font-semibold">{expandedGroups.summerClasses ? 'Sulje' : 'Avaa'}</span>
+                              </button>
+                              {expandedGroups.summerClasses && (
+                                <div className="px-4 pb-4 space-y-4 border-t border-gray-100">
+                                  {Object.entries(scheduleData.summerClassesByWeek).map(([week, weekClasses]) => (
+                                    <div key={week} className="border border-gray-200 rounded-lg p-4 bg-white">
+                                      <div className="flex items-center justify-between mb-3">
+                                        <h4 className="heading_h5 text-charcoal">{week}</h4>
+                                        <span className="px-2 py-1 rounded text-xs font-bold text-white bg-accent-primary">13€/h</span>
+                                      </div>
+                                      <div className="grid grid-cols-1 gap-3">
+                                        {weekClasses.map((classItem, index) => {
+                                          const classValue = createClassValue('kesatunnit', week, classItem);
+                                          const classLabel = `${classItem.day} ${classItem.date} | ${classItem.time} | ${classItem.class}`;
+                                          const classDescription = `Opettaja: ${classItem.instructor}`;
+
+                                          return (
+                                            <label
+                                              key={`${classValue}-${index}`}
+                                              className={`relative flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                                                selectedValues.includes(classValue)
+                                                  ? 'border-accent-primary bg-accent-primary/5'
+                                                  : 'border-gray-200 hover:border-accent-primary/50'
+                                              }`}
+                                            >
+                                              <div className="flex items-center mb-2">
+                                                <input
+                                                  type="checkbox"
+                                                  checked={selectedValues.includes(classValue)}
+                                                  onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                      field.onChange([...selectedValues, classValue]);
+                                                    } else {
+                                                      field.onChange(selectedValues.filter((v: string) => v !== classValue));
+                                                    }
+                                                  }}
+                                                  className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 text-accent-primary focus:ring-accent-primary"
+                                                />
+                                                <span className="ml-2 font-medium text-sm text-charcoal">{classLabel}</span>
+                                              </div>
+                                              <p className="paragraph_small text-charcoal/70">{classDescription}</p>
+                                            </label>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="border border-gray-200 rounded-lg bg-white">
+                              <button
+                                type="button"
+                                onClick={() => toggleGroup('autumnClasses')}
+                                className="w-full flex items-center justify-between p-4 text-left"
+                              >
+                                <span className="font-semibold text-charcoal">Syksyn tunnit</span>
+                                <span className="text-accent-primary font-semibold">{expandedGroups.autumnClasses ? 'Sulje' : 'Avaa'}</span>
+                              </button>
+                              {expandedGroups.autumnClasses && (
+                                <div className="px-4 pb-4 space-y-4 border-t border-gray-100">
+                                  <div className="text-sm text-charcoal/70 font-medium">{scheduleData.autumnSeasonLabel}</div>
+                                  {Object.entries(scheduleData.autumnClassesByDay).map(([day, dayClasses]) => (
+                                    <div key={day} className="border border-gray-200 rounded-lg p-4 bg-white">
+                                      <div className="flex items-center justify-between mb-3">
+                                        <h4 className="heading_h5 text-charcoal">{day}</h4>
+                                      </div>
+                                      <div className="grid grid-cols-1 gap-3">
+                                        {dayClasses.map((classItem, index) => {
+                                          const classValue = createClassValue('syksyntunnit', day, classItem);
+                                          const classLabel = `${day} | ${classItem.time} | ${classItem.class}`;
+                                          const classDescription = `Opettaja: ${classItem.instructor}`;
+
+                                          return (
+                                            <label
+                                              key={`${classValue}-${index}`}
+                                              className={`relative flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                                                selectedValues.includes(classValue)
+                                                  ? 'border-accent-primary bg-accent-primary/5'
+                                                  : 'border-gray-200 hover:border-accent-primary/50'
+                                              }`}
+                                            >
+                                              <div className="flex items-center mb-2">
+                                                <input
+                                                  type="checkbox"
+                                                  checked={selectedValues.includes(classValue)}
+                                                  onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                      field.onChange([...selectedValues, classValue]);
+                                                    } else {
+                                                      field.onChange(selectedValues.filter((v: string) => v !== classValue));
+                                                    }
+                                                  }}
+                                                  className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 text-accent-primary focus:ring-accent-primary"
+                                                />
+                                                <span className="ml-2 font-medium text-sm text-charcoal">{classLabel}</span>
+                                              </div>
+                                              <p className="paragraph_small text-charcoal/70">{classDescription}</p>
+                                            </label>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </div>
-                        )}
-                      />
-                    </div>
+                        );
+                      }}
+                    />
 
-                    <div className="mb-6">
-                      <label className="paragraph_small font-medium text-charcoal mb-4 block">
-                        Kesätunnit * (Voit valita useita)
-                      </label>
-                      <Controller
-                        name="danceClasses"
-                        control={control}
-                        render={({ field }) => (
-                          <div className="space-y-6">
-                            {Object.entries(scheduleData).map(([week, weekClasses]) => (
-                              <div key={week} className="border border-gray-200 rounded-lg p-4 bg-white">
-                                <div className="flex items-center justify-between mb-3">
-                                  <h4 className="heading_h5 text-charcoal">
-                                    {week}
-                                  </h4>
-                                  <span className="px-2 py-1 rounded text-xs font-bold text-white bg-accent-primary">
-                                    13€/h
-                                  </span>
-                                </div>
-                                <div className="grid grid-cols-1 gap-3">
-                                  {weekClasses.map((classItem) => {
-                                    const classValue = createClassValue(week, classItem);
-                                    const classLabel = `${classItem.day} ${classItem.date} | ${classItem.time} | ${classItem.class}`;
-                                    const classDescription = `Opettaja: ${classItem.instructor}`;
-
-                                    return (
-                                      <label
-                                        key={classValue}
-                                        className={`relative flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                                          field.value.includes(classValue)
-                                            ? 'border-accent-primary bg-accent-primary/5'
-                                            : 'border-gray-200 hover:border-accent-primary/50'
-                                        }`}
-                                      >
-                                        <div className="flex items-center mb-2">
-                                          <input
-                                            type="checkbox"
-                                            checked={field.value.includes(classValue)}
-                                            onChange={(e) => {
-                                              if (e.target.checked) {
-                                                field.onChange([...field.value, classValue]);
-                                              } else {
-                                                field.onChange(field.value.filter((v: string) => v !== classValue));
-                                              }
-                                            }}
-                                            className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-2 text-accent-primary focus:ring-accent-primary"
-                                          />
-                                          <span className="ml-2 font-medium text-sm text-charcoal">
-                                            {classLabel}
-                                          </span>
-                                        </div>
-                                        <p className="paragraph_small text-charcoal/70">
-                                          {classDescription}
-                                        </p>
-                                      </label>
-                                    );
-                                  })}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      />
-                      {errors.danceClasses && (
-                        <p className="text-red-500 text-sm mt-2">{errors.danceClasses.message}</p>
-                      )}
-                    </div>
+                    {errors.danceClasses && <p className="text-red-500 text-sm mt-2">{errors.danceClasses.message}</p>}
 
                     {watchedDanceClasses.length > 0 && (
                       <div className="mt-6 p-4 bg-accent-secondary/10 rounded-lg">
-                        <h4 className="heading_h6 text-charcoal mb-2">Valitsemasi kesätunnit:</h4>
+                        <h4 className="heading_h6 text-charcoal mb-2">Valintasi:</h4>
                         <ul className="list-disc list-inside paragraph_small text-charcoal/80">
                           {watchedDanceClasses.map((classValue: string) => {
-                            const campInfo = summerCamps.find((camp) => camp.value === classValue);
-                            if (campInfo) {
-                              return <li key={classValue} className="text-accent-primary font-medium">{campInfo.label}</li>;
-                            }
-                            const classInfo = danceClasses.find(c => c.value === classValue);
-                            return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
+                            const classLabel = classLookup.get(classValue);
+                            return classLabel ? <li key={classValue}>{classLabel}</li> : null;
                           })}
                         </ul>
                       </div>
@@ -814,12 +868,8 @@ const Registration = () => {
                         <strong>Valitut tunnit:</strong>
                         <ul className="list-disc list-inside ml-4">
                           {watch('danceClasses')?.map((classValue: string) => {
-                            const campInfo = summerCamps.find((camp) => camp.value === classValue);
-                            if (campInfo) {
-                              return <li key={classValue}>{campInfo.label}</li>;
-                            }
-                            const classInfo = danceClasses.find(c => c.value === classValue);
-                            return classInfo ? <li key={classValue}>{classInfo.label}</li> : null;
+                            const classLabel = classLookup.get(classValue);
+                            return classLabel ? <li key={classValue}>{classLabel}</li> : null;
                           })}
                         </ul>
                       </div>
@@ -828,7 +878,7 @@ const Registration = () => {
 
                   <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-4">
                     <p className="text-sm font-semibold text-yellow-800">
-                      Huomio: ilmoittautuminen kesän tunneille on sitova.
+                      Huomio: ilmoittautuminen valituille tunneille ja leireille on sitova.
                     </p>
                   </div>
 

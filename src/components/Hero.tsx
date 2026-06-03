@@ -91,6 +91,15 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 1.35 }}
+            className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-sm mb-8"
+          >
+            Uusi kausi alkaa 10.8.2026
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.5 }}

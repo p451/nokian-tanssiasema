@@ -347,18 +347,6 @@ const Schedule = () => {
             <div className="font-bold text-pink-600 mb-2">Kesäleirit 2026</div>
             <div className="space-y-4 text-charcoal/80 text-sm mb-3">
               <div className="bg-white/60 rounded-lg p-3">
-                <div className="font-semibold text-charcoal mb-1">NUORTEN TANSSILEIRI (13-16v)</div>
-                <p>
-                  <span className="font-medium">Ajankohta:</span> 1.6.-4.6.2026
-                </p>
-                <p>
-                  <span className="font-medium">Kellonaika:</span> klo 9.30-15.00
-                </p>
-                <p>
-                  <span className="font-medium">Hinta:</span> 200€ (sisältää lounaan)
-                </p>
-              </div>
-              <div className="bg-white/60 rounded-lg p-3">
                 <div className="font-semibold text-charcoal mb-1">LASTEN TANSSILEIRI (8-12v)</div>
                 <p>
                   <span className="font-medium">Ajankohta:</span> 8.6.-10.6.2026
@@ -386,7 +374,8 @@ const Schedule = () => {
 
           <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded">
             <div className="font-bold text-green-700 mb-2">Syksyn tunnit</div>
-            <div className="font-semibold text-charcoal mb-2">Ilmoittautuminen syksyn tunneille on auki.</div>
+            <div className="font-semibold text-charcoal mb-2">Kausi alkaa 10.8.2026.</div>
+            <p className="text-charcoal/80 text-sm mb-3">Ilmoittautuminen syksyn tunneille on auki.</p>
             <a href="#register" className="text-green-700 underline hover:text-green-600 font-medium">
               Ilmoittaudu syksyn tunneille {'->'}
             </a>
@@ -394,8 +383,10 @@ const Schedule = () => {
 
           <div className="bg-pink-50 border-l-4 border-pink-500 p-6 rounded">
             <div className="font-bold text-pink-600 mb-2">Tanssimuskari</div>
-            <div className="font-semibold text-charcoal mb-2">Muskari jatkuu taas syksyllä!</div>
-            <p className="text-charcoal/80 text-sm mb-3">Lisätietoa tulossa kesän aikana! Voit myös ilmoittaa kiinnostuksesi yhteydenottolomakkeella.</p>
+            <div className="font-semibold text-charcoal mb-2">Tanssimuskari Soivat Askeleet</div>
+            <p className="text-charcoal/80 text-sm mb-3">
+              Yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josette Tuomiston kanssa. Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunneilla on tanssia, lauluja, loruja sekä soittoa. Opettajina Tiia-Maria (tanssi) ja Josette Tuomisto (säestys). Hinta 180€ (10 krt).
+            </p>
             <a href="#contact" className="text-pink-600 underline hover:text-pink-500 font-medium">
               Ota yhteyttä {'->'}
             </a>

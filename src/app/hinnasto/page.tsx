@@ -4,12 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const Hinnasto = () => {
-  const summerPricing = {
-    title: 'Kesän tunnit nuorille ja aikuisille',
-    price: '13€/h',
-    description: 'Ilmoittautuminen kesän tunneille on sitovaa.'
-  };
-
   const weeklyPricing = [
     { duration: '30min', price: '44€' },
     { duration: '45min', price: '51€' },
@@ -51,28 +45,15 @@ const Hinnasto = () => {
               Hinnasto 2026
             </h1>
             <p className="paragraph_large text_charcoal/70">
-              Katso kesän tuntien hinta sekä muut viikoittaiset hinnat ja tanssikortit
+              Katso viikoittaiset hinnat ja tanssikortit
             </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-16"
-          >
-            <div className="bg-accent-primary/10 border border-accent-primary/20 rounded-2xl p-8 text-center">
-              <p className="heading_h4 mb-3">{summerPricing.title}</p>
-              <p className="text-3xl font-bold text-accent-primary mb-3">{summerPricing.price}</p>
-              <p className="paragraph_default text_charcoal/70">{summerPricing.description}</p>
-            </div>
           </motion.div>
 
           {/* Weekly Classes Pricing */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-16"
           >
             <h2 className="heading_h2 mb-8 text-center">
@@ -112,7 +93,7 @@ const Hinnasto = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="mb-16"
           >
             <h2 className="heading_h2 mb-8 text-center">
@@ -175,7 +156,7 @@ const Hinnasto = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
             className="text-center space-y-4"
           >
             <Link

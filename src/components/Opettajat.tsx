@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type Teacher = {
   name: string;
@@ -16,7 +16,7 @@ const Opettajat = () => {
     {
       name: "KATJA SUOVA",
       specialties: "Baletti",
-      image: "/images/katja.jpg",
+      image: "/images/optimized/katja.webp",
       bio: `Katja aloitti tanssimisen 8-vuotiaana äitinsä Anneli Suovan balettikoulussa, jossa hän myös kouluttautui baletinopettajaksi. Katja on opettanut vuodesta 1987. Opettamisen ohella Katja työskenteli tanssijana Tampereen Työväen Teatterissa (1987-1989) mm. teoksissa Kalle Aaltosen morsian ja Tukkijoella. Anneli Suovan balettikoulu siirtyi Katjalle v.1991 josta lähtien hän on toiminut Nokian Tanssiaseman rehtorina.
 
 Opettajana kehittyminen ja ammattitaidon ylläpito on Katjalle tärkeää, siksi hän kouluttautuu säännöllisesti käymällä tanssikursseilla ja tapahtumissa.
@@ -28,7 +28,7 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
     {
       name: "KARITA SUOVA",
       specialties: "Nykytanssi, Showtanssi, Baletti",
-      image: "/images/karita.jpg",
+      image: "/images/optimized/karita.webp",
       bio: `Karita valmistui vuonna 2015 Turun Taideakatemiasta (AMK) tanssinopettajaksi. Osan opinnoistaan hän suoritti vaihto-opiskelijana Ruotsin Dans- och Cirkushögskolanissa. Valmistumisen jälkeen hän vietti vuoden Härnösandissa, Ruotsissa, opettaen ja tanssien eri tanssilajeja. Vuosien varrella Karita on kartuttanut tanssikokemustaan monipuolisesti eri opettajien johdolla. Hän aloitti tanssin 3-vuotiaana baletilla. Nykyisin hänen päälajinsa on nykytanssi, mutta hänellä on myös pitkä tausta jazztanssissa sekä kokemusta muista lajeista. Karita on innostava ja kannustava opettaja, joka nauttii kaikenikäisten oppilaiden kanssa työskentelystä. Karitan tunneilla vallitsee avoin ja salliva ilmapiiri, jossa oppilaat voivat turvallisesti tutkia ja ilmaista omaa luovuuttaan. Opetuksessa hän korostaa sekä teknisten taitojen että luovien harjoitteiden tärkeyttä, tukien oppilaan kokonaisvaltaista kehittymistä tanssijana.
 
 
@@ -44,24 +44,33 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
     {
       name: "MILJA LEHTO",
       specialties: "Dance Mix, Commercial Dance",
-      image: "/images/milja.jpg",
+      image: "/images/optimized/milja.webp",
       bio: ""
     },  
     {
-      name: "TIIA-MARIA KIVIMÄKI", 
+      name: "TIIA-MARIA KIVIMÄKI",
       specialties: "Heels, Lastentanssi, Kisaryhmät",
-      image: "/images/tiia.jpg",
+      image: "/images/optimized/tiia.webp",
       bio: "Tiia-Maria Kivimäki on juuriltaan kaarinalainen tanssinopettaja, joka aloitti tanssin vuonna 2005. Hänellä on vuosien kokemus useista eri tanssilajeista, tanssikollektiivissa työskentelystä sekä kilpailutoiminnasta. Tanssinopettajaksi hän valmistui Oulun ammattikorkeakoulusta vuonna 2024, ja osan opinnoistaan hän suoritti New Yorkissa Peridance Centerillä. Tiia-Marialle omimpia lajeja ovat show- ja nykytanssi, mutta vuosien varrella osaamista on kertynyt myös baletista, akrobatiasta, commercialista sekä heelsistä. Vaihto-opintojen aikana hän pääsi laajentamaan tanssillista repertuaariaan tutustumalla muun muassa waackingiin ja jazz funk -tyyleihin. Opettajana Tiia-Maria on monipuolinen, tarkka ja positiivinen. Hän haluaa haastaa oppilaitaan sekä liikkeellisesti että musikaalisesti, ja hänen opetustyylinsä painottuu aksentoituun ja energiseen liikkeeseen. Tunneilla kehitetään tekniikkaa tanssin iloa unohtamatta, ja Tiia-Maria pyrkii aina luomaan turvallisen ja yhdenvertaisen ilmapiirin kaikille oppilailleen."
     },
     {
       name: "AARO JOKINEN",
       specialties: "Breakdance",
-      image: "/images/aaro.jpg",
+      image: "/images/optimized/aaro.webp",
       bio: "Aaro on monipuolinen tanssija ja opettaja, jonka vahvuuksia ovat rauhallisuus, innostavuus ja yksilöllinen ote opetukseen. Hän aloitti tanssin kolmivuotiaana baletin parissa ja siirtyi myöhemmin katutanssin maailmaan, jossa erityisesti breakdance on muodostunut hänen suosikkilajikseen. Opettajana Aaro luo tunneilleen kannustavan ilmapiirin ja huomioi erilaiset oppijat, mahdollistaen jokaiselle omanlaisen kehityspolun tanssitaustasta riippumatta."
     }
   ];
 
   const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
+
+  useEffect(() => {
+    if (!selectedTeacher) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedTeacher(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedTeacher]);
 
   return (
     <section id="teachers" className="section_primary_default_fullwidth py-20">
@@ -102,8 +111,17 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center gap-4 cursor-pointer group"
+              className="flex flex-col items-center gap-4 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary rounded-2xl"
               onClick={() => setSelectedTeacher(teacher)}
+              role="button"
+              tabIndex={0}
+              aria-haspopup="dialog"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedTeacher(teacher);
+                }
+              }}
             >
               <div className="w-full max-w-xs h-[320px] relative overflow-hidden rounded-2xl bg-neutral-secondary/20 shadow-lg">
                 {teacher.image ? (
@@ -128,6 +146,9 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
         {selectedTeacher && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setSelectedTeacher(null)}>
             <div
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedTeacher.name}
               className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 relative overflow-y-auto max-h-[90vh] sm:max-h-[80vh] sm:p-8"
               style={{
                 boxSizing: 'border-box',
@@ -138,12 +159,6 @@ Katjan vuosien pitkäjänteisen ja tavoitteellisen opetustyönsä ansiosta häne
             >
               <button
                 className="fixed sm:absolute top-4 right-4 text-xl text-gray-500 hover:text-accent_primary bg-white/80 rounded-full p-2 z-10 border border-gray-200"
-                style={{
-                  position: 'absolute',
-                  top: 16,
-                  right: 16,
-                  zIndex: 10,
-                }}
                 onClick={() => setSelectedTeacher(null)}
                 aria-label="Sulje"
               >

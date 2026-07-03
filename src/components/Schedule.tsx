@@ -343,30 +343,9 @@ const Schedule = () => {
         <h2 className="heading_h2 text-accent_primary mb-4 text-center">Ajankohtaista</h2>
 
         <div className="space-y-4">
-          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 rounded">
-            <div className="font-bold text-pink-600 mb-2">Kesäleirit 2026</div>
-            <div className="space-y-4 text-charcoal/80 text-sm mb-3">
-              <div className="bg-white/60 rounded-lg p-3">
-                <div className="font-semibold text-charcoal mb-1">LASTEN TANSSILEIRI (8-12v)</div>
-                <p>
-                  <span className="font-medium">Ajankohta:</span> 8.6.-10.6.2026
-                </p>
-                <p>
-                  <span className="font-medium">Kellonaika:</span> klo 10.00-14.30
-                </p>
-                <p>
-                  <span className="font-medium">Hinta:</span> 160€ (sisältää lounaan)
-                </p>
-              </div>
-            </div>
-            <a href="#register" className="text-pink-600 underline hover:text-pink-500 font-medium">
-              Ilmoittaudu kesäleireille {'->'}
-            </a>
-          </div>
-
           <div className="bg-accent_primary/10 border-l-4 border-accent_primary p-6 rounded">
             <div className="font-bold text-accent_primary mb-2">Kesän tunnit nuorille ja aikuisille</div>
-            <p className="text-charcoal/80 text-sm mb-3">Kesätunnit järjestetään viikoilla 23, 24, 25, 30 ja 31. Tuntien hinta on 13€/h.</p>
+            <p className="text-charcoal/80 text-sm mb-3">Kesätunnit järjestetään viikoilla 30 ja 31. Tuntien hinta on 13€/h.</p>
             <a href="#register" className="text-accent_primary underline hover:text-accent_primary/80">
               Ilmoittaudu kesätunneille {'->'}
             </a>

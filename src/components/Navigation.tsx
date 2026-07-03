@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +60,23 @@ const Navigation = () => {
         scrolled ? 'bg-neutral-inverse/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
       }`}>
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-end h-16">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo - näkyy vasta kun scrollattu ohi Heron omasta logosta */}
+            <Link
+              href="#home"
+              onClick={(e) => handleNavClick(e, '#home')}
+              className={`transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              aria-label="Nokian Tanssiasema - etusivulle"
+            >
+              <Image
+                src="/images/optimized/logo.webp"
+                alt="Nokian Tanssiasema"
+                width={160}
+                height={32}
+                className="h-8 w-auto"
+              />
+            </Link>
+
             {/* Desktop Navigation */}
             <div className="hidden md:flex">
               <div className="flex items-center space-x-6">
@@ -86,7 +103,10 @@ const Navigation = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`inline-flex items-center justify-center p-2 rounded-md bg-black text-white hover:text_accent_primary focus:outline-none`}
+                className={`inline-flex items-center justify-center w-11 h-11 rounded-md bg-accent-primary text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2`}
+                aria-label={isOpen ? 'Sulje valikko' : 'Avaa valikko'}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
               >
                 <svg
                   className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
@@ -111,7 +131,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden bg-white transition-all duration-300 ease-in-out">
+          <div id="mobile-menu" className="md:hidden bg-white transition-all duration-300 ease-in-out">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <Link

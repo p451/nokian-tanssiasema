@@ -29,9 +29,26 @@ exports.handler = async (event) => {
 
   try {
     const data = JSON.parse(event.body);
-    
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isNonEmptyString = (value) => typeof value === 'string' && value.trim().length > 0;
+
+    if (
+      !isNonEmptyString(data.name) ||
+      !isNonEmptyString(data.email) ||
+      !emailPattern.test(data.email) ||
+      !isNonEmptyString(data.subject) ||
+      !isNonEmptyString(data.message)
+    ) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Puuttuvia tai virheellisiä kenttiä' })
+      };
+    }
+
     console.log('Contact data received:', JSON.stringify(data, null, 2));
-    
+
     // Create transporter using Brevo SMTP
     const transporter = nodemailer.createTransport({
       host: 'smtp-relay.brevo.com',

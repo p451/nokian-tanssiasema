@@ -3,9 +3,16 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nokian Tanssiasema - Jokainen askel kertoo tarinan",
+  metadataBase: new URL("https://nokiantanssiasema.fi"),
+  title: {
+    default: "Nokian Tanssiasema - Jokainen askel kertoo tarinan",
+    template: "%s | Nokian Tanssiasema"
+  },
   description: "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
   keywords: "tanssikoulu, baletti, nykytanssi, Nokia, tanssitunnit, opettajat, aikataulu, hinnasto",
+  alternates: {
+    canonical: "https://nokiantanssiasema.fi"
+  },
   icons: {
     icon: [
       { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
@@ -137,13 +144,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "DanceSchool",
               "name": "Nokian Tanssiasema",
+              "alternateName": "Balettikoulu Katja Suova",
               "url": "https://nokiantanssiasema.fi",
               "logo": "https://nokiantanssiasema.fi/images/logo.png",
+              "image": "https://nokiantanssiasema.fi/images/optimized/hero.webp",
               "description": "Nokian Tanssiasema tarjoaa monipuolisia tanssitunteja kaikenikäisille. Tule mukaan balettiin, street tanssiin ja muihin tanssityyleihin Nokialla.",
+              "telephone": "+358505541382",
+              "email": "info@nokiantanssiasema.fi",
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "Nokian valtatie 25a",
+                "postalCode": "37100",
                 "addressLocality": "Nokia",
                 "addressCountry": "FI"
               },

@@ -13,7 +13,6 @@ const classes = [
 	description:
 	  'Lastentanssissa lapset pääsevät tutustumaan tanssin maailmaan hauskojen ja monipuolisten harjoitusten avulla. Tunneilla kehitetään kehonhallintaa, rytmitajua ja luovuutta, sekä opitaan toimimaan sekä yksilönä että osana ryhmää. Baletin perusteisiin tutustutaan leikkien avulla. Tavoitteena on innostaa lapsia tanssin pariin ja antaa hyvät valmiudet jatko-opintoihin.',
 	image: '/images/optimized/lasten.webp',
-	imageFallback: '/images/lasten.jpg',
 	ageGroup: '3-5 vuotta',
 	level: 'Aloittelijat',
 	duration: '45 min',
@@ -24,7 +23,6 @@ const classes = [
 	description:
 	  'Baletti on klassinen tanssilaji, jossa yhdistyvät tarkka tekniikka, kehonhallinta ja taiteellinen ilmaisu. Harjoittelu kehittää muun muassa linjauksia, tasapainoa ja liikkuvuutta. Baletti luo vahvan pohjan kaikelle tanssille ja sopii kaikenikäisille – niin aloittelijoille kuin tavoitteellisesti eteneville',
 	image: '/images/optimized/ballet.webp',
-	imageFallback: '/images/ballet.jpg',
 	ageGroup: '6-8 vuotta',
 	level: 'Alkeet',
 	duration: '60 min',
@@ -35,7 +33,6 @@ const classes = [
 	description:
 	  'Showtanssi yhdistää parhaita puolia jazz-tanssista, nykytanssista ja baletista. Tunneilla kehitetään tekniikkaa, ilmaisua sekä tanssillista energiaa monipuolisten tanssisarjojen avulla. Tunneilla yhdistyvät hyvä energia, keskittyminen ja tanssin ilo.',
 	image: '/images/optimized/show.webp',
-	imageFallback: '/images/show.jpg',
 	ageGroup: '8+ vuotta',
 	level: 'Kaikki tasot',
 	duration: '60 min',
@@ -46,7 +43,6 @@ const classes = [
 	description:
 	  'Nykytanssin tunneilla painotetaan oman tanssillisen ilmaisun löytämistä improvisaation sekä vaihtelevien tanssisarjojen avulla. Release- ja lattiatekniikan kautta kehitetään sulavuutta ja ilmaisua. Tunneilla yhdistetään modernin tanssin tekniikoita ja vaikutteita muista tanssilajeista, mikä tekee tunneista monipuolisia ja innostavia.',
 	image: '/images/optimized/nyky.webp',
-	imageFallback: '/images/nyky.jpg',
 	ageGroup: '12+ vuotta',
 	level: 'Kaikki tasot',
 	duration: '75 min',
@@ -57,7 +53,6 @@ const classes = [
 	description:
 	  'Dance mix -tunnit tarjoavat monipuolisen kattauksen eri tanssilajeja, kuten musikaalitanssia, contemporary jazzia ja street-tanssia. Tunti alkaa lämmittelyllä ja tekniikkaosiolla, jonka jälkeen keskitytään erilaisiin koreografioihin.',
 	image: '/images/optimized/dancemix.webp',
-	imageFallback: '/images/dancemix.jpg',
 	ageGroup: '15+ vuotta',
 	level: 'Kaikki tasot',
 	duration: '90 min',
@@ -68,7 +63,6 @@ const classes = [
 	description:
 	  'Commercial dance yhdistää elementtejä jazzista, showsta ja katutanssista, inspiroituen musiikkivideoista ja musikaaleista. Tunneilla harjoitellaan ilmaisullisia ja tyylikkäitä koreografioita, jotka kehittävät rytmitajua, kehonhallintaa ja esiintymisvarmuutta.',
 	image: '/images/optimized/commercial.webp',
-	imageFallback: '/images/commercial.jpg',
 	ageGroup: '13+ vuotta',
 	level: 'Keskitaso+',
 	duration: '75 min',
@@ -79,7 +73,6 @@ const classes = [
 	description:
 	  'Breakdance on vauhdikas ja akrobaattinen katutanssilaji, jossa opetellaan lattia- ja ylätason jalkatyöskentelyä, näyttäviä freezejä sekä akrobatiaa. Freestyle-osioissa tanssijat pääsevät kehittämään omaa persoonallista liikekieltään.',
 	image: '/images/optimized/break.webp',
-	imageFallback: '/images/break.jpg',
 	ageGroup: '8+ vuotta',
 	level: 'Aloittelijat',
 	duration: '60 min',
@@ -90,7 +83,6 @@ const classes = [
 	description:
 	  'Heels-tunnilla tanssitaan korkokengissä ja keskitytään erityisesti kehonhallintaan, linjauksiin ja feminiiniseen ilmaisuun. Tunti kehittää tasapainoa, ryhtiä ja esiintymisvarmuutta. Sopii kaikille, jotka haluavat haastaa itseään ja löytää uudenlaista itsevarmuutta tanssin kautta.',
 	image: '/images/optimized/heels.webp',
-	imageFallback: '/images/heels.jpg',
 	ageGroup: '16+ vuotta',
 	level: 'Avoin taso',
 	duration: '60 min',
@@ -101,7 +93,6 @@ const classes = [
 	description:
 	  'Tanssimuskari Soivat Askeleet toteutetaan yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josette Tuomiston kanssa. Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunneilla on tanssia, lauluja, loruja sekä soittoa. Opettajina Tiia-Maria (tanssi) ja Josette Tuomisto (säestys). Hinta 180€ (10 krt).',
 	image: '/images/optimized/lasten.webp',
-	imageFallback: '/images/lasten.jpg',
 	ageGroup: '3-12 kuukautta',
 	level: 'Vauvat + vanhempi',
 	duration: '45 min',

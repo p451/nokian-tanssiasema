@@ -29,10 +29,31 @@ exports.handler = async (event) => {
 
   try {
     const data = JSON.parse(event.body);
-    
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isNonEmptyString = (value) => typeof value === 'string' && value.trim().length > 0;
+
+    if (
+      !isNonEmptyString(data.firstName) ||
+      !isNonEmptyString(data.lastName) ||
+      !isNonEmptyString(data.email) ||
+      !emailPattern.test(data.email) ||
+      !isNonEmptyString(data.phone) ||
+      !isNonEmptyString(data.birthDate) ||
+      !Array.isArray(data.danceClasses) ||
+      data.danceClasses.length === 0 ||
+      data.termsAccepted !== true
+    ) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Puuttuvia tai virheellisiä kenttiä' })
+      };
+    }
+
     // Log data for debugging (remove in production)
     console.log('Registration data received:', JSON.stringify(data, null, 2));
-    
+
     // Create transporter using Brevo SMTP
     const transporter = nodemailer.createTransport({
       host: 'smtp-relay.brevo.com',

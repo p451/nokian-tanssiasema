@@ -23,7 +23,6 @@ const Registration = () => {
   const [previousExperienceError, setPreviousExperienceError] = useState('');
   const [submitError, setSubmitError] = useState('');
   const [expandedGroups, setExpandedGroups] = useState({
-    summerCamps: false,
     summerClasses: false,
     autumnClasses: false
   });
@@ -53,8 +52,6 @@ const Registration = () => {
   const isNewStudent = watch('isNewStudent');
   const hasPreviousExperience = watch('previousExperience');
 
-  const summerCamps = scheduleData.summerCamps;
-
   const summerDanceClasses = Object.entries(scheduleData.summerClassesByWeek).flatMap(([week, classes]) =>
     classes.map((classItem) => ({
       value: createClassValue('kesatunnit', week, classItem),
@@ -75,13 +72,12 @@ const Registration = () => {
 
   const classLookup = new Map(
     [
-      ...summerCamps.map((camp) => ({ value: camp.value, label: camp.label })),
       ...summerDanceClasses.map((danceClass) => ({ value: danceClass.value, label: danceClass.label })),
       ...autumnDanceClasses.map((danceClass) => ({ value: danceClass.value, label: danceClass.label }))
     ].map((item) => [item.value, item.label])
   );
 
-  const toggleGroup = (group: 'summerCamps' | 'summerClasses' | 'autumnClasses') => {
+  const toggleGroup = (group: 'summerClasses' | 'autumnClasses') => {
     setExpandedGroups((previous) => ({
       ...previous,
       [group]: !previous[group]
@@ -260,7 +256,7 @@ const Registration = () => {
             </h2>
             <p className="paragraph_default text-charcoal/70 mb-6">
               Olemme vastaanottaneet ilmoittautumisesi. Otamme sinuun yhteyttä pian 
-              sähköpostitse vahvistaaksemme paikkasi valitsemillasi tunneilla tai leirillä.
+              sähköpostitse vahvistaaksemme paikkasi valitsemillasi tunneilla.
             </p>
             <button
               onClick={() => {
@@ -310,13 +306,13 @@ const Registration = () => {
             Ilmoittautuminen
           </h2>
           <p className="paragraph_large text-center">
-            Täytä lomake ja valitse haluamasi kesäleirit, kesätunnit ja syksyn tunnit
+            Täytä lomake ja valitse haluamasi kesätunnit ja syksyn tunnit
           </p>
           
           <div className="mt-6 space-y-3">
             <div className="p-4 bg-sage/15 border border-sage/30 rounded-xl">
               <p className="text-sage font-semibold text-center">
-                Voit ilmoittautua samalla lomakkeella kesäleireille, kesätunneille ja syksyn tunneille.
+                Voit ilmoittautua samalla lomakkeella kesätunneille ja syksyn tunneille.
               </p>
             </div>
             <div className="p-4 bg-pink-50 border border-pink-300 rounded-xl">
@@ -575,7 +571,7 @@ const Registration = () => {
                   // Existing student flow
                   <>
                     <h3 className="heading_h3 mb-6">
-                      Valitse kesäleirit, kesätunnit ja syksyn tunnit
+                      Valitse kesätunnit ja syksyn tunnit
                     </h3>
 
                     <Controller
@@ -586,50 +582,6 @@ const Registration = () => {
 
                         return (
                           <div className="space-y-4">
-                            <div className="border border-gray-200 rounded-lg bg-white">
-                              <button
-                                type="button"
-                                onClick={() => toggleGroup('summerCamps')}
-                                className="w-full flex items-center justify-between p-4 text-left"
-                              >
-                                <span className="font-semibold text-charcoal">Kesäleirit 2026</span>
-                                <span className="text-accent-primary font-semibold">{expandedGroups.summerCamps ? 'Sulje' : 'Avaa'}</span>
-                              </button>
-                              {expandedGroups.summerCamps && (
-                                <div className="px-4 pb-4 grid grid-cols-1 gap-3 border-t border-gray-100">
-                                  {summerCamps.map((camp) => (
-                                    <label
-                                      key={camp.id}
-                                      className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                                        selectedValues.includes(camp.value)
-                                          ? 'border-accent-primary bg-accent-primary/10'
-                                          : 'border-gray-200 bg-white hover:border-accent-primary/50'
-                                      }`}
-                                    >
-                                      <div className="flex items-center mb-2">
-                                        <input
-                                          type="checkbox"
-                                          checked={selectedValues.includes(camp.value)}
-                                          onChange={(e) => {
-                                            if (e.target.checked) {
-                                              field.onChange([...selectedValues, camp.value]);
-                                            } else {
-                                              field.onChange(selectedValues.filter((v: string) => v !== camp.value));
-                                            }
-                                          }}
-                                          className="w-4 h-4 text-accent-primary bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-accent-primary"
-                                        />
-                                        <span className="ml-2 font-bold text-charcoal">{camp.name}</span>
-                                      </div>
-                                      <p className="paragraph_small text-charcoal/70">
-                                        {camp.dates} | {camp.time} | {camp.price} ({camp.includes})
-                                      </p>
-                                    </label>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-
                             <div className="border border-gray-200 rounded-lg bg-white">
                               <button
                                 type="button"

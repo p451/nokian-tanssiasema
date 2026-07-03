@@ -1,9 +1,29 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import Breadcrumb from '@/components/Breadcrumb';
+
+export const metadata: Metadata = {
+  title: 'Käyttöehdot',
+  description: 'Nokian Tanssiaseman käyttöehdot: ilmoittautuminen, peruutukset, maksut, poissaolot ja muut tanssikoulun opetusta koskevat säännöt.',
+  alternates: {
+    canonical: 'https://nokiantanssiasema.fi/terms-of-use'
+  },
+  robots: {
+    index: true,
+    follow: true
+  }
+};
 
 export default function TermsOfUse() {
   return (
     <div className="min-h-screen bg-neutral-secondary/10 py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb
+          items={[
+            { name: 'Etusivu', url: 'https://nokiantanssiasema.fi' },
+            { name: 'Käyttöehdot', url: 'https://nokiantanssiasema.fi/terms-of-use' }
+          ]}
+        />
         <div className="bg-white rounded-2xl p-8 shadow-lg">
           <h1 className="heading_h1 mb-8 text-center">Käyttöehdot</h1>
           <div className="prose prose-lg max-w-none">

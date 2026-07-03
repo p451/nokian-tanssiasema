@@ -15,31 +15,31 @@ const Gallery = () => {
 
   const images = [
     {
-      src: '/images/ballet.jpg',
+      src: '/images/optimized/ballet.webp',
       alt: 'Balettitunti käynnissä',
       title: 'Baletti',
       description: 'Tyylikäs ja tekninen balettitunti'
     },
     {
-      src: '/images/show.jpg',
+      src: '/images/optimized/show.webp',
       alt: 'Show Dance esitys',
       title: 'Show Dance',
       description: 'Näyttävä show dance -esitys'
     },
        // Duplicate images for smoother loop
     {
-      src: '/images/ballet.jpg',
+      src: '/images/optimized/ballet.webp',
       alt: 'Balettitunti käynnissä',
       title: 'Baletti',
       description: 'Tyylikäs ja tekninen balettitunti'
     },
     {
-      src: '/images/show.jpg',
+      src: '/images/optimized/show.webp',
       alt: 'Show Dance esitys',
       title: 'Show Dance',
       description: 'Näyttävä show dance -esitys'
     },
-  
+
   ];
 
   return (
@@ -127,7 +127,6 @@ const Gallery = () => {
             loop={true}
             speed={3000}
             freeMode={true}
-            allowTouchMove={false}
             breakpoints={{
               640: {
                 slidesPerView: 2,

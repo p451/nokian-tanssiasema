@@ -16,7 +16,7 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <section id="home" ref={ref} className="relative h-screen overflow-hidden">
+    <section id="home" ref={ref} className="relative h-[100svh] overflow-hidden">
       {/* Staattinen logo headerin yläpuolella */}
       <div
         className="absolute top-4 left-4 z-30 flex items-start pointer-events-none select-none"

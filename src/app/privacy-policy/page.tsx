@@ -1,9 +1,29 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import Breadcrumb from '@/components/Breadcrumb';
+
+export const metadata: Metadata = {
+  title: 'Tietosuojaseloste',
+  description: 'Nokian Tanssiaseman tietosuojaseloste: mitä henkilötietoja käsittelemme, miksi ja miten voit käyttää oikeuksiasi GDPR:n mukaisesti.',
+  alternates: {
+    canonical: 'https://nokiantanssiasema.fi/privacy-policy'
+  },
+  robots: {
+    index: true,
+    follow: true
+  }
+};
 
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-neutral-secondary/10 py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb
+          items={[
+            { name: 'Etusivu', url: 'https://nokiantanssiasema.fi' },
+            { name: 'Tietosuojaseloste', url: 'https://nokiantanssiasema.fi/privacy-policy' }
+          ]}
+        />
         <div className="bg-white rounded-2xl p-8 shadow-lg">
           <h1 className="heading_h1 mb-8 text-center">Tietosuojaseloste</h1>
           <div className="prose prose-lg max-w-none">
@@ -12,7 +32,7 @@ export default function PrivacyPolicy() {
             <h2>1. Rekisterinpitäjä</h2>
             <p><strong>Balettikoulu Katja Suova / Nokian Tanssiasema</strong><br />
             Y-tunnus: 1139259-9<br />
-            Osoite: Nokian valtatie 25, 37100 Nokia<br />
+            Osoite: Nokian valtatie 25a, 37100 Nokia<br />
             Puhelin: 050 554 1382<br />
             Sähköposti: info@nokiantanssiasema.fi</p>
 

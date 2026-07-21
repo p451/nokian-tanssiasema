@@ -364,11 +364,33 @@ const Schedule = () => {
             <div className="font-bold text-pink-600 mb-2">Tanssimuskari</div>
             <div className="font-semibold text-charcoal mb-2">Tanssimuskari Soivat Askeleet</div>
             <p className="text-charcoal/80 text-sm mb-3">
-              Yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josette Tuomiston kanssa. Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunneilla on tanssia, lauluja, loruja sekä soittoa. Opettajina Tiia-Maria (tanssi) ja Josette Tuomisto (säestys). Hinta 180€ (10 krt).
+              Yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josette Tuomiston kanssa. Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunneilla on tanssia, lauluja, loruja sekä soittoa. Opettajina Tiia-Maria (tanssi) ja Josette Tuomisto (musiikki). Hinta 180€ (10 krt).
             </p>
             <a href="#contact" className="text-pink-600 underline hover:text-pink-500 font-medium">
               Ota yhteyttä {'->'}
             </a>
+          </div>
+
+          <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded">
+            <div className="font-bold text-purple-700 mb-2">Teollisuusaseman Hyvinvointipäivä</div>
+            <div className="font-semibold text-charcoal mb-2">8.8.2026 klo 10-14</div>
+            <p className="text-charcoal/80 text-sm mb-3">
+              Hyvää oloa sekä mielelle että keholle. Päivässä yhdistyvät tanssi, musiikki ja kehonhuolto. Tanssi, laula, soita ja voi hyvin. Yhteistyössä Nokian Tanssiasema, Musiikkikoulu Josette Tuomisto ja Fysioterapia Salminen.
+            </p>
+          </div>
+
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded">
+            <div className="font-bold text-blue-700 mb-2">Harrastustori</div>
+            <div className="font-semibold text-charcoal mb-2">Lauantaina 15.8. klo 11.00-15.00, AGCO Power Arena</div>
+            <p className="text-charcoal/80 text-sm mb-3">Olemme mukana Harrastustorilla, tervetuloa tutustumaan!</p>
+          </div>
+
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+            <div className="font-bold text-amber-700 mb-2">Talvimatinea</div>
+            <div className="font-semibold text-charcoal mb-2">16.1.2027, Kerhola</div>
+            <p className="text-charcoal/80 text-sm mb-3">
+              Talvimatinea yhdessä Musiikkikoulu Josette Tuomiston kanssa.
+            </p>
           </div>
         </div>
       </section>

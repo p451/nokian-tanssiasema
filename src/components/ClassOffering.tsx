@@ -91,7 +91,7 @@ const classes = [
 	id: 9,
 	title: 'Tanssimuskari',
 	description:
-	  'Tanssimuskari Soivat Askeleet toteutetaan yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josette Tuomiston kanssa. Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunneilla on tanssia, lauluja, loruja sekä soittoa. Opettajina Tiia-Maria (tanssi) ja Josette Tuomisto (säestys). Hinta 180€ (10 krt).',
+	  'Tanssimuskari Soivat Askeleet toteutetaan yhteistyössä Nokian Tanssiaseman ja Musiikkikoulu Josette Tuomiston kanssa. Musisoinnin ja tanssin iloa äideille ja vauvoille! Tunneilla on tanssia, lauluja, loruja sekä soittoa. Opettajina Tiia-Maria (tanssi) ja Josette Tuomisto (musiikki). Hinta 180€ (10 krt).',
 	image: '/images/optimized/lasten.webp',
 	ageGroup: '3-12 kuukautta',
 	level: 'Vauvat + vanhempi',

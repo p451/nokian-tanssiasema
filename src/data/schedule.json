@@ -1,38 +1,4 @@
 {
-  "summerClassesByWeek": {
-    "Viikko 30": [
-      {
-        "day": "Maanantai",
-        "date": "20.7.",
-        "time": "18.00-19.00",
-        "class": "Aikuisbaletti avoin taso",
-        "instructor": "Katja"
-      },
-      {
-        "day": "Keskiviikko",
-        "date": "22.7.",
-        "time": "18.00-19.00",
-        "class": "Aikuisbaletti avoin taso",
-        "instructor": "Katja"
-      }
-    ],
-    "Viikko 31": [
-      {
-        "day": "Maanantai",
-        "date": "27.7.",
-        "time": "18.00-19.00",
-        "class": "Aikuisbaletti avoin taso",
-        "instructor": "Katja"
-      },
-      {
-        "day": "Keskiviikko",
-        "date": "29.7.",
-        "time": "18.00-19.00",
-        "class": "Aikuisbaletti avoin taso",
-        "instructor": "Katja"
-      }
-    ]
-  },
   "autumnSeasonLabel": "Lukujärjestys 2026-2027",
   "autumnClassesByDay": {
     "Maanantai": [
